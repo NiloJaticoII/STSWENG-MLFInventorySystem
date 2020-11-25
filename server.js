@@ -58,3 +58,5 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.listen(port, () => {
   console.log('App listening at : localhost:' + port)
 })
+
+module.exports=app
