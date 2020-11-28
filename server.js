@@ -18,7 +18,9 @@ http.createServer(function (req, res) {
 //connecting to database
 try {
   db.connect();
-  } catch (e) {console.log(e);}
+  } catch (e) 
+  
+  {console.log(e);}
 
 app.use(express.static(__dirname + '/public'));
 
@@ -55,8 +57,15 @@ const hbs = require('hbs');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
+
 app.listen(port, () => {
   console.log('App listening at : localhost:' + port)
 })
+
+
+/*
+const server=new http.Server(app)
+server.listen(1337)
+*/
 
 module.exports=app
