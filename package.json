@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
