@@ -1,29 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch
+} from "react-router-dom";
 
-function App() {
-  return (
-     <div id="loginPage" class="App">
-        <div id="loginBox" class="container">
-            <form id="loginForm" method="POST" action="/login">
-                <div class="text-center">
-                    <img id="logoImage" src="photo/logo.png" /> 
-                </div>
+import Login from './Components/Login/Login'
 
-                <div class="form-group">
-                    <label for="userName" class="font-weight-normal">username</label>
-                    <input id="userName" name="userName" type="text" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="userName" class="font-weight-normal">password</label>
-                    <input id="password" name="password" type="password" class="form-control" />
-                </div>
-                <div class="text-right">
-                    <input id="loginButton" value="LOGIN" type="submit" class="btn btn-secondary btn-lg col-5" />
-                </div>
-            </form>
-        </div>
-    </div>
+class App extends Component {
+  
+  render(){
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/">
+              <Login />
+          </Route>
+        </Switch>
+      </Router>
     );
+  }
 }
 
 export default App;
