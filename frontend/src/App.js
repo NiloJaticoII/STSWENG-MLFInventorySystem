@@ -3,22 +3,25 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams,
-  useRouteMatch
 } from "react-router-dom";
 
 import Login from './Components/Login/Login'
+import TestHome from './Components/Home/testHome';
 
 class App extends Component {
   
+  constructor(){
+    super();
+    this.state = {
+      history: "/"
+    }
+  }
   render(){
     return (
       <Router>
         <Switch>
-          <Route exact path="/">
-              <Login />
-          </Route>
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/home" component={TestHome}/>
         </Switch>
       </Router>
     );
