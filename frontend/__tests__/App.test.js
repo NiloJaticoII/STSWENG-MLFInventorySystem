@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import { render, screen, shallow } from '@testing-library/react';
 
 //Enzyme tests matchers
