@@ -5,7 +5,7 @@ jobs:
       - checkout
       - node/install-packages:
           cache-path: ~/project/node_modules
-          override-ci-command: npm install
+          override-ci-command: npm --prefix ./fronted install ./frontend
       - run: npm run test
 
 version: 2.1
