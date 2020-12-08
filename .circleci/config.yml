@@ -8,7 +8,7 @@ jobs:
           override-ci-command: npm --prefix ./frontend install ./frontend
       - node/install-packages:
           cache-path: ~/project/node_modules
-          override-ci-command: npm node/install
+          override-ci-command: npm install
       - run: npm run test
 
 version: 2.1
