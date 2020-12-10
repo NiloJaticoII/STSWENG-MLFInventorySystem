@@ -49,7 +49,7 @@ class Login extends Component {
                    </div>
    
                    <div className="form-group">
-                       <label htmlFor="userName" className="font-weight-normal">Hi</label>
+                       <label htmlFor="userName" className="font-weight-normal">username</label>
                        <input id="userName" name="userName" value={this.state.userName} type="text" className="form-control" onChange={this.handleChange} />
                    </div>
                    <div className="form-group">

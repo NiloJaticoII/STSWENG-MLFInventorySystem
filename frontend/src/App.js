@@ -7,7 +7,6 @@ import {
 
 import Login from './Components/Login/Login'
 import TestHome from './Components/Home/testHome';
-import Admin from './Components/Admin/Admin';
 
 class App extends Component {
   
@@ -23,7 +22,6 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route exact path="/home" component={TestHome}/>
-          <Route exact path="/admin" component={Admin}/>
         </Switch>
       </Router>
     );
