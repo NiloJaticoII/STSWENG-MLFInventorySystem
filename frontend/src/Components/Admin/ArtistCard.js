@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 
 class ArtistCard extends Component {
-
     /*
-    <div>
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-2 mx-1 w-100">
-                        // each artist{}
+    */
+    render(){
+        return(
+            <div>
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-2 mx-1 w-100">
+                        
                         <div class="col mb-2 px-2"  id="{{artistID}}-card">
                             <div class="card mx-0">
                                 <div class="card-body">
-                                    // artist name <h5></h5>
-                                    // { income }<p class="card-text"><b>PHP </b> </p>
+                                    <h5>Artist Name</h5>
+                                    <p class="card-text"><b> Income PHP </b> </p>
                                     <a href="#" class="stretched-link" onclick="showArtistModal({{artistID}}, '{{artistName}}')" style="size: 0px;"></a>
                                 </div>
                             </div>
@@ -45,13 +47,6 @@ class ArtistCard extends Component {
                     </div>
                 </div>
             </div>
-    */
-
-    render(){
-        return(
-        <div>
-
-        </div>
         );
     }
 }

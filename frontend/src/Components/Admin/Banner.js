@@ -1,61 +1,69 @@
 import React, {Component} from 'react';
-import Counter from './Components/Admin/Counter';
+import Counter from './Counter';
 
 class Banner extends Component {
+    state = {
+        counters: [
+            {id: 1, value: 0}, /* sold */
+            {id: 2, value: 0}, /* days left */
+            {id: 3, value: 0}, /* hours left */
+            {id: 4, value: 0}, /* minutes left */
+            {id: 5, value: 0}  /* seconds left */
+        ]
+    };
+
     render(){
         return(
-            <div id="upperSection" class="container mt-4">
-                <div class="card d-flex flex-row bg-secondary text-light" style="width: 69.3rem; height: 10rem;">
-                    <div id="salesCounter" class="d-flex flex-col text-center">
-                        <div id="soldCounter" class="col">
-                            <h1 id="counterNumberSold" class="font-weight-bold">
-                                <Counter />
+            <div id="upperSection" className="container mt-4">
+                <div className="card d-flex flex-row bg-secondary text-light" style={{width: "69.3rem",  height: "10rem"}}>
+                    <div id="salesCounter" className="d-flex flex-col text-center">
+                        <div id="soldCounter" className="col">
+                            <h1 id="counterNumberSold" className="font-weight-bold">
+                                <Counter key={this.state.counters[0].id} value={this.state.counters[0].value} id={this.state.counters[0].id} />
                             </h1>
                             <h5 id="textLabel">sold</h5>
                         </div>
-                        <div id="dayCounter" class="col">
-                            <h1 id="counterNumberDays" class="font-weight-bold">
-                                <Counter />
+                        <div id="dayCounter" className="col">
+                            <h1 id="counterNumberDays" className="font-weight-bold">
+                                <Counter key={this.state.counters[1].id} value={this.state.counters[1].value} id={this.state.counters[1].id} />
                             </h1>
                             <h5 id="textLabel">day left</h5>
                         </div>
-                        <div id="hoursCounter" class="col">
-                            <h1 id="counterNumberHours" class="font-weight-bold">
-                                <Counter />
+                        <div id="hoursCounter" className="col">
+                            <h1 id="counterNumberHours" className="font-weight-bold">
+                                <Counter key={this.state.counters[2].id} value={this.state.counters[2].value} id={this.state.counters[2].id} />
                             </h1>
                             <h5 id="textLabel">hours left</h5>
                         </div>
-                        <div id="minutesCounter" class="col">
-                            <h1 id="counterNumberMinutes" class="font-weight-bold">
-                                <Counter />
+                        <div id="minutesCounter" className="col">
+                            <h1 id="counterNumberMinutes" className="font-weight-bold">
+                                <Counter key={this.state.counters[3].id} value={this.state.counters[3].value} id={this.state.counters[3].id} />
                             </h1>
                             <h5 id="textLabel">minutes left</h5>
                         </div>
-                        <div id="secondsCounter" class="col">
-                            <h1 id="counterNumberSeconds" class="font-weight-bold">
-                                <Counter />
+                        <div id="secondsCounter" className="col">
+                            <h1 id="counterNumberSeconds" className="font-weight-bold">
+                                <Counter key={this.state.counters[4].id} value={this.state.counters[4].value} id={this.state.counters[4].id} />
                             </h1>
                             <h5 id="textLabel">seconds left</h5>
                         </div>
                     </div>
 
-                    <input type="hidden" id="totalSeconds" value="{{totalSeconds}}" />
+                    <input type="hidden" id="totalSeconds" value="totalSeconds" />
 
                     <div id="userMenuIcon">
                         <img id="logoImageGrey" src="photo/logo-grey.png" />
                     </div>
 
-                    <div id="userMenu" class="d-flex flex-col text-left">
-                        <div id="userIcon" class="col">
+                    <div id="userMenu" className="d-flex flex-col text-left">
+                        <div id="userIcon" className="col">
                             <img id="userIconImage" src="../photo/icon-user.png" />
                         </div>
-                        <div id="userNameandArrow" class="d-flex flex-col justify-content-left">
-                            <div class="nav-item dropdown">
-                                <a id="userMenuDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    User
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right mt-4" aria-labelledby="userMenuDropdown">
-                                    <a class="dropdown-item" href="/logout">Log out</a>
+                        <div id="userNameandArrow" className="d-flex flex-col justify-content-left">
+                            <div className="nav-item dropdown">
+                                <a id="userMenuDropdown" className="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
+                                <div className="dropdown-menu dropdown-menu-right mt-4" aria-labelledby="userMenuDropdown">
+                                    <a className="dropdown-item" href="/logout">Log out</a>
                                 </div>
                             </div>
                         </div>

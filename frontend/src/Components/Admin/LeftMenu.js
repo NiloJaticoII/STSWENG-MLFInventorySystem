@@ -4,18 +4,18 @@ class LeftMenu extends Component {
 
     render(){
         return(
-            <div id="leftMenu" class="card p-3" data-spy="scroll" data-offset="0" style="width: 20rem;">
-                <div id="manageMenu" class="nav-item">
-                    <h6 class="text-center">manage</h6>
-                    <a id="manageArtists" href="#" class="nav-link" data-toggle="modal" data-target="#manageArtistsWindow">Manage artists</a>
-                    <a id="manageItems" href="#" class="nav-link" data-toggle="modal" data-target="#manageItemsWindow">Manage items</a>
-                    <a id="manageBundles" href="#" class="nav-link" data-toggle="modal" data-target="#manageBundlesWindow">Manage bundles</a>
-                    <a id="manageEventss" href="#" class="nav-link" data-toggle="modal" data-target="#manageEventsWindow">Manage events</a>
+            <div id="leftMenu" className="card p-3" data-spy="scroll" data-offset="0" style={{width: "20rem"}}>
+                <div id="manageMenu" className="nav-item">
+                    <h6 className="text-center">manage</h6>
+                    <a id="manageArtists" href="#" className="nav-link" data-toggle="modal" data-target="#manageArtistsWindow">Manage artists</a>
+                    <a id="manageItems" href="#" className="nav-link" data-toggle="modal" data-target="#manageItemsWindow">Manage items</a>
+                    <a id="manageBundles" href="#" className="nav-link" data-toggle="modal" data-target="#manageBundlesWindow">Manage bundles</a>
+                    <a id="manageEventss" href="#" className="nav-link" data-toggle="modal" data-target="#manageEventsWindow">Manage events</a>
                 </div>
                 <hr />
-                <div id="salesReportSection" class="nav-item">
-                    <h6 class="text-center">sales report</h6>
-                    <a id="currentSalesReport" href="#" class="nav-link" data-toggle="modal" data-target="#salesReportWindow">Current sales report</a>
+                <div id="salesReportSection" className="nav-item">
+                    <h6 className="text-center">sales report</h6>
+                    <a id="currentSalesReport" href="#" className="nav-link" data-toggle="modal" data-target="#salesReportWindow">Current sales report</a>
                 </div>
             </div>
         );
