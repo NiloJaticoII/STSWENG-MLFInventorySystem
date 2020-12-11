@@ -1,5 +1,6 @@
 // JavaScript source code
 import React, { Component } from 'react';
+import Counter from './Counter'
 import { Handlebars } from 'handlebars';
 
 /*header*/
@@ -14,9 +15,9 @@ class Header extends Component {
 
     render() {
         return (
-            <div class="Header">
-                <div id="upperSection" class="container mt-4">
-                    <div class="card d-flex flex-row bg-secondary text-light" style="width: 69.3rem; height: 10rem;">
+            <div className="Header">
+                <div id="upperSection" className="container mt-4">
+                    <div className="card d-flex flex-row bg-secondary text-light" style={{ width: "69.3rem", height: "10rem"}}>
                         <SalesCounter />
 
                         <input type="hidden" id="totalSeconds" value="" />
@@ -33,26 +34,26 @@ class Header extends Component {
 
 function SalesCounter() {
     return (
-        <div class="SalesCounter">
-            <div id="salesCounter" class="d-flex flex-col text-center">
-                <div id="soldCounter" class="col">
-                    <h1 id="counterNumberSold" class="font-weight-bold"></h1>
+        <div className="SalesCounter">
+            <div id="salesCounter" className="d-flex flex-col text-center">
+                <div id="soldCounter" className="col">
+                    <h1 id="counterNumberSold" class="font-weight-bold"><Counter /></h1>
                     <h5 id="textLabel">sold</h5>
                 </div>
-                <div id="dayCounter" class="col">
-                    <h1 id="counterNumberDays" class="font-weight-bold"></h1>
+                <div id="dayCounter" className="col">
+                    <h1 id="counterNumberDays" class="font-weight-bold"><Counter /></h1>
                     <h5 id="textLabel">day left</h5>
                 </div>
-                <div id="hoursCounter" class="col">
-                    <h1 id="counterNumberHours" class="font-weight-bold"></h1>
+                <div id="hoursCounter" className="col">
+                    <h1 id="counterNumberHours" className="font-weight-bold"><Counter /></h1>
                     <h5 id="textLabel">hours left</h5>
                 </div>
-                <div id="minutesCounter" class="col">
-                    <h1 id="counterNumberMinutes" class="font-weight-bold"></h1>
+                <div id="minutesCounter" className="col">
+                    <h1 id="counterNumberMinutes" className="font-weight-bold"><Counter /></h1>
                     <h5 id="textLabel">minutes left</h5>
                 </div>
-                <div id="secondsCounter" class="col">
-                    <h1 id="counterNumberSeconds" class="font-weight-bold"></h1>
+                <div id="secondsCounter" className="col">
+                    <h1 id="counterNumberSeconds" className="font-weight-bold"><Counter /></h1>
                     <h5 id="textLabel">seconds left</h5>
                 </div>
             </div>

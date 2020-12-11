@@ -7,8 +7,9 @@ import {
 
 import Login from './Components/Login/Login'
 import TestHome from './Components/Home/testHome';
+
 import Cashier from './Components/Home/Cashier';
-//import Admin from './Components/Admin/Admin';
+import Admin from './Components/Admin/Admin';
 
 class App extends Component {
   
@@ -22,8 +23,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/main" component={Cashier} />
+
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/home" component={Cashier}/>
+          /*Route exact path="/admin" component={Admin}*/
+
         </Switch>
       </Router>
     );

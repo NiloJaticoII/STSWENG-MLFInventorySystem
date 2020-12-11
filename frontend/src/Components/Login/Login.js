@@ -5,9 +5,9 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            userName: "",
-            password: "",
-            responseToPost: "",
+            userName: '',
+            password: '',
+            responseToPost: '',
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -31,10 +31,10 @@ class Login extends Component {
         
         this.setState({ responseToPost: body });
         if (this.state.responseToPost === "/admin" || this.state.responseToPost === "/main"){
-            this.props.history.push("/home");
+            this.props.history.push('/home');
         }    
         else{
-            this.props.history.push("/");
+            this.props.history.push('/');
         }
         console.log(this.state)
       };
