@@ -9,7 +9,7 @@ ReactDOM.render(<Counter />, document.getElementById("root"));
 class Counter extends Component {
 
     state = {
-        count: 0
+        value: this.props.value
     };
 
     /*
@@ -17,19 +17,19 @@ class Counter extends Component {
     handleFunction(){
     }
     */
-    getCount(){
+    getValue(){
 
-        return this.state.count; 
+        return this.state.value; 
     }
 
     handleDecrement(){
-        this.setState({count: this.state.count - 1});
+        this.setState({value: this.state.value - 1});
     }
     
     render(){
         return(
         <div>
-            {this.getCount()}
+            {this.getValue()}
         </div> 
         );
     }

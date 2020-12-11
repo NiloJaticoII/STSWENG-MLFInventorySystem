@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import ArtistCard from './Components/Admin/ArtistCard';
-import LeftMenu from './Components/Admin/LeftMenu';
-import Banner from './Components/Admin/Banner';
-import Counter from './Components/Admin/Counter';
+import ArtistCardsList from '../Partials/artistCard';
+import LeftMenu from './LeftMenu';
+import Banner from '../Partials/Banner';
 
 class Admin extends Component {
   
@@ -12,26 +11,37 @@ class Admin extends Component {
         history: "/"
       }
     }
+
+    componentDidMount() {
+      document.title = 'Malate Literary Folio - Admin'
+      this.getArtist().catch(err => console.log(err)); 
+    }
+
+    getArtist = async () => {
+      const response = await fetch('http://localhost:1337/admin');
+      const body = await response.text();
+      console.log(body);
+    };
+
     handleSubmit = async e => {
       e.preventDefault();
-      const response = await fetch('http://localhost:1337/postAdmin', {
+      const response = await fetch('http://localhost:1337/login', {
         method: 'GET',
       });
       const body = await response.text();
-      this.props.history.push("/admin");
-      console.log(this.state);
+      this.props.history.push("/");
     };
-
+    
     render(){
       return (
         <div id="mainPageBox">
-            <Banner />
-            <div id="lowerSection" class="container d-flex flex-row mt-4">
-                <div id="artistsList" class="card p-2" style="width: 60rem;">
-                    <ArtistCard />
-                </div>
-            <LeftMenu />    
-            </div>
+          <Banner />
+          <div id="lowerSection" className="container d-flex flex-row mt-4">
+              <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
+              <ArtistCardsList />
+              </div>
+          <LeftMenu />    
+          </div>
         </div> 
       );
     }

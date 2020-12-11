@@ -45,5 +45,8 @@
   "bugs": {
     "url": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem/issues"
   },
-  "homepage": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem#readme"
+  "homepage": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem#readme",
+  "directories": {
+    "test": "tests"
+  }
 }
