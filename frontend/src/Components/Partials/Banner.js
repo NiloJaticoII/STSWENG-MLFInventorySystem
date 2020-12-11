@@ -59,19 +59,17 @@ class Banner extends Component {
                             <img id="logoImageGrey" src="photo/logo-grey.png" />
                         </div>
 
-                        <div class="UserMenu">
-                            <div id="userMenu" class="d-flex flex-col text-left">
-                                <div id="userIcon" class="col">
+                        <div className="UserMenu">
+                            <div id="userMenu" className="d-flex flex-col text-left">
+                                <div id="userIcon" className="col">
                                     <img id="userIconImage" src="../photo/icon-user.png" />
                                 </div>
 
-                                <div id="userNameandArrow" class="d-flex flex-col justify-content-left">
-                                    <div class="nav-item dropdown">
-                                        <a id="userMenuDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            User
-                                            </a>
-                                        <div class="dropdown-menu dropdown-menu-right mt-4" aria-labelledby="userMenuDropdown">
-                                            <a class="dropdown-item" href="/logout">Log out</a>
+                                <div id="userNameandArrow" className="d-flex flex-col justify-content-left">
+                                    <div className="nav-item dropdown">
+                                        <a id="userMenuDropdown" className="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
+                                        <div className="dropdown-menu dropdown-menu-right mt-4" aria-labelledby="userMenuDropdown">
+                                            <a className="dropdown-item" href="/logout">Log out</a>
                                         </div>
                                     </div>
                                 </div>

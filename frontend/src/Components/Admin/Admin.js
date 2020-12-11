@@ -14,7 +14,14 @@ class Admin extends Component {
 
     componentDidMount() {
       document.title = 'Malate Literary Folio - Admin'
+      this.getArtist().catch(err => console.log(err)); 
     }
+
+    getArtist = async () => {
+      const response = await fetch('http://localhost:1337/admin');
+      const body = await response.text();
+      console.log(body);
+    };
 
     handleSubmit = async e => {
       e.preventDefault();
