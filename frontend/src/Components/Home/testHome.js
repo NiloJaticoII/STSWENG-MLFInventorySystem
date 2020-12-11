@@ -16,7 +16,7 @@ class testHome extends Component {
         });
         const body = await response.text();
         this.props.history.push("/");
-      };
+    };
 
   render(){
     return (

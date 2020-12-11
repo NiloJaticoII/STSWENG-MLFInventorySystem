@@ -30,7 +30,7 @@ class Login extends Component {
         const body = await response.text();
         
         this.setState({ responseToPost: body });
-        if(this.state.responseToPost === "/admin"){
+        if (this.state.responseToPost === "/admin" || this.state.responseToPost === "/main"){
             this.props.history.push("/home");
         }    
         else{
