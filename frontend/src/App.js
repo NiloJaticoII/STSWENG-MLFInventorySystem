@@ -7,22 +7,27 @@ import {
 
 import Login from './Components/Login/Login'
 import TestHome from './Components/Home/testHome';
+
+import Cashier from './Components/Home/Cashier';
 import Admin from './Components/Admin/Admin';
+
 class App extends Component {
   
   constructor(){
     super();
     this.state = {
-      history: "/"
+        history: "/"
     }
   }
   render(){
     return (
       <Router>
         <Switch>
+
           <Route exact path="/" component={Login}/>
-          <Route exact path="/home" component={TestHome}/>
-          <Route exact path="/admin" component={Admin}/>
+          <Route exact path="/home" component={Cashier}/>
+          /*Route exact path="/admin" component={Admin}*/
+
         </Switch>
       </Router>
     );

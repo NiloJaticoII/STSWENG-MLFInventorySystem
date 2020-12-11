@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ArtistCard from './Components/Admin/ArtistCard';
-import LeftMenu from './Components/Admin/LeftMenu';
-import Banner from './Components/Admin/Banner';
-import Counter from './Components/Admin/Counter';
+//import ArtistCard from './Components/Admin/ArtistCard';
+//import LeftMenu from './Components/Admin/LeftMenu';
+//import Banner from './Components/Admin/Banner';
+//import Counter from './Components/Admin/Counter';
 
 class Admin extends Component {
   
@@ -25,12 +25,12 @@ class Admin extends Component {
     render(){
       return (
         <div id="mainPageBox">
-            <Banner />
+            /*Banner */
             <div id="lowerSection" class="container d-flex flex-row mt-4">
                 <div id="artistsList" class="card p-2" style="width: 60rem;">
-                    <ArtistCard />
+                    /*ArtistCard */
                 </div>
-            <LeftMenu />    
+            /*LeftMenu */    
             </div>
         </div> 
       );
