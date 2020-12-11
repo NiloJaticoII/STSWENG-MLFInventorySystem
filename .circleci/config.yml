@@ -52,4 +52,4 @@ jobs:
       # run tests!
       - run: 
           name: run tests
-          command: node server.js
+          command: npm run test
