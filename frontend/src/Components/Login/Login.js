@@ -30,13 +30,8 @@ class Login extends Component {
         const body = await response.text();
         
         this.setState({ responseToPost: body });
-<<<<<<< Updated upstream
-        if (this.state.responseToPost === "/admin" || this.state.responseToPost === "/main"){
-            this.props.history.push('/home');
-=======
         if(this.state.responseToPost === "/admin"){
             this.props.history.push("/admin");
->>>>>>> Stashed changes
         }    
         else{
             this.props.history.push('/');
@@ -54,7 +49,7 @@ class Login extends Component {
                    </div>
    
                    <div className="form-group">
-                       <label htmlFor="userName" className="font-weight-normal">Username</label>
+                       <label htmlFor="userName" className="font-weight-normal">username</label>
                        <input id="userName" name="userName" value={this.state.userName} type="text" className="form-control" onChange={this.handleChange} />
                    </div>
                    <div className="form-group">

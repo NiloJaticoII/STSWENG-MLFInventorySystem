@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
-//import ArtistCard from './Components/Admin/ArtistCard';
-<<<<<<< Updated upstream
-//import LeftMenu from './Components/Admin/LeftMenu';
-//import Banner from './Components/Admin/Banner';
-//import Counter from './Components/Admin/Counter';
-=======
+import ArtistCardsList from '../Partials/artistCard';
 import LeftMenu from './LeftMenu';
-import Banner from './Banner';
->>>>>>> Stashed changes
+import Banner from '../Partials/Banner';
 
 class Admin extends Component {
   
@@ -29,23 +23,13 @@ class Admin extends Component {
     render(){
       return (
         <div id="mainPageBox">
-<<<<<<< Updated upstream
-            /*Banner */
-            <div id="lowerSection" class="container d-flex flex-row mt-4">
-                <div id="artistsList" class="card p-2" style="width: 60rem;">
-                    /*ArtistCard */
-                </div>
-            /*LeftMenu */    
-            </div>
-=======
           <Banner />
           <div id="lowerSection" className="container d-flex flex-row mt-4">
               <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
-                 
+              <ArtistCardsList />
               </div>
           <LeftMenu />    
           </div>
->>>>>>> Stashed changes
         </div> 
       );
     }

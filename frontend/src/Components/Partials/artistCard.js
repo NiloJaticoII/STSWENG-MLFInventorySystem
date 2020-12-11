@@ -18,7 +18,7 @@ function ArtistCard(props) {
                 <div className="card-body">
                     <h5>artistName</h5>
                     <p className="card-text"><b>PHP income </b> </p>
-                    <a href="#" className="stretched-link" onclick="showArtistModal({{artistID}}, '{{artistName}}')" style={{ size: "0px"}}></a>
+                    <a href="#" className="stretched-link" onClick="showArtistModal({{artistID}}, '{{artistName}}')" style={{ size: "0px"}}></a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 // JavaScript source code
 import React, { Component } from 'react';
-import Header from './partials/Header'
-import ArtistCardsList from './partials/artistCard'
+import Banner from '../Partials/Banner';
+import ArtistCardsList from '../Partials/artistCard'
 import { Modal } from 'bootstrap-4-react'
 
 class Cashier extends Component{
@@ -15,7 +15,7 @@ class Cashier extends Component{
     render(){
         return (
             <div className="Cashier">
-                <Header/>
+                <Banner/>
                 <CashierLowerSection />
             </div>
 
