@@ -12,6 +12,9 @@ class Cashier extends Component{
         }
     }
 
+    componentDidMount() {
+        document.title = 'Malate Literary Folio - Cashier'
+      }
     render(){
         return (
             <div className="Cashier">

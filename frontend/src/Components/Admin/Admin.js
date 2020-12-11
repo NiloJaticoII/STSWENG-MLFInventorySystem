@@ -11,6 +11,11 @@ class Admin extends Component {
         history: "/"
       }
     }
+
+    componentDidMount() {
+      document.title = 'Malate Literary Folio - Admin'
+    }
+
     handleSubmit = async e => {
       e.preventDefault();
       const response = await fetch('http://localhost:1337/login', {
