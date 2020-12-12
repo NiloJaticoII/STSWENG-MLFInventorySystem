@@ -34,6 +34,18 @@ function ArtistCard(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    /*
+    const artistItems = props.artistItems;
+    const itemInfo = []
+
+    for (let item of artistItems) {
+        itemInfo.push(<tr>
+            <tr scope="col"></tr>
+            <tr scope="col">Stocks</tr>
+            <tr scope="col">Price</tr>
+            <tr scope="col">Quantity sold</tr>
+        </tr>);
+    }*/
 
     return (
         <>
@@ -72,5 +84,8 @@ function ArtistCard(props) {
     );
 }
 
+function ArtistCardProductList(props) {
+
+}
 
 export default ArtistCardsList;
