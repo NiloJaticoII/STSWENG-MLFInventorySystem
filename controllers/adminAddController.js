@@ -14,7 +14,7 @@ const adminAddController = {
     //Render admin
     getLoginAdmin: function(req, res, next){
         //if logged in user is admin
-       // if (req.session.isAdmin) {
+        if (req.session.isAdmin) {
 
             /* gets income of each artist */
             const getIncome = async function(artistID) {
@@ -51,8 +51,7 @@ const adminAddController = {
                 }
 
                 details.artist = artists
-                res.send(details);
-                //res.render('admin', details)
+                res.render('admin', details)
             };
 
             //Get current event, if no event then assign random id 
@@ -170,7 +169,7 @@ const adminAddController = {
                 })
 
             })
-       /* }
+        }
         // if the logged in user is not an admin, therefore a cashier
         else if (req.session.isAdmin == false) {
             res.redirect('/main')
@@ -178,7 +177,7 @@ const adminAddController = {
         
         // if the user is not logged in
         else res.redirect('/')
-        */
+        
     },
 
     //Add artist to database

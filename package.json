@@ -54,6 +54,6 @@
     "projects": [
       "__tests__/jest.config.js",
       "./frontend/__tests__/jest.config.js"
-     ]
+    ]
   }
 }
