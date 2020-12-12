@@ -137,3 +137,9 @@
     right:0;
     z-index: 999;
   }
+
+#user-dropdown{
+    color: white;
+    font-size: 19px;
+    margin-top: 10px;
+}

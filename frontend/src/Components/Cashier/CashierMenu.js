@@ -1,40 +1,15 @@
-// JavaScript source code
 import React, { Component } from 'react';
-import Banner from '../Partials/Banner';
-import ArtistCardsList from '../Partials/artistCard'
 import { Modal } from 'bootstrap-4-react'
 
-class Cashier extends Component{
+class CashierMenu extends Component{
     constructor() {
         super()
         this.state = {
-
         }
     }
 
-    componentDidMount() {
-        document.title = 'Malate Literary Folio - Cashier'
-      }
     render(){
         return (
-            <div className="Cashier">
-                <Banner/>
-                <CashierLowerSection />
-            </div>
-
-            
-        );
-    }
-}
-
-
-function CashierLowerSection() {
-    return (
-        <div id="lowerSection" className="container d-flex flex-row mt-4">
-            <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
-                <ArtistCardsList />
-                </div>
-
             <div id="leftMenu" className="card p-3" style={{ width: "20rem" }}>
                 <div id="newOrderButtonSection" className="nav-item text-center mb-2">
                     <button id="newOrderButton" className="btn btn-secondary btn-md col-11" data-toggle="modal" data-target="#newOrderWindow">new order</button>
@@ -50,22 +25,9 @@ function CashierLowerSection() {
                     <a id="currentSalesReport" href="#" className="nav-link" data-toggle="modal" data-target="#salesReportWindow">Current sales report</a>
                 </div>
             </div>
-        </div>
-    );
-}
-
-class CashierModal extends Component {
-    /*newOrderWindow() {
-        return (
-            
         );
     }
 
-    financialWindow() {
-        return (
-            
-        );
-    }*/
 
     salesReportWindow() {
         return (
@@ -125,4 +87,4 @@ class CashierModal extends Component {
     }
 }
 
-export default Cashier
+export default CashierMenu
