@@ -51,12 +51,14 @@ class Admin extends Component {
       return (
         <div id="mainPageBox">
           <Banner history={this.state.history}/>
-          <div id="lowerSection" className="container d-flex flex-row mt-4">
-              <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
-              <ArtistCardsList artist={this.state.artist}/>
-              </div>
-          <LeftMenu admin={this.state.isAdmin}  />    
-          </div>
+              <div id="lowerSection" className="container d-flex flex-row mt-4">
+
+                <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
+                    <ArtistCardsList artist={this.state.artist}/>
+                </div>
+
+                <LeftMenu admin={this.state.isAdmin}  />    
+            </div>
         </div> 
       );
     }

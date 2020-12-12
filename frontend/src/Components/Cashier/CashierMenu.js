@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Card, Button, Nav, Navbar } from 'react-bootstrap'
+import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
 
 class CashierMenu extends Component{
     constructor(props) {

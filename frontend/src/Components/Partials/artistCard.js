@@ -1,5 +1,7 @@
 // JavaScript source code
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { Modal,  Form, Card, Button, Nav } from 'react-bootstrap'
+
 class ArtistCardsList extends Component {
     constructor(){
         super();
@@ -28,17 +30,47 @@ class ArtistCardsList extends Component {
 }
 
 function ArtistCard(props) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
-        <div className="col mb-2 px-2" id="{{artistID}}-card">
-            <div className="card mx-0">
-                <div className="card-body">
-                    <h5>{props.artistName}</h5>
-                    <p className="card-text"><b>PHP {props.income} </b> </p>
-                    <a href="#" className="stretched-link" onClick={console.log("hello")/*"showArtistModal({{artistID}}, '{{artistName}}')"*/} style={{ size: "0px"}}></a>
+        <>
+            <div className="col mb-2 px-2" id="{{artistID}}-card">
+                <div className="card mx-0">
+                    <div className="card-body">
+                        <h5>{props.artistName}</h5>
+                        <p className="card-text"><b>PHP {props.income} </b> </p>
+                        <a href="#" className="stretched-link" onClick={handleShow} style={{ size: "0px"}}></a>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <Modal show={show} onHide={handleClose} id="artistModal">
+                <Modal.Header closeButton>
+                    <Modal.Title id="artistModalTitle">{props.artistName}</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <table class="table table-bordered">
+                        <thead class="thead bg-secondary text-light">
+                            <tr>
+                                <th scope="col">Item/Bundle</th>
+                                <th scope="col">Stocks</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity sold</th>
+                            </tr>
+                        </thead>
+                        <tbody id="artistSales" >
+                            
+                        </tbody>
+                    </table>
+                </Modal.Body>
+            </Modal>
+        </>
     );
 }
+
 
 export default ArtistCardsList;
