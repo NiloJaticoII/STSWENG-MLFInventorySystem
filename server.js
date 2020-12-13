@@ -7,6 +7,7 @@ const app = express()
 const path = require('path');
 const db = require('./models/database.js');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 /*
 http.createServer(function (req, res) {
@@ -36,6 +37,7 @@ app.use(session({
 //Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 //Main menu
 const LogInController = require('./controllers/loginController.js');
