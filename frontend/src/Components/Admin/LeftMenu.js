@@ -99,27 +99,27 @@ function manageArtistsWindow(handleClose, show){
                             <div className="form-row mb-4">
                                 <div className="col">
                                     <select id="artistsListDropdownEdit" className="form-control col-14" name="artistsListDropdownEdit" required>
-                                        <option className="defaultVal" value="" disabled selected>select artist</option>
+                                        <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                         
                                         <option value="{{artistID}}"></option>
                                         
                                     </select>
                                 </div>
                                 <div className="col">
-                                    <button name="deleteArtistButton" id="deleteArtistButton" className="btn btn-secondary " type="button" onclick="deleteArtist(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button name="deleteArtistButton" id="deleteArtistButton" className="btn btn-secondary " type="button" onClick="deleteArtist(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                                     
                             <div className="form-group mb-2">
-                                <label for="editArtistName" className="font-weight-normal">artist name</label>
+                                <label htmlFor="editArtistName" className="font-weight-normal">artist name</label>
                                 <input id="editArtistName" className="form-control clearInput" name="editArtistName" type="text" required />
                             </div>
                             <div className="form-group mb-2">
-                                <label for="editArtistIDNo" className="font-weight-normal">artist ID number</label>
+                                <label htmlFor="editArtistIDNo" className="font-weight-normal">artist ID number</label>
                                 <input id="editArtistIDNo" className="form-control clearInput" name="editArtistIDNo" type="number" min="0" max="99999999" required />
                             </div>
                             <div className="form-group mb-2">
-                                <label for="editArtistPassword" className="font-weight-normal">artist password (leave blank for unchanged password)</label>
+                                <label htmlFor="editArtistPassword" className="font-weight-normal">artist password (leave blank for unchanged password)</label>
                                 <input id="editArtistPassword" className="form-control clearInput" name="editArtistPassword" type="text"/>
                             </div>
                             <button name="editArtistButton" id="editArtistButton" className="btn btn-secondary btn-md col-4 mt-4 mb-2 float-right" type="submit">save</button>
@@ -133,15 +133,15 @@ function manageArtistsWindow(handleClose, show){
                         <p id="manageReminder">Fill in the form below before adding a new artist.</p>
                         <div className="mt-2">
                             <div className="form-group mb-2">
-                                <label for="newArtistName" className="font-weight-normal">artist name</label>
+                                <label htmlFor="newArtistName" className="font-weight-normal">artist name</label>
                                 <input id="newArtistName" className="form-control clearInput" name="newArtistName" type="text" required />
                             </div>
                             <div className="form-group mb-2">
-                                <label for="newArtistIDNo" className="font-weight-normal">artist ID number</label>
+                                <label htmlFor="newArtistIDNo" className="font-weight-normal">artist ID number</label>
                                 <input id="newArtistIDNo" className="form-control clearInput" name="newArtistIDNo" type="number" min="0" max="99999999" required />
                             </div>
                             <div className="form-group mb-2">
-                                <label for="newArtistPassword" className="font-weight-normal">artist password</label>
+                                <label htmlFor="newArtistPassword" className="font-weight-normal">artist password</label>
                                 <input id="newArtistPassword" className="form-control clearInput" name="newArtistPassword" type="text" required />
                             </div>
                         </div>
@@ -181,13 +181,13 @@ function manageItemsWindow(handleClose, show){
                             <h5 className="modal-title">Edit item</h5>
                             <p id="manageReminder">Select the artist and their item you want to edit or delete.</p>
 
-                            <form id="artistSelectEdit" className="form" method="POST" action="/admin/editItem" enctype="multipart/form-data">
+                            <form id="artistSelectEdit" className="form" method="POST" action="/admin/editItem" encType="multipart/form-data">
                                 <div id="otherInputSection" className="mt-2">
                                     <div id="editSelectorsSection" className="row mb-2">
                                         <div className="col">
                                             <div className="form-group">
                                                 <select id="artistsListDropdownItemEdit" className="form-control col-11 manageItemsArtist" name="artistsListDropdownItemEdit" required>
-                                                    <option className="defaultVal" value="" disabled selected>select artist</option>
+                                                    <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                                     
                                                     <option value="{{artistID}}"></option>
                                                     
@@ -198,11 +198,11 @@ function manageItemsWindow(handleClose, show){
                                             <div className="form-row">
                                                 <div className="col">
                                                     <select id="artistsListDropdownItem" className="form-control manageItemsList" name="artistsListDropdownItem" required>
-                                                        <option className="defaultVal" value="" disabled selected>select item of artist</option>
+                                                        <option className="defaultVal" value="" disabled defaultValue>select item of artist</option>
                                                     </select>
                                                 </div>
                                                 <div className="col">
-                                                    <button name="deleteItemButton" id="deleteItemButton" className="btn btn-secondary " type="button" onclick="deleteItem(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                    <button name="deleteItemButton" id="deleteItemButton" className="btn btn-secondary " type="button" onClick="deleteItem(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,11 +212,11 @@ function manageItemsWindow(handleClose, show){
                                     <div id="" className="row selectedSection">
                                         <div id="editItemsSection" className="col mt-2">
                                             <div className="form-group mb-2">
-                                                <label for="editItemName" className="font-weight-normal mr-2">item name</label>
+                                                <label htmlFor="editItemName" className="font-weight-normal mr-2">item name</label>
                                                 <input name="editItemName" id="editItemName" className="form-control col-11 clearInput" type="text" required />
                                             </div>
                                             <div className="form-group mb-2">
-                                                <label for="editItemStockQuantity" className="font-weight-normal mr-2">quantity</label>
+                                                <label htmlFor="editItemStockQuantity" className="font-weight-normal mr-2">quantity</label>
                                                 <input name="editItemStockQuantity" id="editItemStockQuantity" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                             </div>
                                             
@@ -227,8 +227,8 @@ function manageItemsWindow(handleClose, show){
                                                     <img name="editItemPhoto" id="editItemPhoto" className="photos" src="photo/item-photo.png" />
                                                 </div>
                                                 <div className="custom-file mt-2">
-                                                    <input name="editItemPhotoPickerInput" id="editItemPhotoPickerInput" type="file" className="custom-file-input clearInput" onchange="document.getElementById('editItemPhoto').src = window.URL.createObjectURL(this.files[0])" />
-                                                    <label className="custom-file-label " for="editItemPhotoPickerInput">Choose photo</label>
+                                                    <input name="editItemPhotoPickerInput" id="editItemPhotoPickerInput" type="file" className="custom-file-input clearInput" onChange="document.getElementById('editItemPhoto').src = window.URL.createObjectURL(this.files[0])" />
+                                                    <label className="custom-file-label " htmlFor="editItemPhotoPickerInput">Choose photo</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -245,14 +245,14 @@ function manageItemsWindow(handleClose, show){
                         <div id="addItemSection" className="tab-pane fade" role="tabpanel" aria-labelledby="addItemOption">
                             <h5 className="modal-title">Add item</h5>
                             <p id="manageReminder">Fill in the form below before adding a new item.</p>
-                            <form id="artistSelectaddItem" className="form" method="POST" action="/admin/addItem" enctype="multipart/form-data">
+                            <form id="artistSelectaddItem" className="form" method="POST" action="/admin/addItem" encType="multipart/form-data">
                                 <div id="otherInputSection" className="mt-2">
                                     <div id="editSelectorsSection" className="row">
                                         <div className="col">
                                             <div className="form-group mb-2">
                                             
                                                 <select id="artistsListDropdownItemAdd" className="form-control" name="artistsListDropdownItemAdd" required>
-                                                    <option className="defaultVal" value="" disabled selected>select artist</option>
+                                                    <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                                     
                                                     <option value="{{artistID}}"></option>
                                                     
@@ -261,17 +261,17 @@ function manageItemsWindow(handleClose, show){
                                         </div>
                                     </div>
                                     <div className="row selectedSection">
-                                        <div id="textFields" className="col" style="width: 500px;">
+                                        <div id="textFields" className="col" style={{width: "500px"}}>
                                             <div className="form-group mb-2">
-                                                <label for="newItemName" className="font-weight-normal mr-2">item name</label>
+                                                <label htmlFor="newItemName" className="font-weight-normal mr-2">item name</label>
                                                 <input name="newItemName" id="newItemName" className="form-control col-11 clearInput" type="text" required />
                                             </div>
                                             <div className="form-group mb-2">
-                                                <label for="newItemPriceStock" className="font-weight-normal mr-2">price</label>
+                                                <label htmlFor="newItemPriceStock" className="font-weight-normal mr-2">price</label>
                                                 <input name="newItemPriceStock" id="newItemPriceStock" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                             </div>
                                             <div className="form-group mb-2">
-                                                <label for="newItemStockQuantity" className="font-weight-normal mr-2">quantity</label>
+                                                <label htmlFor="newItemStockQuantity" className="font-weight-normal mr-2">quantity</label>
                                                 <input name="newItemStockQuantity" id="newItemStockQuantity" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                             </div>
                                         </div>
@@ -280,8 +280,8 @@ function manageItemsWindow(handleClose, show){
                                                 <img name="newItemPhoto" id="newItemPhoto" className = "photos" src="photo/item-photo.png" />
                                             </div>
                                             <div className="custom-file mt-2">
-                                                <input name="addItemPhotoPickerInput" id="addItemPhotoPickerInput" type="file" className="custom-file-input clearInput" onchange="document.getElementById('newItemPhoto').src = window.URL.createObjectURL(this.files[0])" required />
-                                                <label className="custom-file-label " for="addItemPhotoPickerInput">Choose photo</label>
+                                                <input name="addItemPhotoPickerInput" id="addItemPhotoPickerInput" type="file" className="custom-file-input clearInput" onChange="document.getElementById('newItemPhoto').src = window.URL.createObjectURL(this.files[0])" required />
+                                                <label className="custom-file-label " htmlFor="addItemPhotoPickerInput">Choose photo</label>
                                             </div>
                                         </div>
                                     </div>
@@ -324,13 +324,13 @@ function manageBundlesWindow(handleClose, show){
                         <h5 className="modal-title">Edit bundle</h5>
                         <p id="manageReminder">Select the artist and their bundle you want to edit or delete.</p>
 
-                        <form id="editArtistSelectBundle" className="form" method='POST' action="/admin/editBundle" enctype="multipart/form-data">
+                        <form id="editArtistSelectBundle" className="form" method='POST' action="/admin/editBundle" encType="multipart/form-data">
                             <div id="otherInputSection" className="mt-3">
                                 <div id="editSelectorsSection" className="row mb-2">
                                     <div className="col">
                                         <div className="form-group">
                                             <select id="artistsListDropdownBundleEdit" className="form-control col-11" name="artistsListDropdownBundleEdit" required>
-                                                <option className="defaultVal" value="" disabled selected>select artist</option>
+                                                <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                                 
                                                 <option value="{{artistID}}"></option>
                                                 
@@ -341,11 +341,11 @@ function manageBundlesWindow(handleClose, show){
                                         <div className="form-row">
                                             <div className="col">
                                                 <select id="artistsListDropdownBundle" className="form-control" name="artistsListDropdownBundle" required>
-                                                    <option className="defaultVal" value="" disabled selected>select bundle</option>
+                                                    <option className="defaultVal" value="" disabled defaultValue>select bundle</option>
                                                 </select>
                                             </div>
                                             <div className="col">
-                                                <button name="deleteBundleButton" id="deleteBundleButton" className="btn btn-secondary " type="button" onclick="deleteBundle(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                <button name="deleteBundleButton" id="deleteBundleButton" className="btn btn-secondary " type="button" onClick="deleteBundle(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -353,13 +353,13 @@ function manageBundlesWindow(handleClose, show){
                                 </div>
 
                                 <div className="row selectedSection">
-                                    <div id="textFields" className="col" style="width: 500px;">
+                                    <div id="textFields" className="col" style={{width: "500px"}}>
                                         <div className="form-group mb-2">
-                                            <label for="editBundleName" className="font-weight-normal mr-2">bundle name</label>
+                                            <label htmlFor="editBundleName" className="font-weight-normal mr-2">bundle name</label>
                                             <input name="editBundleName" id="editBundleName" className="form-control col-11 clearInput" type="text" required />
                                         </div>
                                         <div className="form-group mb-2">
-                                            <label for="editBundleStockQuantity" className="font-weight-normal mr-2">quantity</label>
+                                            <label htmlFor="editBundleStockQuantity" className="font-weight-normal mr-2">quantity</label>
                                             <input name="editBundleStockQuantity" id="editBundleStockQuantity" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                         </div>
                                     </div>
@@ -368,8 +368,8 @@ function manageBundlesWindow(handleClose, show){
                                             <img name="editBundlePhoto" id="editBundlePhoto" className="photos" src="photo/item-photo.png" />
                                         </div>
                                         <div className="custom-file mt-2">
-                                            <input name="editBundlePhotoPicker" id="editBundlePhotoPicker" type="file" className="custom-file-input clearInput" onchange="document.getElementById('editBundlePhoto').src = window.URL.createObjectURL(this.files[0])" />
-                                            <label className="custom-file-label " for="editBundlePhotoPicker">Choose photo</label>
+                                            <input name="editBundlePhotoPicker" id="editBundlePhotoPicker" type="file" className="custom-file-input clearInput" onChange="document.getElementById('editBundlePhoto').src = window.URL.createObjectURL(this.files[0])" />
+                                            <label className="custom-file-label " htmlFor="editBundlePhotoPicker">Choose photo</label>
                                         </div>
                                     </div>
                                 </div>
@@ -378,8 +378,8 @@ function manageBundlesWindow(handleClose, show){
                                     <div className="col">
                                         <div id="editBundleItemsSection">
                                             <div className="form-group">
-                                                <label for="editBundleItemsList" className="font-weight-normal">select bundle items</label>
-                                                <div id="editBundleItemsList" className="card overflow-auto" style="height: 10rem;" data-spy="scroll" data-offset="0">
+                                                <label htmlFor="editBundleItemsList" className="font-weight-normal">select bundle items</label>
+                                                <div id="editBundleItemsList" className="card overflow-auto" style={{height: "10rem"}} data-spy="scroll" data-offset="0">
                                                     <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 itemGrid" id="editSelectBundleItems">
                                                     </div>
                                                 </div>
@@ -397,7 +397,7 @@ function manageBundlesWindow(handleClose, show){
                         
                     </div>
                     <div id="addBundlesSection" className="tab-pane fade" role="tabpanel" aria-labelledby="addBundleOption">
-                        <form id="addArtistSelectBundle" className="form" method='POST' action="/admin/addBundle" enctype="multipart/form-data">
+                        <form id="addArtistSelectBundle" className="form" method='POST' action="/admin/addBundle" encType="multipart/form-data">
                             <h5 className="modal-title">Add bundle</h5>
                             <p id="manageReminder">Fill in the form below before adding a new bundle.</p>
                             <div id="otherInputSection" className="mt-3">
@@ -405,7 +405,7 @@ function manageBundlesWindow(handleClose, show){
                                     <div className="col mt-2">
                                         <div className="form-group mb-2">
                                             <select id="artistsListDropdownBundleAdd" className="form-control" name="artistsListDropdownBundleAdd" required>
-                                                <option className="defaultVal" value="" disabled selected>select artist</option>
+                                                <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                                 
                                                 <option value="{{artistID}}"></option>
                                                 
@@ -414,17 +414,17 @@ function manageBundlesWindow(handleClose, show){
                                     </div>
                                 </div>
                                 <div className="row selectedSection">
-                                    <div id="textFields" className="col" style="width: 500px;">
+                                    <div id="textFields" className="col" style={{width: "500px"}}>
                                         <div className="form-group mb-2">
-                                            <label for="newBundleName" className="font-weight-normal mr-2">bundle name</label>
+                                            <label htmlFor="newBundleName" className="font-weight-normal mr-2">bundle name</label>
                                             <input name="newBundleName" id="newBundleName" className="form-control col-11 clearInput" type="text" required />
                                         </div>
                                         <div className="form-group mb-2">
-                                            <label for="newBundlePriceStock" className="font-weight-normal mr-2">price</label>
+                                            <label htmlFor="newBundlePriceStock" className="font-weight-normal mr-2">price</label>
                                             <input name="newBundlePriceStock" id="newBundlePriceStock" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                         </div>
                                         <div className="form-group mb-2">
-                                            <label for="newBundleStockQuantity" className="font-weight-normal mr-2">quantity</label>
+                                            <label htmlFor="newBundleStockQuantity" className="font-weight-normal mr-2">quantity</label>
                                             <input name="newBundleStockQuantity" id="newBundleStockQuantity" className="form-control col-11 clearInput" type="number" min="0" max="99999999" required />
                                         </div>
                                     </div>
@@ -433,8 +433,8 @@ function manageBundlesWindow(handleClose, show){
                                             <img name="newBundlePhoto" id="newBundlePhoto" className = "photos" src="photo/item-photo.png" />
                                         </div>
                                         <div className="custom-file mt-2">
-                                            <input name="addBundlePhotoPicker" id="addBundlePhotoPicker" type="file" className="custom-file-input clearInput" onchange="document.getElementById('newBundlePhoto').src = window.URL.createObjectURL(this.files[0])" required />
-                                            <label className="custom-file-label " for="addBundlePhotoPicker">Choose photo</label>
+                                            <input name="addBundlePhotoPicker" id="addBundlePhotoPicker" type="file" className="custom-file-input clearInput" onChange="document.getElementById('newBundlePhoto').src = window.URL.createObjectURL(this.files[0])" required />
+                                            <label className="custom-file-label " htmlFor="addBundlePhotoPicker">Choose photo</label>
                                         </div>
                                     </div>
                                 </div>
@@ -443,8 +443,8 @@ function manageBundlesWindow(handleClose, show){
                                         <input type="hidden" id="addSelectedItems" name="addSelectedItems" value="" />
                                         <div id="addBundleItemsSection">
                                             <div className="form-group">
-                                                <label for="addBundleItemsSection" className="font-weight-normal">select bundle items</label>
-                                                <div id="addBundleItemsSection" className="card overflow-auto" style="height: 10rem;" data-spy="scroll" data-offset="0">
+                                                <label htmlFor="addBundleItemsSection" className="font-weight-normal">select bundle items</label>
+                                                <div id="addBundleItemsSection" className="card overflow-auto" style={{height: "10rem"}} data-spy="scroll" data-offset="0">
                                                     <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 itemGrid" id="addSelectBundleItems">
                                                     </div>
                                                 </div>
@@ -470,7 +470,6 @@ function manageBundlesWindow(handleClose, show){
 function manageEventsWindow(handleClose, show){
     return (
        <Modal onHide={handleClose} id="manageEventsWindow" show={show} size="lg">
-           <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title">Manage events</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -495,7 +494,7 @@ function manageEventsWindow(handleClose, show){
                                 <div className="form-row mb-2">
                                     <div className="col mb-3">
                                         <select id="selectedEvent" className="form-control col-12" name="selectedEvent" required>
-                                            <option className="defaultVal" value="" disabled selected>select event</option>
+                                            <option className="defaultVal" value="" disabled defaultValue>select event</option>
                                             
                                             <option value="{{eventID}}"></option>
                                             
@@ -503,30 +502,30 @@ function manageEventsWindow(handleClose, show){
                                         
                                     </div>
                                     <div className="col">
-                                        <button name="deleteEventButton" id="deleteEventButton" className="btn btn-secondary" type="button" onclick="deleteEvent(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <button name="deleteEventButton" id="deleteEventButton" className="btn btn-secondary" type="button" onClick="deleteEvent(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                                 <div className="form-group ml-1 mb-2">
                                     <div className="col mb-2">
                                         <input name="editSetCurrentEvent" id="editSetCurrentEvent" className="form-check-input clearInput" value="1" type="checkbox" />
-                                        <label for="editSetCurrentEvent" className="form-check-label">Set as current event</label>
+                                        <label htmlFor="editSetCurrentEvent" className="form-check-label">Set as current event</label>
                                     </div>
                                 </div>
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="editEventName" className="font-weight-normal mr-2">event name</label>
+                                        <label htmlFor="editEventName" className="font-weight-normal mr-2">event name</label>
                                         <input name="editEventName" id="editEventName" className="form-control col-14 clearInput" type="text" required />
                                     </div>
                                 </div>
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="editStartEventDate" className="font-weight-normal mr-2">start date</label>
+                                        <label htmlFor="editStartEventDate" className="font-weight-normal mr-2">start date</label>
                                         <input name="editStartEventDate" id="editStartEventDate" className="form-control clearInput" type="date" required />
                                     </div>
                                 </div>
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="editEndEventDate" className="font-weight-normal mr-2">end date</label>
+                                        <label htmlFor="editEndEventDate" className="font-weight-normal mr-2">end date</label>
                                         <input name="editEndEventDate" id="editEndEventDate" className="form-control clearInput" type="date" required />
                                     </div>
                                 </div>
@@ -540,25 +539,25 @@ function manageEventsWindow(handleClose, show){
                             <form className="form" method="POST" action="/admin/addEvent">
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="newEventName" className="font-weight-normal mr-2">event name</label>
+                                        <label htmlFor="newEventName" className="font-weight-normal mr-2">event name</label>
                                         <input name="newEventName" id="newEventName" className="form-control col-14 clearInput" type="text" required />
                                     </div>
                                 </div>
                                 <div className="form-group ml-1 mb-2">
                                     <div className="col mb-2">
                                         <input name="addSetCurrentEvent" id="addSetCurrentEvent" className="form-check-input clearInput" value="1" type="checkbox" />
-                                        <label for="addSetCurrentEvent" className="form-check-label">Set as current event</label>
+                                        <label htmlFor="addSetCurrentEvent" className="form-check-label">Set as current event</label>
                                     </div>
                                 </div>
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="addStartEventDate" className="font-weight-normal mr-2">start date</label>
+                                        <label htmlFor="addStartEventDate" className="font-weight-normal mr-2">start date</label>
                                         <input name="addStartEventDate" id="addStartEventDate" className="form-control clearInput" type="date" required />
                                     </div>
                                 </div>
                                 <div className="form-row mb-2">
                                     <div className="col mb-2">
-                                        <label for="addEndEventDate" className="font-weight-normal mr-2">end date</label>
+                                        <label htmlFor="addEndEventDate" className="font-weight-normal mr-2">end date</label>
                                         <input name="addEndEventDate" id="addEndEventDate" className="form-control clearInput" type="date" required />
                                     </div>
                                 </div>
@@ -568,7 +567,6 @@ function manageEventsWindow(handleClose, show){
                         </div>
                     </div>
                 </div>
-            </div>
        </Modal>
     );
 }
@@ -583,11 +581,11 @@ function salesReportWindow(handleClose, show){
 
                 <Card.Header className="bg-secondary row mx-0 d-flex justify-content-around">
                     <select id="artistSalesListDropdown" className="form-control salesReportArtist col-md-7 col-sm-12 my-1" name="selectedArtistSales">
-                        <option value="" className="defaultVal" disabled selected>select artist</option>
+                        <option value="" className="defaultVal" disabled defaultValue>select artist</option>
                         <option value="{{artistID}}"></option>
                     </select>
                     <select id="sortItemsDropdown" className="form-control salesReportSort d-md-inline-block col-md-4 col-sm-12 my-1" name="selectedArtistSales">
-                        <option value="name" className="defaultVal" selected>sort by name</option>
+                        <option value="name" className="defaultVal" defaultValue>sort by name</option>
                         <option value="price asc">sort by price (ascending)</option>
                         <option value="price desc">sort by price (descending)</option>
                         <option value="sold asc">sort by quantity sold (ascending)</option>
