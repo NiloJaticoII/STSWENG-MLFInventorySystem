@@ -20,7 +20,8 @@
     "multer": "^1.4.2",
     "nodemon": "^2.0.6",
     "path": "^0.12.7",
-    "port": "^0.8.1"
+    "port": "^0.8.1",
+    "react-bootstrap": "^1.4.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
@@ -48,5 +49,11 @@
   "homepage": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem#readme",
   "directories": {
     "test": "tests"
+  },
+  "jest": {
+    "projects": [
+      "__tests__/jest.config.js",
+      "./frontend/__tests__/jest.config.js"
+    ]
   }
 }

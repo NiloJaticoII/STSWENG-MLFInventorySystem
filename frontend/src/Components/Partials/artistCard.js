@@ -1,28 +1,91 @@
 // JavaScript source code
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { Modal,  Form, Card, Button, Nav } from 'react-bootstrap'
 
 class ArtistCardsList extends Component {
+    constructor(){
+        super();
+        this.state ={
+            artist: []
+        }
+    }
+    
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.artist !== prevProps.artist) {
+          this.setState({artist: this.props.artist})
+        }
+      }
+
     render() {
+        const artistCards = this.state.artist.map(artist => <ArtistCard   key={artist.artistID}
+                                                                          artistName={artist.artistName}
+                                                                          income={artist.income} />)
         return (
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-2 mx-1 w-100">
-                <ArtistCard />
+                {artistCards}
             </div>
         );
     }
 }
 
 function ArtistCard(props) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    /*
+    const artistItems = props.artistItems;
+    const itemInfo = []
+
+    for (let item of artistItems) {
+        itemInfo.push(<tr>
+            <tr scope="col"></tr>
+            <tr scope="col">Stocks</tr>
+            <tr scope="col">Price</tr>
+            <tr scope="col">Quantity sold</tr>
+        </tr>);
+    }*/
+
     return (
-        <div className="col mb-2 px-2" id="{{artistID}}-card">
-            <div className="card mx-0">
-                <div className="card-body">
-                    <h5>artistName</h5>
-                    <p className="card-text"><b>PHP income </b> </p>
-                    <a href="#" className="stretched-link" onClick="showArtistModal({{artistID}}, '{{artistName}}')" style={{ size: "0px"}}></a>
+        <>
+            <div className="col mb-2 px-2" id="{{artistID}}-card">
+                <div className="card mx-0">
+                    <div className="card-body">
+                        <h5>{props.artistName}</h5>
+                        <p className="card-text"><b>PHP {props.income} </b> </p>
+                        <a href="#" className="stretched-link" onClick={handleShow} style={{ size: "0px"}}></a>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <Modal show={show} onHide={handleClose} id="artistModal">
+                <Modal.Header closeButton>
+                    <Modal.Title id="artistModalTitle">{props.artistName}</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <table class="table table-bordered">
+                        <thead class="thead bg-secondary text-light">
+                            <tr>
+                                <th scope="col">Item/Bundle</th>
+                                <th scope="col">Stocks</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity sold</th>
+                            </tr>
+                        </thead>
+                        <tbody id="artistSales" >
+                            
+                        </tbody>
+                    </table>
+                </Modal.Body>
+            </Modal>
+        </>
     );
+}
+
+function ArtistCardProductList(props) {
+
 }
 
 export default ArtistCardsList;

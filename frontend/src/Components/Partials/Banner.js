@@ -1,16 +1,32 @@
 import React, {Component} from 'react';
 import Counter from './Counter';
+import BootStrap, {NavDropdown} from 'react-bootstrap'
 
 class Banner extends Component {
-    state = {
-        counters: [
-            {id: 1, value: 0}, /* sold */
-            {id: 2, value: 0}, /* days left */
-            {id: 3, value: 0}, /* hours left */
-            {id: 4, value: 0}, /* minutes left */
-            {id: 5, value: 0}  /* seconds left */
-        ]
-    };
+
+    constructor(){
+        super();
+        this.state = {
+            counters: [
+                {id: 1, value: 0}, /* sold */
+                {id: 2, value: 0}, /* days left */
+                {id: 3, value: 0}, /* hours left */
+                {id: 4, value: 0}, /* minutes left */
+                {id: 5, value: 0}  /* seconds left */
+            ]
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        const response = await fetch('http://localhost:1337/login', {
+          method: 'GET',
+        });
+        const body = await response.text();
+        this.props.history.push("/");
+      };
 
     
     render(){
@@ -65,14 +81,10 @@ class Banner extends Component {
                                     <img id="userIconImage" src="../photo/icon-user.png" />
                                 </div>
 
-                                <div id="userNameandArrow" className="d-flex flex-col justify-content-left">
-                                    <div className="nav-item dropdown">
-                                        <a id="userMenuDropdown" className="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
-                                        <div className="dropdown-menu dropdown-menu-right mt-4" aria-labelledby="userMenuDropdown">
-                                            <a className="dropdown-item" href="/logout">Log out</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <NavDropdown title="User" id="user-dropdown">
+                                <NavDropdown.Item eventKey="1.1" onClick={this.handleSubmit}>Logout</NavDropdown.Item>
+                                </NavDropdown>
+
                             </div>
                         </div>
 

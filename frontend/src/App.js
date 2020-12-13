@@ -6,16 +6,15 @@ import {
 } from "react-router-dom";
 
 import Login from './Components/Login/Login'
-
-import Cashier from './Components/Home/Cashier';
-import Admin from './Components/Admin/Admin';
+import Main from './Components/Home/MainMenu';
 
 class App extends Component {
   
   constructor(){
     super();
     this.state = {
-        history: "/"
+        history: "/",
+        session: {}
     }
   }
   render(){
@@ -24,8 +23,8 @@ class App extends Component {
         <Switch>
 
           <Route exact path="/" component={Login}/>
-          <Route exact path="/cashier" component={Cashier}/>
-          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
+          <Route exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
 
         </Switch>
       </Router>

@@ -51,7 +51,6 @@ const adminAddController = {
                 }
 
                 details.artist = artists
-
                 res.render('admin', details)
             };
 
