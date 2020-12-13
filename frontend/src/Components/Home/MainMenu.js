@@ -54,10 +54,10 @@ class Admin extends Component {
               <div id="lowerSection" className="container d-flex flex-row mt-4">
 
                 <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
-                    <ArtistCardsList artist={this.state.artist}/>
+                    <ArtistCardsList artist={this.state.artist} artistItems={this.state.artistItems}/>
                 </div>
 
-                <LeftMenu admin={this.state.isAdmin}  />    
+                <LeftMenu admin={this.state.isAdmin} artist={this.state.artist} artistItems={this.state.artistItems}/>    
             </div>
         </div> 
       );
