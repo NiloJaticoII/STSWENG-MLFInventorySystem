@@ -33,13 +33,9 @@
     "supertest": "^6.0.1"
   },
   "scripts": {
-<<<<<<< HEAD
-    "start": "nodemon server.js",
-=======
     "server": "nodemon index.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
->>>>>>> circleci-project-setup
     "test": "jest"
   },
   "repository": {
