@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+const fetch = require("node-fetch");
 
 class Login extends Component {
   
@@ -53,14 +54,14 @@ class Login extends Component {
    
                    <div className="form-group">
                        <label htmlFor="userName" className="font-weight-normal">username</label>
-                       <input id="userName" name="userName" value={this.state.userName} type="text" className="form-control" onChange={this.handleChange} />
+                       <input id="userName" data-testid="username-textbox" name="userName" value={this.state.userName} type="text" className="form-control" onChange={this.handleChange} />
                    </div>
                    <div className="form-group">
                        <label htmlFor="password" className="font-weight-normal">password</label>
-                       <input id="password" name="password" value={this.state.password} type="password" className="form-control" onChange={this.handleChange} />
+                       <input id="password" data-testid="password-textbox" name="password" value={this.state.password} type="password" className="form-control" onChange={this.handleChange} />
                    </div>
                    <div className="text-right">
-                       <input id="loginButton" value="LOGIN" type="submit" className="btn btn-secondary btn-lg col-5" />
+                       <input id="loginButton" data-testid="login-button" value="LOGIN" type="submit" className="btn btn-secondary btn-lg col-5" />
                    </div>
                </form>
            </div>
