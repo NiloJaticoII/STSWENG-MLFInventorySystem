@@ -9,11 +9,11 @@ configure({ adapter: new Adapter() });
 // jest-dom adds custom jest matchers for asserting on DOM nodes. expect(element).toHaveTextContent(/react/i)
 import '@testing-library/jest-dom';
 
-import MainMenu from '../src/Components/Home/MainMenu';
+import Cashier from '../src/Components/Cashier/CashierMenu';
 
-test('renders MainMenu page', () => {
-  const dom=render(<MainMenu />);
+test('renders Cashier page', () => {
+  const dom=render(<Cashier />);
   const getById = queryByAttribute.bind(null, 'id');
-  const linkElement = getById(dom.container,"artistsList");
+  const linkElement = getById(dom.container,"stocksSection");
   expect(linkElement).toBeInTheDocument();
 });
