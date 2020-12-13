@@ -1,36 +1,24 @@
-<<<<<<< HEAD
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/node:7.10
 
-    working_directory: ~/project
-    steps:
-      - checkout
-      - run: npm install
 
-=======
-jobs:
-  test:
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm --prefix ./frontend install ./frontend
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
-      - run: npm run test
+  jobs:
+    test:
+      executor: node/default
+      steps:
+        - checkout
+        - node/install-packages:
+            cache-path: ~/project/node_modules
+            override-ci-command: npm --prefix ./frontend install ./frontend
+        - node/install-packages:
+            cache-path: ~/project/node_modules
+            override-ci-command: npm install
+        - run: npm run test
 
-version: 2.1
-orbs:
-  node: circleci/node@3.0.0
-workflows:
-  node-tests:
-    jobs:
-      - test
+  version: 2.1
+  orbs:
+    node: circleci/node@3.0.0
+  workflows:
+    node-tests:
+      jobs:
+        - test
 
       
->>>>>>> circleci-project-setup
