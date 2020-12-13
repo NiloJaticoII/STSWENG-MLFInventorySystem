@@ -6,21 +6,25 @@ class ArtistCardsList extends Component {
     constructor(){
         super();
         this.state ={
-            artist: []
+            artist: [],
+            artistItems:[]
         }
     }
     
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
         if (this.props.artist !== prevProps.artist) {
-          this.setState({artist: this.props.artist})
+          this.setState({artist: this.props.artist, artistItems: this.props.artistItems})
         }
       }
 
     render() {
+      
+        console.log(this.state.artist)
         const artistCards = this.state.artist.map(artist => <ArtistCard   key={artist.artistID}
                                                                           artistName={artist.artistName}
-                                                                          income={artist.income} />)
+                                                                          income={artist.income} 
+                                                                          items= {[]}/>)                                              
         return (
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-2 mx-1 w-100">
                 {artistCards}
@@ -34,18 +38,8 @@ function ArtistCard(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    /*
-    const artistItems = props.artistItems;
-    const itemInfo = []
+  
 
-    for (let item of artistItems) {
-        itemInfo.push(<tr>
-            <tr scope="col"></tr>
-            <tr scope="col">Stocks</tr>
-            <tr scope="col">Price</tr>
-            <tr scope="col">Quantity sold</tr>
-        </tr>);
-    }*/
 
     return (
         <>
@@ -84,8 +78,15 @@ function ArtistCard(props) {
     );
 }
 
-function ArtistCardProductList(props) {
-
+function ArtistItems(props) {
+    return(
+    <tr>
+        <th> <img src={props.itemPicture} className="card-img-top" alt="..."/> </th> 
+        <th> {props.itemName}       </th>
+        <th> PHP {props.itemPrice}  </th>
+        <th> {props.itemsSold} </th>
+    </tr>    
+    );
 }
 
 export default ArtistCardsList;
