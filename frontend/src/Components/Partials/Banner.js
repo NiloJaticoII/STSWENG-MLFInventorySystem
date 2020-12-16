@@ -81,8 +81,8 @@ class Banner extends Component {
                                     <img id="userIconImage" src="../photo/icon-user.png" />
                                 </div>
 
-                                <NavDropdown title="User" id="user-dropdown">
-                                <NavDropdown.Item eventKey="1.1" onClick={this.handleSubmit}>Logout</NavDropdown.Item>
+                                <NavDropdown title="User" id="user-dropdown" data-testid="logout-dropdown">
+                                <NavDropdown.Item eventKey="1.1" onClick={this.handleSubmit} data-testid="logout-button">Logout</NavDropdown.Item>
                                 </NavDropdown>
 
                             </div>
