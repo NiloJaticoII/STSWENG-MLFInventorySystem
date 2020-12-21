@@ -16,15 +16,25 @@ class ArtistCardsList extends Component {
         if (this.props.artist !== prevProps.artist) {
           this.setState({artist: this.props.artist, artistItems: this.props.artistItems})
         }
+
+        for(let i=0; i < this.state.artistItems.length; i++)
+        {
+            for(let j=0; j < this.state.artist.length; j++)
+            {
+                if(this.state.artistItems[i].artistID == this.state.artist[j].artistID)
+                {
+                    this.state.artist[j].items = this.state.artistItems[i].item
+                }
+            }
+        }  
       }
 
     render() {
-      
         console.log(this.state.artist)
         const artistCards = this.state.artist.map(artist => <ArtistCard   key={artist.artistID}
                                                                           artistName={artist.artistName}
                                                                           income={artist.income} 
-                                                                          items= {[]}/>)                                              
+                                                                          items={artist.items}/>)                                              
         return (
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-2 mx-1 w-100">
                 {artistCards}
@@ -38,8 +48,15 @@ function ArtistCard(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+    var itemList = []
 
+    if(props.items)
+    {
+        itemList = props.items.map(item => <ArtistCardItem  key={item.itemID}
+            itemName={item.itemName} 
+            itemPrice={item.itemPrice}
+            stocksQuantity={item.stocksQuantity}/>)  
+    }
 
     return (
         <>
@@ -59,8 +76,8 @@ function ArtistCard(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <table class="table table-bordered">
-                        <thead class="thead bg-secondary text-light">
+                    <table className="table table-bordered">
+                        <thead className="thead bg-secondary text-light">
                             <tr>
                                 <th scope="col">Item/Bundle</th>
                                 <th scope="col">Stocks</th>
@@ -69,7 +86,7 @@ function ArtistCard(props) {
                             </tr>
                         </thead>
                         <tbody id="artistSales" >
-                            
+                            {itemList}
                         </tbody>
                     </table>
                 </Modal.Body>
@@ -78,13 +95,13 @@ function ArtistCard(props) {
     );
 }
 
-function ArtistItems(props) {
+function ArtistCardItem(props) {
     return(
     <tr>
-        <th> <img src={props.itemPicture} className="card-img-top" alt="..."/> </th> 
-        <th> {props.itemName}       </th>
-        <th> PHP {props.itemPrice}  </th>
-        <th> {props.itemsSold} </th>
+        <td> {props.itemName}       </td>
+        <td> {props.stocksQuantity} </td>
+        <td> PHP {props.itemPrice}  </td>
+        <td> {props.itemsSold} </td>
     </tr>    
     );
 }
