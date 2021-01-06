@@ -9,6 +9,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
+      - run: npm run dev
       - run: npm run test
 
 version: 2.1
