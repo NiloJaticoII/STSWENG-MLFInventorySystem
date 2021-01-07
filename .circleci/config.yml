@@ -11,6 +11,8 @@
         - node/install-packages:
             cache-path: ~/project/node_modules
             override-ci-command: npm install
+        - run: node createDatabase.js
+        - run: npm run dev
         - run: npm run test
 
   version: 2.1
