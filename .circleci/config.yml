@@ -5,7 +5,6 @@
       executor: node/default
       steps:
         - checkout
-        - run: sleep(60) && echo 1
         - run: npm run test
 
     build:
