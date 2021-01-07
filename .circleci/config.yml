@@ -5,6 +5,13 @@
       executor: node/default
       steps:
         - checkout
+        - run: sleep(600) && echo 1
+        - run: npm run test
+
+    build:
+      executor: node/default
+      steps:
+        - checkout
         - node/install-packages:
             cache-path: ~/project/node_modules
             override-ci-command: npm --prefix ./frontend install ./frontend
@@ -15,7 +22,7 @@
         - run: node addData.js
         - run: node addAdmin.js
         - run: npm run dev
-        - run: npm run test
+
 
   version: 2.1
   orbs:
@@ -23,6 +30,7 @@
   workflows:
     node-tests:
       jobs:
+        - build
         - test
 
       
