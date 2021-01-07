@@ -12,7 +12,8 @@
             cache-path: ~/project/node_modules
             override-ci-command: npm install
         - run: node deleteCollection.js 
-        - run: node createDatabase.js
+        - run: node addData.js
+        - run: node addAdmin.js
         - run: npm run dev
         - run: npm run test
 
