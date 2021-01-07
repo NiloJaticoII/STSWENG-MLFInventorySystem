@@ -18,3 +18,8 @@ bcryptjs.hash(user.password, saltRounds, function(err, hash) {
         console.log(flag)
     })
 })
+
+function greet(){
+    db.close()
+  }
+  setTimeout(greet, 10000);

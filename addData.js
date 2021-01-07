@@ -192,3 +192,9 @@ for (i=0;i<artistName.length;i++) { //3
         l++;
     }
 }
+
+
+function greet(){
+    db.close()
+  }
+  setTimeout(greet, 10000);
