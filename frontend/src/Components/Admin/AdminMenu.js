@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
-import manageArtistsWindow from "./manageArtistsWindow";
+import manageArtistsWindow from "./Artists/manageArtistsWindow";
 import manageItemsWindow from "./manageItemsWindow";
 import manageBundlesWindow from "./manageBundlesWindow";
 import manageEventsWindow from "./manageEventsWindow";
-import salesReportWindow from "./salesReportWindow";
+import salesReportWindow from "../Home/salesReportWindow";
 
 const AdminMenu = () => {
     const [manageArtistsShow, setManageArtistsShow] = useState(false);

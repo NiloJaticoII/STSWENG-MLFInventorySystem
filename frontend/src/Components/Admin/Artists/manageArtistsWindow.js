@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
-import AddArtistForm from "./Artists/AddArtistForm";
+import AddArtistForm from "./AddArtistForm";
 
 function manageArtistsWindow(handleClose, show){
     return (

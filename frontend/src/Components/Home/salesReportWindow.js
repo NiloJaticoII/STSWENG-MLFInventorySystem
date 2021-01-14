@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 
-function salesReportWindow(handleClose, show){
+function salesReportWindow(handleClose, show) {
     return (
         <Modal onHide={handleClose} show={show} size="lg" id="salesReportWindow">
             <Form>
@@ -11,11 +11,11 @@ function salesReportWindow(handleClose, show){
 
                 <Card.Header className="bg-secondary row mx-0 d-flex justify-content-around">
                     <select id="artistSalesListDropdown" className="form-control salesReportArtist col-md-7 col-sm-12 my-1" name="selectedArtistSales">
-                        <option value="" className="defaultVal" disabled defaultValue>select artist</option>
+                        <option value="" className="defaultVal" disabled selected>select artist</option>
                         <option value="{{artistID}}"></option>
                     </select>
                     <select id="sortItemsDropdown" className="form-control salesReportSort d-md-inline-block col-md-4 col-sm-12 my-1" name="selectedArtistSales">
-                        <option value="name" className="defaultVal" defaultValue>sort by name</option>
+                        <option value="name" className="defaultVal" selected>sort by name</option>
                         <option value="price asc">sort by price (ascending)</option>
                         <option value="price desc">sort by price (descending)</option>
                         <option value="sold asc">sort by quantity sold (ascending)</option>
@@ -52,6 +52,8 @@ function salesReportWindow(handleClose, show){
             </Form>
         </Modal>
     );
+
 }
+
 
 export default salesReportWindow
