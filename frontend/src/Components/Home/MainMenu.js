@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ArtistCardsList from '../Partials/artistCard';
-import LeftMenu from '../Admin/LeftMenu';
+import LeftMenu from './LeftMenu';
 import Banner from '../Partials/Banner';
 
 class Admin extends Component {
