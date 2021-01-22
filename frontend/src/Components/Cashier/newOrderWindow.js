@@ -13,7 +13,7 @@ function newOrderWindow(handleClose, show, artists) {
                         <Card.Header id="buyArtistSection" className="card-header bg-secondary">
                             <select id="artistsListDropdown" className="form-control" name="selectedArtist">
                                 <option value="" className="defaultVal" disabled selected></option>
-                                    <option value="{{artistID}}">{artists[0].artistName}</option>
+                                    <option value="{{artistID}}"></option>
                             </select>
                         </Card.Header>
                         <Card.Body id="buyItemSection" className="card-body overflow-auto">
