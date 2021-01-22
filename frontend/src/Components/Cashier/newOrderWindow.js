@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 
-function newOrderWindow(handleClose, show) {
+function newOrderWindow(handleClose, show, artists) {
+    
     return (
         <Modal onHide={handleClose} show={show} size="lg" id="newOrderWindow">
             <Form id="artistSelect" className="form" method='POST' action="/orderCheckOut">
@@ -11,8 +12,8 @@ function newOrderWindow(handleClose, show) {
                     <Card id="buySection" className="card" style={{ width: "60rem", height: "30rem" }}>
                         <Card.Header id="buyArtistSection" className="card-header bg-secondary">
                             <select id="artistsListDropdown" className="form-control" name="selectedArtist">
-                                <option value="" className="defaultVal" disabled selected>select artist</option>
-                                <option value="{{artistID}}"></option>
+                                <option value="" className="defaultVal" disabled selected></option>
+                                    <option value="{{artistID}}">{artists[0].artistName}</option>
                             </select>
                         </Card.Header>
                         <Card.Body id="buyItemSection" className="card-body overflow-auto">
@@ -44,3 +45,7 @@ function newOrderWindow(handleClose, show) {
 }
 
 export default newOrderWindow
+
+function LoadNames(props){
+    <option value={props.artistID}>{props.artistName}</option>
+}
