@@ -21,13 +21,6 @@ try {
   db.connect();
   } catch (e) {console.log(e);}
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'build')));
-
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // session
 const session = require('express-session');
@@ -62,6 +55,12 @@ app.use('/', adminRoutes);
 const hbs = require('hbs');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
+
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 app.listen(port, () => {
   console.log('App listening at : localhost:' + port)
