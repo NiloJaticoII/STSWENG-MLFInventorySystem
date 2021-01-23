@@ -6,9 +6,12 @@ function manageArtistsWindow(handleClose, show){
     return (
        <Modal onHide={handleClose} id="manageArtistsWindow" show={show} size="lg">
        <div className="modal-content">
-            <Modal.Header className="bg-white" closeButton>
-                <Modal.Title>Manage Artists</Modal.Title>
-            </Modal.Header>
+           <div className="modal-header">
+               <h5 className="modal-title">Manage artists</h5>
+               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
    
            <div className="modal-body">
                <ul className="nav nav-tabs mb-3 mt-2" id="manageArtistsNav" role="tablist">

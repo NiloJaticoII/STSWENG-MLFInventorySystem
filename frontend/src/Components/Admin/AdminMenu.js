@@ -32,27 +32,15 @@ const AdminMenu = () => {
             <Card id="leftMenu" className="card p-3" style={{ width: "20rem" }}>
                 <Nav.Item  id="manageMenu" className="nav-item">
                     <h6 className="text-center">manage</h6>
-                    <Nav.Item id="manageArtistsItem" className="text-center">
-                        <Nav.Link id="manageArtists" href="#a" className="nav-link" onClick={handleManageArtistsShow} data-target="#manageArtistsWindow">Manage artists</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item id="manageItemsItem" className="text-center">
-                        <Nav.Link id="manageItems" href="#" className="nav-link"  onClick={handleManageItemsShow} data-target="#manageItemsWindow">Manage items</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item id="manageBundlesItem" className="text-center">
-                        <Nav.Link id="manageBundles" href="#" className="nav-link"  onClick={handleManageBundlesShow} data-target="#manageBundlesWindow">Manage bundles</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item id="manageEventsItem" className="text-center">
-                        <Nav.Link id="manageEvents" href="#" className="nav-link" onClick={handleManageEventsShow}   data-target="#manageEventsWindow">Manage events</Nav.Link>
-                    </Nav.Item>
-                    
+                    <Nav.Link id="manageArtists" href="#a" className="nav-link" onClick={handleManageArtistsShow} data-toggle="modal" data-target="#manageArtistsWindow">Manage artists</Nav.Link>
+                    <Nav.Link id="manageItems" href="#" className="nav-link"  onClick={handleManageItemsShow} data-toggle="modal" data-target="#manageItemsWindow">Manage items</Nav.Link>
+                    <Nav.Link id="manageBundles" href="#" className="nav-link"  onClick={handleManageBundlesShow} data-toggle="modal" data-target="#manageBundlesWindow">Manage bundles</Nav.Link>
+                    <Nav.Link id="manageEventss" href="#" className="nav-link" onClick={handleManageEventsShow}  data-toggle="modal" data-target="#manageEventsWindow">Manage events</Nav.Link>
                 </Nav.Item>
                 <hr />
                 <Nav.Item id="salesReportSection" className="nav-item">
                     <h6 className="text-center">sales report</h6>
-                    <Nav.Item id="salesReportItem" className="text-center">
                     <Nav.Link id="currentSalesReport" href="#" className="nav-link" onClick={handleSalesReportShow} data-target="#salesReportWindow">Current sales report</Nav.Link>
-                    </Nav.Item>
-                    
                 </Nav.Item>
             </Card>
 

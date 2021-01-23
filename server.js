@@ -1,6 +1,6 @@
 'use strict';
 var http = require('http');
-//var port = process.env.PORT || 1337;
+var port = /*process.env.PORT ||*/ 1337;
 const express = require('express')
 const bodyParser = require("body-parser");
 const app = express()
@@ -22,20 +22,15 @@ try {
   } catch (e) {console.log(e);}
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-/* session
+// session
 const session = require('express-session');
 
 app.use(session({
   'secret': 'a',
   'resave': false,
   'saveUninitialized': false
-}));*/
+}));
 
 //Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
@@ -62,10 +57,8 @@ const hbs = require('hbs');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.listen(process.env.PORT || 1337), () => {
+app.listen(port, () => {
   console.log('App listening at : localhost:' + port)
 })
-
-
 
 module.exports=app
