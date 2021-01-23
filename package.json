@@ -33,6 +33,8 @@
     "supertest": "^6.0.1"
   },
   "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "server": "nodemon index.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
