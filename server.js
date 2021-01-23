@@ -1,6 +1,6 @@
 'use strict';
 var http = require('http');
-var port = process.env.PORT || 1337;
+//var port = process.env.PORT || 1337;
 const express = require('express')
 const bodyParser = require("body-parser");
 const app = express()
@@ -62,7 +62,7 @@ const hbs = require('hbs');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 1337), () => {
   console.log('App listening at : localhost:' + port)
 })
 
