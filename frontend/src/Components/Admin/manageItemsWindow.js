@@ -5,12 +5,9 @@ function manageItemsWindow(handleClose, show){
     return (
        <Modal onHide={handleClose} id="manageItemsWindow" show={show} size="lg">
            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title">Manage items</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <Modal.Header className="bg-white" closeButton>
+                    <Modal.Title>Manage Items</Modal.Title>
+                </Modal.Header>
                 <div className="modal-body">
                     <ul className="nav nav-tabs mb-3 mt-2" id="manageArtistsNav" role="tablist">
                         <li className="nav-item">
