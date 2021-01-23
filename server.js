@@ -22,12 +22,6 @@ try {
   } catch (e) {console.log(e);}
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'build')));
-
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // session
 const session = require('express-session');
