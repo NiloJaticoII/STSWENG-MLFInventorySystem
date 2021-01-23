@@ -28,14 +28,14 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// session
+/* session
 const session = require('express-session');
 
 app.use(session({
   'secret': 'a',
   'resave': false,
   'saveUninitialized': false
-}));
+}));*/
 
 //Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
