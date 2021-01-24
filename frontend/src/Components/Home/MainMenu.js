@@ -49,8 +49,7 @@ class Admin extends Component {
           'Content-Type': 'application/json',
         }
       });
-      const body = await response.text();
-      console.log(body);
+      const body = await response.json();
       return body;
     };
     
