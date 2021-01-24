@@ -43,8 +43,14 @@ class Admin extends Component {
     }
 
     getArtist = async () => {
-      const response = await fetch(config.API_URI + '/admin');
-      const body = await response.json();
+      const response = await fetch(config.API_URI + '/admin/getHome', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      const body = await response.text();
+      console.log(body);
       return body;
     };
     

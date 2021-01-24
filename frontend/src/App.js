@@ -29,8 +29,8 @@ class App extends Component {
         <Switch>
 
           <Route exact path="/" component={Login}/>
-          <Route exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
-          <Route exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
+          <Route exact path="/cashierWindow" render={(props) => <Main {...props} isAdmin={false} />} />
+          <Route exact path="/adminWindow" render={(props) => <Main {...props} isAdmin={true} />} />
 
         </Switch>
       </Router>

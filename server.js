@@ -52,7 +52,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
-
 //Main menu
 const LogInController = require('./controllers/loginController.js');
 
@@ -66,7 +65,7 @@ const adminRoutes = require('./router/adminRoutes');
 //Routes
 app.use('/', mainRoutes);
 app.use('/', loginRoutes);
-app.use('/', adminRoutes);
+app.use('/admin', adminRoutes);
 
 // Handlebars
 const hbs = require('hbs');
