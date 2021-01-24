@@ -1,10 +1,16 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
 import newOrderWindow from "./newOrderWindow";
 import financialWindow from "./financialWindow";
 import salesReportWindow from "../Home/salesReportWindow";
 
-const CashierMenu = () => {
+const CashierMenu = (props) => {
+
+    const [artists, setArtists] = useState([{artistName:"No Artists"}]);
+    useEffect(() => {
+          setArtists(props.artist);
+    });
+    
     const [newOrderShow, setNewOrderShow] = useState(false);
     const [financialShow, setFinancialShow] = useState(false);
     const [salesReportShow, setSalesReportShow] = useState(false);
@@ -37,7 +43,7 @@ const CashierMenu = () => {
             </Card>
 
             <div id="modalSection">
-                {newOrderWindow(handleNewOrderClose, newOrderShow)}
+                {newOrderWindow(handleNewOrderClose, newOrderShow, artists)}
                 {financialWindow(handleFinancialClose, financialShow)}
                 {salesReportWindow(handleSalesReportClose, salesReportShow)}
             </div>

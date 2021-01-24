@@ -16,7 +16,13 @@ class App extends Component {
         history: "/",
         session: {}
     }
+    this.connecToServer = this.connecToServer.bind(this); 
   }
+
+  connecToServer() {    fetch('/');  }
+
+  componentDidMount() {    this.connecToServer();  }
+
   render(){
     return (
       <Router>

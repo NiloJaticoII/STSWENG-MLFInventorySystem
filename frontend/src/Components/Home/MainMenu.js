@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ArtistCardsList from '../Partials/artistCard';
 import LeftMenu from './LeftMenu';
 import Banner from '../Partials/Banner';
+import config from '../../config';
 
 class Admin extends Component {
   
@@ -42,7 +43,12 @@ class Admin extends Component {
     }
 
     getArtist = async () => {
-      const response = await fetch('http://localhost:1337/admin');
+      const response = await fetch(config.API_URI + '/admin/getHome', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
       const body = await response.json();
       return body;
     };

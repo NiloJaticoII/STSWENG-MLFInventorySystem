@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Counter from './Counter';
 import BootStrap, {NavDropdown} from 'react-bootstrap'
-
+import config from '../../config'
 class Banner extends Component {
 
     constructor(){
@@ -21,7 +21,7 @@ class Banner extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('http://localhost:1337/login', {
+        const response = await fetch(config.API_URI + '/login', {
           method: 'GET',
         });
         const body = await response.text();

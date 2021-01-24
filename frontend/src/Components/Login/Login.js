@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import config from '../../config'
 
 class Login extends Component {
   
@@ -20,7 +21,7 @@ class Login extends Component {
           
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('http://localhost:1337/postlogin', {
+        const response = await fetch(config.API_URI + '/postlogin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
