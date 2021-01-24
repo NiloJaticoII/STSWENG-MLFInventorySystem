@@ -1,12 +1,13 @@
 'use strict';
 var http = require('http');
-var port = /*process.env.PORT ||*/ 1337;
+var port = process.env.PORT ||  5000;
 const express = require('express')
 const bodyParser = require("body-parser");
 const app = express()
 const path = require('path');
 const db = require('./models/database.js');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 
 /*
@@ -21,7 +22,21 @@ try {
   db.connect();
   } catch (e) {console.log(e);}
 
-app.use(express.static(__dirname + '/public'));
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {  
+  app.use(express.static(path.join(__dirname, 'frontend/build')));  
+  app.get('*', (req, res) => {   
+     res.sendfile(path.join(__dirname = 'frontend/build/index.html'));  
+  })
+}
+
+//build mode
+app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));})
+
+//app.use(express.static(__dirname + '/public'));
 
 // session
 const session = require('express-session');
@@ -35,6 +50,7 @@ app.use(session({
 //Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 //Main menu
 const LogInController = require('./controllers/loginController.js');
@@ -56,8 +72,10 @@ const hbs = require('hbs');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.listen(port, () => {
-  console.log('App listening at : localhost:' + port)
+//start server
+app.listen(port, (req, res) => {  
+  console.log( `server listening on port: ${port}`);
 })
+
 
 module.exports=app

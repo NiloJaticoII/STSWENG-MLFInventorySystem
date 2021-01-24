@@ -4,7 +4,7 @@ const client = mongodb.MongoClient;
 //Database name
 const databaseName = 'MalateLiteraryFolio'
 //Database url
-const url = 'mongodb://localhost:27017/MalateLiteraryFolio'
+const url = 'mongodb://Admin:Malate123456@inventory-system-shard-00-00.3chzt.mongodb.net:27017,inventory-system-shard-00-01.3chzt.mongodb.net:27017,inventory-system-shard-00-02.3chzt.mongodb.net:27017/MalateLiteraryFolio?ssl=true&replicaSet=atlas-bhky5u-shard-0&authSource=admin&retryWrites=true&w=majority'
 // Place all schemas here
 const admin = require('./AdminModel.js');
 const artist = require('./ArtistModel.js');

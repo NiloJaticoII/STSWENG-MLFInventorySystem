@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './Components/Login/Login'
+import Main from './Components/Home/MainMenu';
+
+class App extends Component {
+  
+  constructor(){
+    super();
+    this.state = {
+        history: "/",
+        session: {}
+    }
+    this.connecToServer = this.connecToServer.bind(this); 
+  }
+
+  connecToServer() {    fetch('/');  }
+
+  componentDidMount() {    this.connecToServer();  }
+
+  render(){
+    return (
+      <Router>
+        <Switch>
+
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
+          <Route exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
+
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

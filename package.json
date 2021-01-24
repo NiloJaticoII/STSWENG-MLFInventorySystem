@@ -1,32 +1,43 @@
 {
   "name": "csswenggroup4-app",
   "version": "0.0.0",
+  "proxy": "http://localhost:3000",
   "description": "CSSWENGGroup4App",
   "main": "server.js",
   "author": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bootstrap-4-react": "0.0.59",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "http": "0.0.1-security",
+    "jest": "^26.6.0",
     "mongodb": "^3.6.1",
     "mongoose": "^5.10.17",
     "multer": "^1.4.2",
     "nodemon": "^2.0.6",
     "path": "^0.12.7",
-    "port": "^0.8.1"
+    "port": "^0.8.1",
+    "react-bootstrap": "^1.4.0"
   },
   "devDependencies": {
-    "jest": "^26.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-arrow-functions": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "concurrently": "^5.3.0",
     "sinon": "^9.2.1",
     "supertest": "^6.0.1"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "jest"
+    "server": "nodemon index.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
@@ -36,5 +47,14 @@
   "bugs": {
     "url": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem/issues"
   },
-  "homepage": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem#readme"
+  "homepage": "https://github.com/Gridmerc/STSWENG-MLFInventorySystem#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "jest": {
+    "projects": [
+      "__tests__/jest.config.js",
+      "./frontend/__tests__/jest.config.js"
+    ]
+  }
 }
