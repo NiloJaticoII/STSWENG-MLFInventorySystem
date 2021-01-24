@@ -52,6 +52,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+
 //Main menu
 const LogInController = require('./controllers/loginController.js');
 
