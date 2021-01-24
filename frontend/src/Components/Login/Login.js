@@ -32,10 +32,10 @@ class Login extends Component {
         
         this.setState({ responseToPost: body });
         if(this.state.responseToPost === "/admin"){
-            this.props.history.push("/adminWindow");
+            this.props.history.push("/admin");
         } 
         else if(this.state.responseToPost === "/main"){
-            this.props.history.push("/cashierWindow");
+            this.props.history.push("/cashier");
         }    
         else{
             this.props.history.push('/');
