@@ -20,7 +20,7 @@ class Login extends Component {
           
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('http://localhost:1337/postlogin', {
+        const response = await fetch('/postlogin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

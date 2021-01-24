@@ -21,7 +21,7 @@ class Banner extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('http://localhost:1337/login', {
+        const response = await fetch('/login', {
           method: 'GET',
         });
         const body = await response.text();

@@ -22,7 +22,7 @@ class ArtistCardsList extends Component {
 
         for(let i=0; i < this.state.artist.length; i++)
         {
-            const itemsResponse = await fetch('http://localhost:1337/getItems/?artistID='+this.state.artist[i].artistID + "&projection=itemName itemPrice itemsSold stockQuantity", {
+            const itemsResponse = await fetch('/getItems/?artistID='+this.state.artist[i].artistID + "&projection=itemName itemPrice itemsSold stockQuantity", {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ class ArtistCardsList extends Component {
               const itemsBody = await itemsResponse.json();
               this.state.artist[i].items = itemsBody;
 
-              const bundlesResponse = await fetch('http://localhost:1337/getBundles/?artistID='+this.state.artist[i].artistID + "&projection=bundleName bundlePrice bundleSold bundleStock", {
+              const bundlesResponse = await fetch('/getBundles/?artistID='+this.state.artist[i].artistID + "&projection=bundleName bundlePrice bundleSold bundleStock", {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',

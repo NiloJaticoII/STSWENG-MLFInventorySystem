@@ -25,7 +25,7 @@ class AddArtistForm extends Component {
 
         if (this.state.newArtistName !== '' && this.state.newArtistIDNo!== '' && this.state.newArtistPassword !== '') {
 
-            const response = await fetch('http://localhost:1337/admin/getArtist/?artistID='+this.state.newArtistIDNo + "&projection=_id artistID artistName", {
+            const response = await fetch('/admin/getArtist/?artistID='+this.state.newArtistIDNo + "&projection=_id artistID artistName", {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ class AddArtistForm extends Component {
       };
 
   addArtist = async e => {
-    const addResponse = await fetch('http://localhost:1337/admin/addArtist', {
+    const addResponse = await fetch('/admin/addArtist', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',

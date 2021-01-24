@@ -42,7 +42,7 @@ class Admin extends Component {
     }
 
     getArtist = async () => {
-      const response = await fetch('http://localhost:1337/admin');
+      const response = await fetch('/admin');
       const body = await response.json();
       return body;
     };
