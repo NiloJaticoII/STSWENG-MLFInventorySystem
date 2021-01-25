@@ -15,6 +15,7 @@ class NewOrderWindow extends Component{
 
     this.handleChange = this.handleChange.bind(this)
     this.handleFinancialItem = this.handleFinancialItem.bind(this)
+    this.getArtistItems = this.getArtistItems.bind(this)
   }
 
   handleChange(event) {

@@ -9,6 +9,7 @@ class ArtistCardsList extends Component {
         this.state ={
             artist: [],
         }
+        this.getArtistItems = this.getArtistItems.bind(this)
     }
     
     componentDidUpdate(prevProps) {

@@ -17,6 +17,7 @@ class FinancialWindow extends Component{
         this.handleAmountChange = this.handleAmountChange.bind(this)
         this.handleFinancialItem = this.handleFinancialItem.bind(this)
         this.addStocks = this.addStocks.bind(this)
+        this.getArtistItems = this.getArtistItems.bind(this)
       }
     
       handleChange(event) {
