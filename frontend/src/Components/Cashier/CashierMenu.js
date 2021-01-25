@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
 import NewOrderWindow from "./NewOrderWindow";
-import financialWindow from "./financialWindow";
+import FinancialWindow from "./FinancialWindow";
 import salesReportWindow from "../Home/salesReportWindow";
 
 const CashierMenu = (props) => {
@@ -43,8 +43,8 @@ const CashierMenu = (props) => {
             </Card>
 
             <div id="modalSection">
-                <NewOrderWindow handleClose={handleNewOrderClose} show={newOrderShow} artists={artists} />
-                {financialWindow(handleFinancialClose, financialShow)}
+                <NewOrderWindow handleClose={handleNewOrderClose} show={newOrderShow} artists={artists}/>
+                <FinancialWindow handleClose={handleFinancialClose} show={financialShow} artists={artists}/>
                 {salesReportWindow(handleSalesReportClose, salesReportShow)}
             </div>
         </>
