@@ -9,23 +9,32 @@ class NewOrderWindow extends Component{
     this.state = {
         artists: [],
         currentArtistID: "",
+        currentItem: "",
+        currentType: "",
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleFinancialItem = this.handleFinancialItem.bind(this)
   }
 
   handleChange(event) {
     this.setState({currentArtistID: event.target.value});
-}
-
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.artists !== prevProps.artists) {
-      this.setState({artists: this.props.artists})
     }
 
+    handleFinancialItem(itemID, itemType) {
+        if (itemID !== this.state.currentItem) {         
+            this.setState({currentItem: itemID,
+                            currentType: itemType})
+        }
+    }
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if(this.props.artists !== prevProps.artists) {
+      this.setState({artists: this.props.artists})
+        }
+
     this.getArtistItems();
-}
+    }
 
 getArtistItems = async e => {
 
@@ -60,38 +69,75 @@ render(){
 
     for(let i=0; i < this.state.artists.length; i++)
     {
-            if(this.state.artists[i].artistID == this.state.currentArtistID)
+        if(this.state.artists[i].artistID == this.state.currentArtistID)
+        {
+            if(this.state.artists[i].items)
             {
-                if(this.state.artists[i].items)
-                {
-                    itemList = this.state.artists[i].items.filter(function(item){
-                        if (typeof item === 'undefined' || item === false) {
-                        return false; // skip
-                        }
-                        return true;
-                    }).map(item => <LoadItemCards  key={item._id}
+                itemList = this.state.artists[i].items.filter(function(item){
+                    if (typeof item === 'undefined' || item === false) {
+                    return false; // skip
+                    }
+                    return true;
+                }).map(item => {
+                    if(item._id == this.state.currentItem){
+                        return (<LoadItemCards  key={item._id}
                         _id={item._id}
                         itemName={item.itemName} 
                         stocksQuantity={item.stockQuantity}
                         itemPrice={item.itemPrice}
-                        itemPicture={item.itemPicture}/>)  
-                }
-                
-                if(this.state.artists[i].bundles)
-                {
-                    bundleList = this.state.artists[i].bundles.filter(function(bundle){
-                        if (typeof bundle === 'undefined' || bundle === false) {
-                        return false; // skip
-                        }
-                        return true;
-                    }).map(bundle=> <LoadItemCards  key={bundle._id}
+                        itemPicture={item.itemPicture}
+                        handleFinancialItem={this.handleFinancialItem}
+                        itemType="item"
+                        class="col mb-3 bg-secondary"/>)
+                    }
+                    else{
+                        return(<LoadItemCards  key={item._id}
+                            _id={item._id}
+                            itemName={item.itemName} 
+                            stocksQuantity={item.stockQuantity}
+                            itemPrice={item.itemPrice}
+                            itemPicture={item.itemPicture}
+                            handleFinancialItem={this.handleFinancialItem}
+                            itemType="item"
+                            class="col mb-3"/>)
+                    }
+                })  
+            }
+            
+            if(this.state.artists[i].bundles)
+            {
+                bundleList = this.state.artists[i].bundles.filter(function(bundle){
+                    if (typeof bundle === 'undefined' || bundle === false) {
+                    return false; // skip
+                    }
+                    return true;
+                }).map(bundle=> {
+                    if(bundle._id == this.state.currentItem){
+                       return (<LoadItemCards  key={bundle._id}
                         _id={bundle._id}
                         itemName={bundle.bundleName} 
                         stocksQuantity={bundle.bundleStock}
                         itemPrice={bundle.bundlePrice}
-                        itemPicture={bundle.bundlePicture}/>)  
-                }
+                        itemPicture={bundle.bundlePicture}
+                        handleFinancialItem={this.handleFinancialItem}
+                        itemType="bundle"
+                        class="col mb-3 bg-secondary"/>)
+                    }
+                    else{
+                        return (<LoadItemCards  key={bundle._id}
+                            _id={bundle._id}
+                            itemName={bundle.bundleName} 
+                            stocksQuantity={bundle.bundleStock}
+                            itemPrice={bundle.bundlePrice}
+                            itemPicture={bundle.bundlePicture}
+                            handleFinancialItem={this.handleFinancialItem}
+                            itemType="bundle"
+                            class="col mb-3"/>)
+                    }
+                })
+                 
             }
+        }
     }
 
     const artistOptions = this.state.artists.map(artist =>
@@ -154,13 +200,14 @@ function LoadNames(props) {
 
 function LoadItemCards(props) {
     return (
-        <div class="col mb-3" id={props._id + "-buyItem"} style={{padding: "5px"}}>
-            <div class="card">
-                <img src={props.itemPicture} class="card-img-top" alt="..."/>
-                <div class="card-body">
-                    <h5 class="card-title"> {props.itemName} </h5>
-                    <p class="card-text">PHP {props.itemPrice.toFixed(2)}</p>
-                    <p class="card-text">{props.stocksQuantity} left</p>
+        <div className={props.class} id={props._id + "-buyItem"} style={{padding: "5px"}}>
+            <div className="card">
+                <img src={props.itemPicture} className="card-img-top" alt="..."/>
+                <div className="card-body">
+                    <h5 className="card-title"> {props.itemName} </h5>
+                    <p className="card-text">PHP {props.itemPrice.toFixed(2)}</p>
+                    <p className="card-text">{props.stocksQuantity} left</p>
+                    <a href="#" class="stretched-link" onClick={()=>props.handleFinancialItem(props._id, props.itemType)} style={{size: "0px"}}></a>
                 </div>
             </div>
         </div>
