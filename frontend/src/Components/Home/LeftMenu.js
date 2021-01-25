@@ -8,7 +8,7 @@ class LeftMenu extends Component{
             return(
                 <AdminMenu />
             );
-        return <CashierMenu  artist={this.props.artist} artistItems={this.props.artistItems} />
+        return <CashierMenu  artist={this.props.artist} />
     }
 }
 

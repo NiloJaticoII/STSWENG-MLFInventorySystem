@@ -1,12 +1,12 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
-import newOrderWindow from "./newOrderWindow";
+import NewOrderWindow from "./NewOrderWindow";
 import financialWindow from "./financialWindow";
 import salesReportWindow from "../Home/salesReportWindow";
 
 const CashierMenu = (props) => {
 
-    const [artists, setArtists] = useState([{artistName:"No Artists"}]);
+    const [artists, setArtists] = useState([]);
     useEffect(() => {
           setArtists(props.artist);
     });
@@ -43,7 +43,7 @@ const CashierMenu = (props) => {
             </Card>
 
             <div id="modalSection">
-                {newOrderWindow(handleNewOrderClose, newOrderShow, artists)}
+                <NewOrderWindow handleClose={handleNewOrderClose} show={newOrderShow} artists={artists} />
                 {financialWindow(handleFinancialClose, financialShow)}
                 {salesReportWindow(handleSalesReportClose, salesReportShow)}
             </div>
@@ -53,39 +53,5 @@ const CashierMenu = (props) => {
 }
 
 
-
-
-
-
-/* FOR LATER
-function ArtistItems(props) {
-    return(
-    <tr>
-        <th> <img src={props.itemPicture} className="card-img-top" alt="..."/> </th> 
-        <th> {props.itemName}       </th>
-        <th> PHP {props.itemPrice}  </th>
-        <th> {props.stocksQuantity} </th>
-    </tr>    
-    );
-}
-
-const itemList = props.items.map(item => <ArtistCardItem        key={item.itemID}
-    itemPicture={item.itemPicture}
-    itemName={item.itemName} 
-    itemPrice={item.itemPrice}
-    stocksQuantity={item.stocksQuantity}/>)
-
-    for(let i=0; i < this.state.artistItems.length; i++)
-    {
-        for(let j=0; j < this.state.artist.length; j++)
-        {
-            if(this.state.artistItems[i].artistID == this.state.artist[j].artistID)
-            {
-                this.state.artist[j].items = this.state.artistItems[i].item
-            }
-        }
-
-    }
-*/
 
 export default CashierMenu

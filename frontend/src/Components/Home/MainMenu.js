@@ -10,15 +10,15 @@ class Admin extends Component {
       super();
       this.state = {
         history: "/",
-        artist: {},
-        artistItems: {},
+        artist: [],
+        artistItems: [],
         daysLeft: 0,
         hoursLeft: 0,
         minutesLeft:0,
         secondsLeft: 0,
         totalSeconds: 0,
         totalSold: 0,
-        event: {},
+        event: [],
         isAdmin: false
       }
     }
@@ -63,7 +63,7 @@ class Admin extends Component {
                     <ArtistCardsList artist={this.state.artist} artistItems={this.state.artistItems}/>
                 </div>
 
-                <LeftMenu admin={this.state.isAdmin} artist={this.state.artist} artistItems={this.state.artistItems}/>    
+                <LeftMenu admin={this.state.isAdmin} artist={this.state.artist} />    
             </div>
         </div> 
       );
