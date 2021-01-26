@@ -4,7 +4,7 @@ import manageArtistsWindow from "./Artists/manageArtistsWindow";
 import manageItemsWindow from "./Items/manageItemsWindow";
 import manageBundlesWindow from "./Bundles/manageBundlesWindow";
 import manageEventsWindow from "./Events/manageEventsWindow";
-import SalesReportWindow from "../Home/SalesReportWindow";
+import SalesReportWindow from "../Home/salesReportWindow";
 
 const AdminMenu = () => {
 
