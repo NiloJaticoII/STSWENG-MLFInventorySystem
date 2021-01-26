@@ -85,8 +85,6 @@ class NewOrderWindow extends Component{
             )
         }
 
-        //console.log(CheckoutTable)
-
         for(let i=0; i < this.state.artists.length; i++)
         {
                 if(this.state.artists[i].artistID == this.state.currentArtistID)
