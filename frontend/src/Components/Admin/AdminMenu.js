@@ -1,12 +1,18 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 import manageArtistsWindow from "./Artists/manageArtistsWindow";
-import manageItemsWindow from "./manageItemsWindow";
-import manageBundlesWindow from "./manageBundlesWindow";
-import manageEventsWindow from "./manageEventsWindow";
-import salesReportWindow from "../Home/salesReportWindow";
+import manageItemsWindow from "./Items/manageItemsWindow";
+import manageBundlesWindow from "./Bundles/manageBundlesWindow";
+import manageEventsWindow from "./Events/manageEventsWindow";
+import SalesReportWindow from "../Home/SalesReportWindow";
 
 const AdminMenu = () => {
+
+    const [artists, setArtists] = useState([]);
+    useEffect(() => {
+          setArtists(this.props.artist);
+    });
+
     const [manageArtistsShow, setManageArtistsShow] = useState(false);
     const [manageItemsShow, setManageItemsShow] = useState(false);
     const [manageBundlesShow, setManageBundlesShow] = useState(false);
@@ -61,7 +67,7 @@ const AdminMenu = () => {
                 {manageItemsWindow(handleManageItemsClose, manageItemsShow)}
                 {manageBundlesWindow(handleManageBundlesClose, manageBundlesShow)}
                 {manageEventsWindow(handleManageEventsClose, manageEventsShow)}
-                {salesReportWindow(handleSalesReportClose, salesReportShow)}
+                <SalesReportWindow handleClose={handleSalesReportClose} show={salesReportShow} artists={artists} />
             </div>
         </div>
     );

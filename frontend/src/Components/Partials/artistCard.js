@@ -9,6 +9,7 @@ class ArtistCardsList extends Component {
         this.state ={
             artist: [],
         }
+        this.getArtistItems = this.getArtistItems.bind(this)
     }
     
     componentDidUpdate(prevProps) {
@@ -44,6 +45,7 @@ class ArtistCardsList extends Component {
     }
 
     render() {
+        console.log(this.state.artist);
         const artistCards = this.state.artist.map(artist => <ArtistCard   key={artist.artistID}
                                                                           artistName={artist.artistName}
                                                                           income={artist.income} 
