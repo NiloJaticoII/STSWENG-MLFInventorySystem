@@ -1,14 +1,14 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
-<<<<<<< HEAD
+
 import NewOrderWindow from "./newOrderWindow";
 import financialWindow from "./financialWindow";
 import salesReportWindow from "../Home/salesReportWindow";
-=======
+
 import NewOrderWindow from "./NewOrderWindow";
 import FinancialWindow from "./FinancialWindow";
 import SalesReportWindow from "../Home/SalesReportWindow";
->>>>>>> origin/circleci-project-setup
+
 
 const CashierMenu = (props) => {
 
