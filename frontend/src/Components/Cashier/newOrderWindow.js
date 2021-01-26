@@ -191,16 +191,4 @@ function AddedItem(props) {
     );
 }
 
-function AddedItem2() {
-    return (
-        <tr id="">
-            <td>
-                <Button className='close'><span>&times;</span></Button>    
-            </td>
-            <td id="">(1) item name </td>
-            <td id="" className='text-right'> 0.00 </td>
-        </tr>
-    );
-}
-
 export default NewOrderWindow
