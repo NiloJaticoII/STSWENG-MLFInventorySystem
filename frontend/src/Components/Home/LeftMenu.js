@@ -6,7 +6,7 @@ class LeftMenu extends Component{
     render(){
         if(this.props.admin)
             return(
-                <AdminMenu />
+                <AdminMenu/>
             );
         return <CashierMenu  artist={this.props.artist} />
     }
