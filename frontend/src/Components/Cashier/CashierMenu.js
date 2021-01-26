@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
-import NewOrderWindow from "./NewOrderWindow";
+import NewOrderWindow from "./newOrderWindow";
 import financialWindow from "./financialWindow";
 import salesReportWindow from "../Home/salesReportWindow";
 
