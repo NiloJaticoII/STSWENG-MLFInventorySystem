@@ -2,15 +2,15 @@ import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 import manageArtistsWindow from "./Artists/manageArtistsWindow";
 import manageItemsWindow from "./Items/manageItemsWindow";
-import manageBundlesWindow from "./Bundles/manageBundlesWindow";
+import ManageBundlesWindow from "./Bundles/ManageBundlesWindow";
 import manageEventsWindow from "./Events/manageEventsWindow";
-import SalesReportWindow from "../Home/salesReportWindow";
+import SalesReportWindow from "../Home/SalesReportWindow";
 
-const AdminMenu = () => {
+const AdminMenu = (props) => {
 
     const [artists, setArtists] = useState([]);
     useEffect(() => {
-          setArtists(this.props.artist);
+          setArtists(props.artist);
     });
 
     const [manageArtistsShow, setManageArtistsShow] = useState(false);
@@ -65,7 +65,7 @@ const AdminMenu = () => {
             <div id="modalSection">
                 {manageArtistsWindow(handleManageArtistsClose, manageArtistsShow)}
                 {manageItemsWindow(handleManageItemsClose, manageItemsShow)}
-                {manageBundlesWindow(handleManageBundlesClose, manageBundlesShow)}
+                <ManageBundlesWindow handleClose={handleManageBundlesClose} show={manageBundlesShow} artists={artists}/>
                 {manageEventsWindow(handleManageEventsClose, manageEventsShow)}
                 <SalesReportWindow handleClose={handleSalesReportClose} show={salesReportShow} artists={artists} />
             </div>

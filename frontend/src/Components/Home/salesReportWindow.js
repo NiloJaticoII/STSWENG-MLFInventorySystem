@@ -131,7 +131,7 @@ class SalesReportWindow extends Component {
     }
 
     const artistOptions = this.state.artists.map(artist =>
-        <LoadNames artistID={artist.artistID}
+        <LoadNames key={artist.artistID} artistID={artist.artistID}
             artistName={artist.artistName} />
     )
 
