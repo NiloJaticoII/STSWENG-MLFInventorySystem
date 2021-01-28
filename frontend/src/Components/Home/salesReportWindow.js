@@ -9,20 +9,42 @@ class SalesReportWindow extends Component {
         this.state = {
             artists: [],
             currentArtistID: "",
+            totalSales: 0.0,
         }
     
         this.handleChange = this.handleChange.bind(this)
+        this.updateTotalSales = this.updateTotalSales.bind(this)
       }
     
-      handleChange(event) {
-        this.setState({currentArtistID: event.target.value});
-      }
+    handleChange = (event) => {
+        this.setState({currentArtistID: event.target.value}, 
+            () => {this.updateTotalSales()});
+    }
 
-      componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
         if (this.props.artists !== prevProps.artists) {
           this.setState({artists: this.props.artists})
         }
+    }
+
+    updateTotalSales(){
+        var total = 0.0;
+        for(let i=0; i < this.state.artists.length; i++)
+        {
+            if(this.state.artists[i].artistID == this.state.currentArtistID)
+            {
+                for(let j = 0; j< this.state.artists[i].items.length; j++){
+                    total += this.state.artists[i].items[j].itemPrice
+                } 
+                    
+                for(let j = 0; j< this.state.artists[i].bundles.length; j++) {
+                    total += this.state.artists[i].bundles[j].bundlePrice
+                } 
+            } 
+        }
+
+        this.setState({totalSales:total})
     }
 
     render(){
@@ -107,8 +129,7 @@ class SalesReportWindow extends Component {
     }
 
     const artistOptions = this.state.artists.map(artist =>
-        <LoadNames key={artist.artistID} artistID={artist.artistID}
-            artistName={artist.artistName} />
+        <LoadNames key={artist.artistID} artistID={artist.artistID} artistName={artist.artistName} />
     )
 
         return (
@@ -149,7 +170,7 @@ class SalesReportWindow extends Component {
                         <table id="totalSalesTable" className="table">
                             <tr className="row m-0">
                                 <td className="font-weight-bold col-9">Total</td>
-                                <td className="col-3" id="totalSoldSales">PHP 0.00</td>
+                                <td className="col-3" id="totalSoldSales">PHP {this.state.totalSales}</td>
                             </tr>
                             <tbody>
                             </tbody>
