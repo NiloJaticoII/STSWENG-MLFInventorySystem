@@ -24,33 +24,7 @@ class NewOrderWindow extends Component{
         if (this.props.artists !== prevProps.artists) {
           this.setState({artists: this.props.artists})
         }
-
-        this.getArtistItems();
     }
-
-    getArtistItems = async e => {
-
-      for(let i=0; i < this.state.artists.length; i++)
-      {
-          const itemsResponse = await fetch(config.API_URI + '/getItems/?artistID='+this.state.artists[i].artistID + "&projection=_id itemName itemPrice stockQuantity itemPicture", {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
-            const itemsBody = await itemsResponse.json();
-            this.state.artists[i].items = itemsBody;
-
-            const bundlesResponse = await fetch(config.API_URI + '/getBundles/?artistID='+this.state.artists[i].artistID + "&projection=_id bundleName bundlePrice bundleStock bundlePicture", {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
-            const bundlesBody = await bundlesResponse.json();
-            this.state.artists[i].bundles = bundlesBody;
-    }
-}
 
     render(){
         var itemList = [];
@@ -65,6 +39,7 @@ class NewOrderWindow extends Component{
         }
 
         const LoadItemCards = (props) => {
+
             const list = props.purchases
             const newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} />
 
@@ -183,7 +158,7 @@ function AddedItem(props) {
     return (
         <tr id={props._id + "Cart"}>
             <td>
-                <Button className='close'><span>&times;</span></Button>
+                <Button className='close' ><span>&times;</span></Button>
             </td>
             <td id={props._id + "Quantity"}>(1) {props.itemName} </td>
             <td id={props._id + "Total"} className='text-right'> {props.itemPrice.toFixed(2)} </td>

@@ -9,7 +9,6 @@ class ArtistCardsList extends Component {
         this.state ={
             artist: [],
         }
-        this.getArtistItems = this.getArtistItems.bind(this)
     }
     
     componentDidUpdate(prevProps) {
@@ -17,32 +16,7 @@ class ArtistCardsList extends Component {
         if (this.props.artist !== prevProps.artist) {
           this.setState({artist: this.props.artist})
         }
-        this.getArtistItems();
       }
-
-    getArtistItems = async e => {
-
-        for(let i=0; i < this.state.artist.length; i++)
-        {
-            const itemsResponse = await fetch(config.API_URI + '/getItems/?artistID='+this.state.artist[i].artistID + "&projection=itemName itemPrice itemsSold stockQuantity", {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              });
-              const itemsBody = await itemsResponse.json();
-              this.state.artist[i].items = itemsBody;
-
-              const bundlesResponse = await fetch(config.API_URI + '/getBundles/?artistID='+this.state.artist[i].artistID + "&projection=bundleName bundlePrice bundleSold bundleStock", {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              });
-              const bundlesBody = await bundlesResponse.json();
-              this.state.artist[i].bundles = bundlesBody;
-        }
-    }
 
     render() {
         console.log(this.state.artist);

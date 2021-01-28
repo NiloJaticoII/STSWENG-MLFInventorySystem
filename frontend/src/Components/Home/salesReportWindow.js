@@ -12,7 +12,6 @@ class SalesReportWindow extends Component {
         }
     
         this.handleChange = this.handleChange.bind(this)
-        this.getArtistItems = this.getArtistItems.bind(this)
       }
     
       handleChange(event) {
@@ -24,34 +23,7 @@ class SalesReportWindow extends Component {
         if (this.props.artists !== prevProps.artists) {
           this.setState({artists: this.props.artists})
         }
-    
-        this.getArtistItems();
     }
-    
-    getArtistItems = async e => {
-    
-      for(let i=0; i < this.state.artists.length; i++)
-      {
-          const itemsResponse = await fetch(config.API_URI + '/getItems/?artistID='+this.state.artists[i].artistID + "&projection=_id itemName itemPrice stockQuantity itemPicture", {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
-            const itemsBody = await itemsResponse.json();
-            this.state.artists[i].items = itemsBody;
-    
-            const bundlesResponse = await fetch(config.API_URI + '/getBundles/?artistID='+this.state.artists[i].artistID + "&projection=_id bundleName bundlePrice bundleStock bundlePicture", {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
-            const bundlesBody = await bundlesResponse.json();
-            this.state.artists[i].bundles = bundlesBody;
-      }
-    }
-
 
     render(){
         var itemList = [];

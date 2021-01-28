@@ -4,7 +4,7 @@ import LeftMenu from './LeftMenu';
 import Banner from '../Partials/Banner';
 import config from '../../config';
 
-class Admin extends Component {
+class MainMenu extends Component {
   
     constructor(){
       super();
@@ -21,6 +21,9 @@ class Admin extends Component {
         event: [],
         isAdmin: false
       }
+
+      this.getArtist = this.getArtist.bind(this)
+      this.getItems = this.getItems.bind(this)
     }
 
     componentDidMount() {
@@ -38,8 +41,12 @@ class Admin extends Component {
         totalSold: res.totalSold,
         event: res.event
       }), 
-        this.setState({isAdmin:this.props.isAdmin, history: this.props.history} ))
+        this.setState({isAdmin:this.props.isAdmin, history: this.props.history}))
       .catch(err => console.log(err)); 
+    }
+
+    componentDidUpdate(){
+      this.getItems()
     }
 
     getArtist = async () => {
@@ -52,6 +59,30 @@ class Admin extends Component {
       const body = await response.json();
       return body;
     };
+
+    getItems = async () => {
+      console.log("mama")
+      for(let i=0; i < this.state.artist.length; i++)
+      {
+          const itemsResponse = await fetch(config.API_URI + '/getItems/?artistID='+this.state.artist[i].artistID + "&projection=itemName itemPrice itemsSold stockQuantity itemPicture", {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            const itemsBody = await itemsResponse.json();
+            this.state.artist[i].items = itemsBody;
+
+            const bundlesResponse = await fetch(config.API_URI + '/getBundles/?artistID='+this.state.artist[i].artistID + "&projection=bundleName bundlePrice bundleSold bundleStock bundlePicture", {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            const bundlesBody = await bundlesResponse.json();
+            this.state.artist[i].bundles = bundlesBody;
+      }
+    }
     
     render(){
       return (
@@ -70,4 +101,4 @@ class Admin extends Component {
     }
   }
   
-  export default Admin;
+  export default MainMenu;
