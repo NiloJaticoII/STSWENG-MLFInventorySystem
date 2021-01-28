@@ -26,7 +26,7 @@ class SalesReportWindow extends Component {
     }
 
     render(){
-        var itemList = [];
+    var itemList = [];
     var bundleList = [];
 
     for(let i=0; i < this.state.artists.length; i++)
@@ -48,6 +48,7 @@ class SalesReportWindow extends Component {
                         stocksQuantity={item.stockQuantity}
                         itemPrice={item.itemPrice}
                         itemPicture={item.itemPicture}
+                        itemsSold={item.itemsSold}
                         handleFinancialItem={this.handleFinancialItem}
                         itemType="item"
                         class="col mb-3 bg-secondary"/>)
@@ -59,6 +60,7 @@ class SalesReportWindow extends Component {
                             stocksQuantity={item.stockQuantity}
                             itemPrice={item.itemPrice}
                             itemPicture={item.itemPicture}
+                            itemsSold={item.itemsSold}
                             handleFinancialItem={this.handleFinancialItem}
                             itemType="item"
                             class="col mb-3"/>)
@@ -80,6 +82,7 @@ class SalesReportWindow extends Component {
                         itemName={bundle.bundleName} 
                         stocksQuantity={bundle.bundleStock}
                         itemPrice={bundle.bundlePrice}
+                        itemsSold={bundle.bundleSold}
                         itemPicture={bundle.bundlePicture}
                         handleFinancialItem={this.handleFinancialItem}
                         itemType="bundle"
@@ -91,6 +94,7 @@ class SalesReportWindow extends Component {
                             itemName={bundle.bundleName} 
                             stocksQuantity={bundle.bundleStock}
                             itemPrice={bundle.bundlePrice}
+                            itemsSold={bundle.bundleSold}
                             itemPicture={bundle.bundlePicture}
                             handleFinancialItem={this.handleFinancialItem}
                             itemType="bundle"
@@ -171,7 +175,7 @@ function LoadItemCards(props) {
     return (
         <tr class='row m-0'>
             <td className='col-6'> {props.itemName}</td>
-            <td className='col-3'> {props.itemPrice.toFixed(2)}</td>\
+            <td className='col-3'> {props.itemPrice.toFixed(2)}</td>
             <td className='col-3'> {props.itemsSold}</td>
         </tr>
     )
