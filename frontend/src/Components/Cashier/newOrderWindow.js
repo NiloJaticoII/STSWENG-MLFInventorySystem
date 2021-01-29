@@ -30,6 +30,8 @@ class NewOrderWindow extends Component{
         var itemList = [];
         var bundleList = [];
 
+        var totalPrice = 0;
+
         const CheckoutTable = ({children}) => {
             return (
                 <table id="checkoutItemsList" className="table table-borderless table-sm">
@@ -41,7 +43,7 @@ class NewOrderWindow extends Component{
         const LoadItemCards = (props) => {
 
             const list = props.purchases
-            const newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} />
+            const newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} currentQty={1}/>
 
             return (
                 <div class="col mb-3" id={props._id + "-buyItem"} style={{ padding: "5px" }}>
@@ -77,7 +79,8 @@ class NewOrderWindow extends Component{
                             stocksQuantity={item.stockQuantity}
                             itemPrice={item.itemPrice}
                             itemPicture={item.itemPicture}
-                            purchases={this.state.purchases} />)  
+                            purchases={this.state.purchases}
+                            />)  
                     }
                 
                     if(this.state.artists[i].bundles)
@@ -93,6 +96,7 @@ class NewOrderWindow extends Component{
                             stocksQuantity={bundle.bundleStock}
                             itemPrice={bundle.bundlePrice}
                             itemPicture={bundle.bundlePicture}
+                            purchases={this.state.purchases}
                             />)  
                     }
                 }
@@ -102,6 +106,10 @@ class NewOrderWindow extends Component{
             <LoadNames artistID={artist.artistID}
                 artistName={artist.artistName} />
         )
+
+        for (var i = 0; i < this.state.purchases.length; i++) {
+            totalPrice = totalPrice + this.state.purchases[i].props.itemPrice;
+        }
 
         return (
             <Modal onHide={this.props.handleClose} show={this.props.show} size="lg" id="newOrderWindow">
@@ -134,7 +142,7 @@ class NewOrderWindow extends Component{
                                 <table id="totalItems" class="card-title table">
                                     <tr>
                                         <th>total</th>
-                                        <th id="totalPrice" className='text-right'>0</th>
+                                        <th id="totalPrice" className='text-right'>{totalPrice.toFixed(2)}</th>
                                     </tr>
                                 </table>
                                 <Button className="btn btn-secondary col-sm-8" id="checkoutBtn" type="button" value="check out">check out</Button>
@@ -154,16 +162,43 @@ function LoadNames(props) {
     );
 }
 
-function AddedItem(props) {
-    return (
-        <tr id={props._id + "Cart"}>
-            <td>
-                <Button className='close' ><span>&times;</span></Button>
-            </td>
-            <td id={props._id + "Quantity"}>(1) {props.itemName} </td>
-            <td id={props._id + "Total"} className='text-right'> {props.itemPrice.toFixed(2)} </td>
-        </tr>
-    );
+class AddedItem extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentVar: this.props.currentQty
+        };
+    }
+
+    increaseValue() {
+        var currentVar = this.state.currentVar
+        currentVar = currentVar + 1;
+        this.setState({ currentVar })
+    }
+
+    decreaseValue() {
+        var currentVar = this.state.currentVar
+        if (currentVar > 1) {
+            currentVar = currentVar - 1;
+        }
+        this.setState({ currentVar })
+    }
+
+    
+    render(){
+        return (
+            <tr id={this.props._id + "Cart"}>
+                <td>
+                    <Button className='close' variant="light"><span>&times;</span></Button>
+                </td>
+                <td id={this.props._id + "Quantity"}>({this.state.currentVar}) {this.props.itemName} </td>
+                <td id={this.props._id + "Total"} className='text-right'> {this.props.itemPrice.toFixed(2)} </td>
+                <td><Button className='minusQuantity' onClick={this.decreaseValue.bind(this)} variant="light"><span className="font-weight-bold">-</span></Button></td>
+                <td><Button className='plusQuantity' onClick={this.increaseValue.bind(this)} variant="light"><span className="font-weight-bold">+</span></Button></td>
+            </tr>
+        );
+    }
 }
 
 export default NewOrderWindow

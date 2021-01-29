@@ -2,9 +2,9 @@ import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 import manageArtistsWindow from "./Artists/manageArtistsWindow";
 import manageItemsWindow from "./Items/manageItemsWindow";
-import ManageBundlesWindow from "./Bundles/ManageBundlesWindow";
+import ManageBundlesWindow from "./Bundles/manageBundlesWindow";
 import manageEventsWindow from "./Events/manageEventsWindow";
-import SalesReportWindow from "../Home/SalesReportWindow";
+import SalesReportWindow from "../Home/salesReportWindow";
 
 const AdminMenu = (props) => {
 
