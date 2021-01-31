@@ -1,30 +1,28 @@
 *** Settings ***
-Documentation     A test suite with a single test for valid login.
-...
-...               This test has a workflow that is created using keywords in
-...               the imported resource file.
-Library           OperatingSystem
-Library           SeleniumLibrary
-Library           Selenium2Library
-Library                SSHLibrary
-Library  Process
+Library  Selenium2Library
+
+*** Test Cases ***
+Open WebApp
+ 
+    Open Browser  http://localhost:3000/  chrome
+    Close Browser
+
+Admin Click on Artist Card
+ 
+    Open Browser  http://localhost:3000/  chrome
+    Login Admin
+    Wait Until Element Is Visible  xpath=/html/body/div/div/div[2]/div[1]/div/div[1]/div/div/a
+    Click Element   xpath=/html/body/div/div/div[2]/div[1]/div/div[1]/div/div/a
+    Sleep  5
+    Close Browser
 
 *** Variables ***
-${MY-VARIABLE}    a variable 
-${LOGIN URL}      http://localhost:3000
-${BROWSER}        Chrome
-*** Test Cases ***
-Valid Login
-    [Tags]        demo 
-
-    Open Browser www.google.com chrome
-
-    Log           ${MY-VARIABLE}
+${URL}  http://localhost:3000/
 
 *** Keywords ***
-Open Browser To Login Page
-    Open Browser    ${LOGIN URL}    ${BROWSER}
-    Title Should Be    Log In
-    Log           ${MY-VARIABLE}
-    
+Login Admin
+    Input Text  id=userName   admin
+    Input Password  id=password  pw123
+    Click Button  id=loginButton
+
 

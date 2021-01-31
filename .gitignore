@@ -4,3 +4,7 @@ get-pip.py
 log.html
 output.xml
 report.html
+__tests__/try.robot
+frontend/.eslintcache
+selenium-screenshot-1.png
+frontend/.eslintcache
