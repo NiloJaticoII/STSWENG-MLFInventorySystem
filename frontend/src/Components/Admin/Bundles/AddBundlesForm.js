@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import config from '../../../config';
 
 class AddBundlesForm extends Component {
   
@@ -10,9 +11,12 @@ class AddBundlesForm extends Component {
             newBundleName: '',
             newBundlePriceStock: '',
             newBundleStockQuantity: '',
+            src:"photo/item-photo.png",
             reponseToPost: '',
         }
         this.handleChange = this.handleChange.bind(this)
+        this.handlePhoto = this.handlePhoto.bind(this)
+        this.getArtist = this.getArtist.bind(this)
         //this.handleSubmit = this.handleSubmit.bind(this)
     }
     
@@ -21,13 +25,28 @@ class AddBundlesForm extends Component {
         this.setState({ [name]: value })
     }
 
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.artists !== prevProps.artists) {
-          this.setState({artists: this.props.artists})
-        }
-
+    handlePhoto(url){
+        this.setState({src:url})
     }
+
+    componentDidMount() {
+      this.getArtist()
+      .then(res => 
+        this.setState({
+        artists: res.artist,
+      })); 
+    }
+
+    getArtist = async () => {
+        const response = await fetch(config.API_URI + '/admin/getHome', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        const body = await response.json();
+        return body;
+      };
       
     /*
     handleSubmit = async e => {
@@ -80,9 +99,6 @@ class AddBundlesForm extends Component {
             artistName={artist.artistName} />
     )
     
- 
-    console.log(this.state.artists)
-
     return (
         <div id="addBundlesSection" className="tab-pane fade" role="tabpanel" aria-labelledby="addBundleOption">
         <form id="addArtistSelectBundle" className="form" method='POST'  encType="multipart/form-data">
@@ -116,10 +132,10 @@ class AddBundlesForm extends Component {
                     </div>
                     <div id="BundlePhotoPicker2" className="col m-4">
                         <div className="d-flex justify-content-center">
-                            <img name="newBundlePhoto" id="newBundlePhoto" className = "photos" src="photo/item-photo.png" />
+                            <img name="newBundlePhoto" id="newBundlePhoto" className = "photos" src={this.state.src} />
                         </div>
                         <div className="custom-file mt-2">
-                            <input name="addBundlePhotoPicker" id="addBundlePhotoPicker" type="file" className="custom-file-input clearInput" /*onChange="document.getElementById('newBundlePhoto').src = window.URL.createObjectURL(this.files[0])"*/ required />
+                            <input name="addBundlePhotoPicker" id="addBundlePhotoPicker" type="file" className="custom-file-input clearInput"onChange={()=>this.handlePhoto(window.URL.createObjectURL(document.getElementById("addBundlePhotoPicker").files[0]))} required />
                             <label className="custom-file-label " htmlFor="addBundlePhotoPicker">Choose photo</label>
                         </div>
                     </div>

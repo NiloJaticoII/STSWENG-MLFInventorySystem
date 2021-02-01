@@ -39,7 +39,7 @@ const adminDeleteController = {
                         else {
                             console.log("Error removing cashier!");
                         }
-                        res.redirect('/admin');
+                        res.send('/admin');
                     });
                 });
             });
@@ -56,7 +56,7 @@ const adminDeleteController = {
                 console.log("Error removing!");
             }
         });
-        res.redirect('/admin');
+        res.send('/admin');
     },
 
     //delete bundle from the database
@@ -69,7 +69,7 @@ const adminDeleteController = {
                 console.log("Error removing!");
             }
         });
-        res.redirect('/admin');
+        res.send('/admin');
     },
 
     //delete event from the database
@@ -95,7 +95,7 @@ const adminDeleteController = {
                     else {
                         console.log("Error bundle removing!");
                     }
-                    res.redirect('/admin');
+                    res.send('/admin');
                 })
             })
         });

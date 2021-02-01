@@ -93,7 +93,7 @@ const adminEditController = {
 
         })
 
-        res.redirect('/admin');
+        res.send('/admin');
     },
 
     //Edit item information (artistID, eventID, itemName, stockQuantity, itemPicture)

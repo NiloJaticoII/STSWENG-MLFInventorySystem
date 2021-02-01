@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
-import manageArtistsWindow from "./Artists/manageArtistsWindow";
-import manageItemsWindow from "./Items/manageItemsWindow";
-import ManageBundlesWindow from "./Bundles/manageBundlesWindow";
+import ManageArtistsWindow from "./Artists/ManageArtistsWindow";
+import ManageItemsWindow from "./Items/ManageItemsWindow";
+import ManageBundlesWindow from "./Bundles/ManageBundlesWindow";
 import manageEventsWindow from "./Events/manageEventsWindow";
-import SalesReportWindow from "../Home/salesReportWindow";
+import SalesReportWindow from "../Home/SalesReportWindow";
 
 const AdminMenu = (props) => {
 
@@ -63,9 +63,9 @@ const AdminMenu = (props) => {
             </Card>
 
             <div id="modalSection">
-                {manageArtistsWindow(handleManageArtistsClose, manageArtistsShow)}
-                {manageItemsWindow(handleManageItemsClose, manageItemsShow)}
-                <ManageBundlesWindow handleClose={handleManageBundlesClose} show={manageBundlesShow} artists={artists}/>
+                <ManageArtistsWindow handleClose={handleManageArtistsClose}show={manageArtistsShow}/>
+                <ManageItemsWindow handleClose={handleManageItemsClose}  show={manageItemsShow} />
+                <ManageBundlesWindow handleClose={handleManageBundlesClose} show={manageBundlesShow}/>
                 {manageEventsWindow(handleManageEventsClose, manageEventsShow)}
                 <SalesReportWindow handleClose={handleSalesReportClose} show={salesReportShow} artists={artists} />
             </div>
