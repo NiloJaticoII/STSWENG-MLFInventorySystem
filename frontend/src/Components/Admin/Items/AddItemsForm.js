@@ -1,3 +1,4 @@
+import { format } from 'path';
 import React, {Component} from 'react';
 import config from '../../../config';
 
@@ -18,6 +19,7 @@ class AddItemsForm extends Component {
         this.getArtist = this.getArtist.bind(this)
         this.handlePhoto = this.handlePhoto.bind(this)
         this.handleID = this.handleID.bind(this)
+        this.addItem = this.addItem.bind(this)
         //this.handleSubmit = this.handleSubmit.bind(this)
     }
     
@@ -33,7 +35,27 @@ class AddItemsForm extends Component {
     handlePhoto(url){
         this.setState({src:url})
     }
-   
+
+    addItem = async(e) => {
+        e.preventDefault()
+        
+        var formData = new FormData();
+        formData.append('addItemPhotoPickerInput', document.getElementById("addItemPhotoPickerInput").files[0])
+        formData.append('artistID', this.state.currentArtistID)
+        formData.append('artistsListDropdownItemAdd', this.state.currentArtistID)
+        formData.append('newItemName', this.state.newItemName)
+        formData.append('newItemPriceStock', this.state.newItemPriceStock)
+        formData.append('newItemStockQuantity', this.state.newItemStockQuantity)
+
+        const response = await fetch(config.API_URI + '/admin/addItem', {
+           method: 'POST',
+           body: formData
+          });
+        
+        const body = await response.json().then(alert("success"), window.location = '/admin')//error checking
+         
+        return body;
+    }
 
     componentDidMount() {
       this.getArtist()
@@ -66,7 +88,7 @@ class AddItemsForm extends Component {
                 <div id="addItemSection" className="tab-pane fade" role="tabpanel" aria-labelledby="addItemOption">
                                  <h5 className="modal-title">Add item</h5>
                                  <p id="manageReminder">Fill in the form below before adding a new item.</p>
-                                 <form id="artistSelectaddItem" className="form" method="POST" action="/admin/addItem" encType="multipart/form-data">
+                                 <form id="artistSelectaddItem" className="form" method="POST" action={config.API_URI + "/admin/addItem"} encType="multipart/form-data">
                                      <div id="otherInputSection" className="mt-2">
                                          <div id="editSelectorsSection" className="row">
                                              <div className="col">
@@ -106,7 +128,7 @@ class AddItemsForm extends Component {
                                          </div>
                                          <div className="row mt-4">
                                              <div className="col">
-                                                 <button name="addItemButton" id="addItemButton" className="btn btn-secondary btn-md col-6 mt-3 float-right" type="submit">save</button>
+                                                 <button name="addItemButton" id="addItemButton" className="btn btn-secondary btn-md col-6 mt-3 float-right" type="submit" onClick={this.addItem}>save</button>
                                              </div>
                                          </div>
                                      </div>

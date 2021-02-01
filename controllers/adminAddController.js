@@ -234,6 +234,7 @@ const adminAddController = {
           }).single('addItemPhotoPickerInput');
 
           upload(req, res, (err) => {
+            console.log(err)
             if (!err){
                 db.findOne(Events,{isCurrentEvent:true}, '', eventResult=>{
                     var eventResultID = new mongoose.Types.ObjectId();
@@ -260,7 +261,7 @@ const adminAddController = {
                         }
                     });
                     
-                    res.redirect('/admin');
+                    res.send('/admin');
                 })
             }
         })
