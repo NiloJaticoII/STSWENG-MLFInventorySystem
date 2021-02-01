@@ -17,7 +17,6 @@ class AddBundlesForm extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handlePhoto = this.handlePhoto.bind(this)
         this.getArtist = this.getArtist.bind(this)
-        //this.handleSubmit = this.handleSubmit.bind(this)
     }
     
     handleChange(event) {
@@ -47,50 +46,6 @@ class AddBundlesForm extends Component {
         const body = await response.json();
         return body;
       };
-      
-    /*
-    handleSubmit = async e => {
-        e.preventDefault();
-
-        if (this.state.newArtistName !== '' && this.state.newArtistIDNo!== '' && this.state.newArtistPassword !== '') {
-
-            const response = await fetch('/admin/getArtist/?artistID='+this.state.newArtistIDNo + "&projection=_id artistID artistName", {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              });
-              const body = await response.text();
-              
-              this.setState({ responseToPost: body });
-              
-              if(this.state.responseToPost === "false"){
-                  this.addArtist();                
-              }
-              else {
-                    alert('Error adding artist','Artist ID already exist. Please type in another artist ID'); //change to SWEET ALERT
-                     e.preventDefault();
-              } 
-        }
-      };
-
-  addArtist = async e => {
-    const addResponse = await fetch('/admin/addArtist', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({newArtistIDNo: this.state.newArtistIDNo, newArtistName: this.state.newArtistName, newArtistPassword: this.state.newArtistPassword}),
-                  });
-                  const body = await addResponse.text();
-    
-                  this.setState({ responseToPost: body });
-
-                  if (this.state.responseToPost) {
-                    window.location = '/admin';
-                  }
-  }
-  */
 
   render(){
 
