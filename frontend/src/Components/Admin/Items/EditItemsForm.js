@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import config from '../../../config';
+import Swal from 'sweetalert2'
 
 class EditItemsForm extends Component {
     
@@ -23,7 +24,8 @@ class EditItemsForm extends Component {
         this.handleID = this.handleID.bind(this)
         this.handleItemID = this.handleItemID.bind(this)
         this.handlePhoto = this.handlePhoto.bind(this)
-        //this.handleSubmit = this.handleSubmit.bind(this)
+        this.deleteItem = this.deleteItem.bind(this)
+        this.deleteAPI = this.deleteAPI.bind(this)
     }    
 
     handleChange(event) {
@@ -80,6 +82,52 @@ class EditItemsForm extends Component {
             }
           }
 
+          deleteItem(e) {
+            var selected = this.state.currentSelectedItem;
+            if (selected != '') {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        //ADD DELETE CODE
+                        this.deleteAPI();
+                    }
+                  })
+                }
+            else {
+                Swal.fire('Error deleting item','Please select an artist');
+                e.preventDefault();
+                return false;
+            }
+        }
+
+        deleteAPI = async () => {
+            const response = await fetch(config.API_URI + '/admin/deleteItem', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({itemID: this.state.currentSelectedItem})
+            });
+            const body = await response.text();
+            if (body) { 
+                Swal.fire(
+                'Deleted!',
+                'Item has been deleted.',
+                'success'
+              )
+                window.location = '/admin';
+                return true;
+
+            }
+          };
+
     render(){
 
         const artistOptions = this.state.artists.map(artist =>
@@ -94,25 +142,26 @@ class EditItemsForm extends Component {
             }
         }
 
-        const itemOptions = this.state.currentItems.filter(function(item){
-            if (typeof item === 'undefined' || item === false) {
-            return false; // skip
-            }
-            return true;
-        }).map(current =>
-            <LoadNames key={current._id} artistID={current._id}
-                artistName={current.itemName} />
-        )
+        var itemOptions = []
+        if(this.state.currentArtistID != ''){
+            itemOptions = this.state.currentItems.filter(function(item){
+                if (typeof item === 'undefined' || item === false) {
+                return false; // skip
+                }
+                return true;
+            }).map(current =>
+                <LoadNames key={current._id} artistID={current._id}
+                    artistName={current.itemName} />
+            )
 
-        for(let i = 0; i<this.state.currentItems.length; i++){
+            for(let i = 0; i<this.state.currentItems.length; i++){
                 if(this.state.currentSelectedItem == this.state.currentItems[i]._id){
                     if(!this.state.editPhoto)
                         this.state.src = this.state.currentItems[i].itemPicture;
                 }
             }
-
-            
-
+        }
+    
         return(
             <div id="editItemSection" className="tab-pane fade show active" role="tabpanel" aria-labelledby="editItemOption">
             <h5 className="modal-title">Edit item</h5>
@@ -138,7 +187,7 @@ class EditItemsForm extends Component {
                                     </select>
                                 </div>
                                 <div className="col">
-                                    <button name="deleteItemButton" id="deleteItemButton" className="btn btn-secondary " type="button" onClick="deleteItem(event);"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button name="deleteItemButton" id="deleteItemButton" className="btn btn-secondary " type="button" onClick={(event) => this.deleteItem(event)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
