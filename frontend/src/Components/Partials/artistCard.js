@@ -74,9 +74,11 @@ function ArtistCard(props) {
             <div className="col mb-2 px-2" id="{{artistID}}-card">
                 <div className="card mx-0">
                     <div className="card-body">
+                    <a href="#" className="stretched-link" onClick={handleShow} style={{ size: "0px"}}>
                         <h5>{props.artistName}</h5>
-                        <p className="card-text"><b>PHP {props.income} </b> </p>
-                        <a href="#" className="stretched-link" onClick={handleShow} style={{ size: "0px"}}></a>
+                    </a>
+                    <p className="card-text"><b>PHP {props.income} </b> </p>
+                        
                     </div>
                 </div>
             </div>
