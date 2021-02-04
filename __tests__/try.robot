@@ -27,9 +27,9 @@ Valid_Admin_Login
     Open Browser  http://localhost:3000/  chrome
 
     Login Admin
-    Sleep  3
+    Sleep  1
     Logout 
-    Sleep  5
+    Sleep  1
     Input Text  id=userName  admin
     Close Browser
 
@@ -39,16 +39,16 @@ Valid_Admin_Manage_Artists
     Open Browser  http://localhost:3000/  chrome
 
     Login Admin
-    Sleep  3
+    Sleep  1
 
     Click Element  id=manageArtists
     Click Element  id=addArtistsOption
-    Sleep  3
+    Sleep  1
     Click Element  xpath=//*[@id="manageArtistsWindow"]/div/div/div[1]/button
 
 
     Logout 
-    Sleep  5
+    Sleep  1
     Input Text  id=userName  admin
     Close Browser
 
