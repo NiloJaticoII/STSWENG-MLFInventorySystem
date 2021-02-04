@@ -61,7 +61,6 @@ class MainMenu extends Component {
     };
 
     getItems = async () => {
-      console.log("mama")
       for(let i=0; i < this.state.artist.length; i++)
       {
           const itemsResponse = await fetch(config.API_URI + '/getItems/?artistID='+this.state.artist[i].artistID + "&projection=itemName itemPrice itemsSold stockQuantity itemPicture", {
