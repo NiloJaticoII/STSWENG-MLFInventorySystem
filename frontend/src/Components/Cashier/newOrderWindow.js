@@ -119,8 +119,8 @@ class NewOrderWindow extends Component{
                     <Modal.Body className="modal-body d-flex flex-col">
                         <Card id="buySection" className="card" style={{ width: "60rem", height: "30rem" }}>
                             <Card.Header id="buyArtistSection" className="card-header bg-secondary">
-                                <select id="artistsListDropdown" className="form-control" name="selectedArtist" onChange={this.handleChange} value={this.state.currentArtistID}>
-                                    <option value="" className="defaultVal" disabled selected>select artist</option>
+                                <select id="artistsListDropdown" className="form-control" defaultValue={'select artist'} name="selectedArtist" onChange={this.handleChange} value={this.state.currentArtistID}>
+                                    <option value="" className="defaultVal" value='select artist' disabled>select artist</option>
                                         {artistOptions}
                                 </select>
                             </Card.Header>
@@ -140,10 +140,12 @@ class NewOrderWindow extends Component{
                             </div>
                             <div className="mt-auto">
                                 <table id="totalItems" className="card-title table">
-                                    <tr>
-                                        <th>total</th>
-                                        <th id="totalPrice" className='text-right'>{totalPrice.toFixed(2)}</th>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th>total</th>
+                                            <th id="totalPrice" className='text-right'>{totalPrice.toFixed(2)}</th>
+                                        </tr>
+                                    </tbody>
                                 </table>
                                 <Button className="btn btn-secondary col-sm-8" id="checkoutBtn" type="button" value="check out">check out</Button>
                             </div>
