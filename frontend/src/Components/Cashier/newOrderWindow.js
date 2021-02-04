@@ -133,13 +133,13 @@ class NewOrderWindow extends Component{
                         </Card>
                         <Card id="checkoutSection align-items-end" className="card p-4" style={{ width: "30rem", height: "30rem" }}>
                             <Card.Title>items</Card.Title>
-                            <div style={{ 'overflow-y': "auto", 'overflow-x': "hidden" }}>
+                            <div style={{ 'overflowY': "auto", 'overflowX': "hidden" }}>
                                 <CheckoutTable>
                                     {this.state.purchases}
                                 </CheckoutTable>
                             </div>
                             <div className="mt-auto">
-                                <table id="totalItems" class="card-title table">
+                                <table id="totalItems" className="card-title table">
                                     <tr>
                                         <th>total</th>
                                         <th id="totalPrice" className='text-right'>{totalPrice.toFixed(2)}</th>

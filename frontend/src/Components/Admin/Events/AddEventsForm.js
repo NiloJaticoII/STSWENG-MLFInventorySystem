@@ -32,15 +32,18 @@ class AddEventsForm extends Component{
 
     handleSubmit = async e => {
         e.preventDefault();
-       alert(this.state.newEventName + "\n" + this.state.newEventStartDate + "\n" + this.state.newEventIsCurrentEvent)
+       alert(this.state.newEventName + "\n" + this.state.newEventStartDate + "\n" + this.state.newEventEndDate + "\n" + this.state.newEventIsCurrentEvent)
         if (this.state.newEventName !== '' && this.state.newEventStartDate && this.state.newEventEndDate) {
             alert('add event')
-            const response = await fetch('/admin/getEvent/?eventName='+this.state.newEventName + '?startDate=' + this.state.newEventStartDate.toString() + '?endDate='+ this.state.newEventStartDate.toString() + "&projection=_id eventName", {
+            const response = await fetch('/admin/getEvent/?eventName='+this.state.newEventName + "&projection=_id eventName", {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
                 },
               });
+
+              
+
               const body = await response.text();
               
               this.setState({ responseToPost: body });
