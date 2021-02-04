@@ -163,4 +163,9 @@ class EditEventsForm extends Component{
 
 }
 
+function LoadNames(props) {
+    return (
+        <option value={props.eventName}>{props.eventName}</option>
+    );
+}
 export default EditEventsForm

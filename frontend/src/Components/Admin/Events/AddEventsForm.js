@@ -16,6 +16,14 @@ class AddEventsForm extends Component{
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.determineBoolean = this.determineBoolean.bind(this)
+    }
+
+    determineBoolean(value) {
+        if(value === 'on')
+            this.setState({newEventIsCurrentEvent: true})
+        else
+            this.setState({newEventIsCurrentEvent: false})
     }
     handleChange(event) {
         const {name, value} = event.target
@@ -24,7 +32,7 @@ class AddEventsForm extends Component{
 
     handleSubmit = async e => {
         e.preventDefault();
-       
+       alert(this.state.newEventName + "\n" + this.state.newEventStartDate + "\n" + this.state.newEventIsCurrentEvent)
         if (this.state.newEventName !== '' && this.state.newEventStartDate && this.state.newEventEndDate) {
             alert('add event')
             const response = await fetch('/admin/getEvent/?eventName='+this.state.newEventName + '?startDate=' + this.state.newEventStartDate.toString() + '?endDate='+ this.state.newEventStartDate.toString() + "&projection=_id eventName", {
@@ -78,20 +86,20 @@ class AddEventsForm extends Component{
                     </div>
                     <div className="form-group ml-1 mb-2">
                         <div className="col mb-2">
-                            <input name="addSetCurrentEvent" id="addSetCurrentEvent" className="form-check-input clearInput" value={this.state.newEventIsCurrentEvent} onChange={this.handleChange} type="checkbox" />
+                            <input name="addSetCurrentEvent" id="addSetCurrentEvent" className="form-check-input clearInput" onChange={(event) => this.determineBoolean(event.target.value)}  type="checkbox" />
                             <label htmlFor="addSetCurrentEvent" className="form-check-label">Set as current event</label>
                         </div>
                     </div>
                     <div className="form-row mb-2">
                         <div className="col mb-2">
                             <label htmlFor="addStartEventDate" className="font-weight-normal mr-2">start date</label>
-                            <input name="addStartEventDate" id="addStartEventDate" className="form-control clearInput" value={this.state.newEventStartDate} onChange={this.handleChange}  type="date"  required />
+                            <input name="addStartEventDate" id="addStartEventDate" className="form-control clearInput" onChange={(event) => this.setState({newEventStartDate: event.target.value})}   type="date"  required />
                         </div>
                     </div>
                     <div className="form-row mb-2">
                         <div className="col mb-2">
                             <label htmlFor="addEndEventDate" className="font-weight-normal mr-2">end date</label>
-                            <input name="addEndEventDate" id="addEndEventDate" className="form-control clearInput" value={this.state.newEventEndDate} onChange={this.handleChange}  type="date" required />
+                            <input name="addEndEventDate" id="addEndEventDate" className="form-control clearInput" onChange={(event) => this.setState({newEventEndDate: event.target.value})}  type="date" required />
                         </div>
                     </div>
                     <input type="hidden" id='addCurrentEvent' name = 'addCurrentEvent' value='0'/>
