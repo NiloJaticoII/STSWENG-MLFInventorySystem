@@ -10,7 +10,7 @@ class AddEventsForm extends Component{
             newEventName: '',
             newEventStartDate: null,
             newEventEndDate: null,
-            newEventIsCurrentEvent: false,
+            newEventIsCurrentEvent: 0,
             reponseToPost: '',
 
         }
@@ -21,10 +21,12 @@ class AddEventsForm extends Component{
 
     determineBoolean(value) {
         if(value === 'on')
-            this.setState({newEventIsCurrentEvent: true})
+            this.setState({newEventIsCurrentEvent: 1})
         else
-            this.setState({newEventIsCurrentEvent: false})
+            this.setState({newEventIsCurrentEvent: 0})
     }
+
+    
     handleChange(event) {
         const {name, value} = event.target
         this.setState({ [name]: value })
@@ -41,8 +43,6 @@ class AddEventsForm extends Component{
                   'Content-Type': 'application/json',
                 },
               });
-
-              
 
               const body = await response.text();
               
@@ -64,7 +64,7 @@ class AddEventsForm extends Component{
                         headers: {
                           'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({newEventName: this.state.newEventName, newEventStartDate: this.state.newEventStartDate, newEventEndDate: this.state.newEventEndDate, newEventIsCurrentEvent: this.state.newEventIsCurrentEvent}),
+                        body: JSON.stringify({newEventName: this.state.newEventName, addStartEventDate: this.state.newEventStartDate, addEndEventDate: this.state.newEventEndDate, newEventIsCurrentEvent: this.state.newEventIsCurrentEvent}),
                       });
                       const body = await addResponse.text();
         
