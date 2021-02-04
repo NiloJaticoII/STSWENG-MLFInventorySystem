@@ -6,12 +6,10 @@ class AddEventsForm extends Component{
 
     constructor(){
         super()
-        var startDate = new Date();
-        var endDate = new Date();
         this.state = {
             newEventName: '',
-            newEventStartDate: startDate,
-            newEventEndDate: endDate,
+            newEventStartDate: null,
+            newEventEndDate: null,
             newEventIsCurrentEvent: false,
             reponseToPost: '',
 
@@ -87,13 +85,13 @@ class AddEventsForm extends Component{
                     <div className="form-row mb-2">
                         <div className="col mb-2">
                             <label htmlFor="addStartEventDate" className="font-weight-normal mr-2">start date</label>
-                            <input name="addStartEventDate" id="addStartEventDate" className="form-control clearInput" type="date"  required />
+                            <input name="addStartEventDate" id="addStartEventDate" className="form-control clearInput" value={this.state.newEventStartDate} onChange={this.handleChange}  type="date"  required />
                         </div>
                     </div>
                     <div className="form-row mb-2">
                         <div className="col mb-2">
                             <label htmlFor="addEndEventDate" className="font-weight-normal mr-2">end date</label>
-                            <input name="addEndEventDate" id="addEndEventDate" className="form-control clearInput"  type="date" required />
+                            <input name="addEndEventDate" id="addEndEventDate" className="form-control clearInput" value={this.state.newEventEndDate} onChange={this.handleChange}  type="date" required />
                         </div>
                     </div>
                     <input type="hidden" id='addCurrentEvent' name = 'addCurrentEvent' value='0'/>
