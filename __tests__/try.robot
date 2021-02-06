@@ -76,7 +76,7 @@ Valid_Admin_Add_and_Delete_Artists
     
     Close Browser
 
-Valid_Admin_Add_and_Add_Item
+Valid_Admin_Add_Artist_and_Add_Item
     [Tags]        demo 
 
     Open Browser  http://localhost:3000/  chrome
@@ -164,7 +164,8 @@ Add A1I1
     Input Text  id=newItemName  a1i1
     Input Text  id=newItemPriceStock  1
     Input Text  id=newItemStockQuantity  100
-    Choose File  id=addItemPhotoPickerInput  C:/PictureTest/array2.png
+    ${NEW_PATH}=  Normalize Path  ${CURDIR}${/}../public/photo/array1.png
+    Choose File  id=addItemPhotoPickerInput  ${NEW_PATH}
     Click Button  id=addItemButton
     Handle Alert  action=DISMISS
 
@@ -187,7 +188,8 @@ Edit A1I1
     
     Input Text  id=editItemName  a1i1ed
     Input Text  id=editItemStockQuantity  101
-    Choose File  id=editItemPhotoPickerInput  C:/PictureTest/arrayprint.png
+    ${NEW_PATH}=  Normalize Path  ${CURDIR}${/}../public/photo/array1.png
+    Choose File  id=editItemPhotoPickerInput  ${NEW_PATH}
     Click Button  id=editItemButton
 
 
@@ -214,3 +216,5 @@ Login Cashier
     Input Text  id=userName  1
     Input Text  id=password  pw123
     Click Button  id=loginButton
+
+*** Variables ***
