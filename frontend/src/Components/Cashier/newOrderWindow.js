@@ -20,6 +20,7 @@ class NewOrderWindow extends Component{
       this.updateTotalPrice = this.updateTotalPrice.bind(this)
       this.decreaseTotalPrice = this.decreaseTotalPrice.bind(this)
       this.updateQty = this.updateQty.bind(this)
+      this.removeCartItem = this.removeCartItem.bind(this)
   }
 
     handleChange(event) {
@@ -39,24 +40,18 @@ class NewOrderWindow extends Component{
     }
 
     updateTotalPrice(curTotalPrice) {
-        var totalPrices = this.state.totalPriceArray;
-        totalPrices.push(curTotalPrice)
-        this.setState({ totalPriceArray: totalPrices })
+        var totalPrice = this.state.totalPrice;
+
+        totalPrice = totalPrice + curTotalPrice;
+        this.setState({totalPrice: totalPrice })
     }
 
     decreaseTotalPrice(itemPrice) {
-        var totalPrices = this.state.totalPriceArray;
+        var totalPrice = this.state.totalPrice;
 
-        for (let i = 0; i < totalPrices.length; i++) {
-            if (itemPrice == totalPrices[i]) {
-                totalPrices.splice(i, 1);
-                break;
-            }
-        }
+        totalPrice = totalPrice - itemPrice;
 
-        console.log(totalPrices)
-
-        this.setState({ totalPriceArray: totalPrices })
+        this.setState({ totalPrice: totalPrice })
     }
 
     updateQty(itemId, curQty) {
@@ -67,15 +62,27 @@ class NewOrderWindow extends Component{
         }
     }
 
+    removeCartItem(itemId) {
+        var totalPrice = this.state.totalPrice;
+        for (let i = 0; i < this.state.purchases.length; i++) {
+            if (itemId == this.state.purchases[i]._id) {
+                console.log("Removed!")
+                totalPrice = totalPrice - (this.state.purchases[i].itemPrice * this.state.purchases[i].currentQty)
+
+                this.state.purchases.splice(i, 1);
+                break;
+            }
+        }
+
+        this.setState({ purchases: this.state.purchases, totalPrice: totalPrice })
+    }
+
     render(){
         var itemList = [];
         var bundleList = [];
 
-        //var totalPrice = 0;
-
         const LoadItemCards = (props) => {
             const list = props.purchases
-            const currentQty = props.currentQty;
 
             return (
                 <div class="col mb-3" id={props._id + "-buyItem"} style={{ padding: "5px" }}>
@@ -96,7 +103,7 @@ class NewOrderWindow extends Component{
                                 }
 
                                 if (itemIsInList != true) {
-                                    var newPurchase = { _id: props._id, itemName: props.itemName, itemPrice: props.itemPrice, currentQty: 1, updateTotalPrice: props.updateTotalPrice, decreaseTotalPrice: props.decreaseTotalPrice, updateQty: props.updateQty }
+                                    var newPurchase = { _id: props._id, itemName: props.itemName, itemPrice: props.itemPrice, currentQty: 1, updateTotalPrice: props.updateTotalPrice, decreaseTotalPrice: props.decreaseTotalPrice, updateQty: props.updateQty, removeCartItem: props.removeCartItem }
 
                                     list.push(newPurchase)
                                     props.updateTotalPrice(props.itemPrice)
@@ -116,7 +123,7 @@ class NewOrderWindow extends Component{
             return (
                 <tr id={props._id + "Cart"} >
                     <td>
-                        <Button className='close' variant="light"><span>&times;</span></Button>
+                        <Button className='close' onClick={() => { props.removeCartItem(props._id) }} variant="light"><span>&times;</span></Button>
                     </td>
                     <td id={props._id + "Quantity"}>({currentQty}) {props.itemName} </td>
                     <td id={props._id + "Total"} className='text-right'> {currentPrice.toFixed(2) * currentQty} </td>
@@ -124,7 +131,6 @@ class NewOrderWindow extends Component{
                         <Button className='minusQuantity'
                             onClick={() => {
                                 if (currentQty > 1) {
-                                    console.log("Decrease");
                                     props.decreaseTotalPrice(props.itemPrice);
                                     props.updateQty(props._id, -1)
                                 }
@@ -164,8 +170,9 @@ class NewOrderWindow extends Component{
                             purchases={this.state.purchases}
                             currentQty={this.state.currentQty}
                             updateTotalPrice={this.updateTotalPrice}
-                            updateQty={this.updateQty}
                             decreaseTotalPrice={this.decreaseTotalPrice}
+                            updateQty={this.updateQty}
+                            removeCartItem={this.removeCartItem}
                             />)  
                     }
                 
@@ -185,8 +192,9 @@ class NewOrderWindow extends Component{
                             purchases={this.state.purchases}
                             currentQty={this.state.currentQty}
                             updateTotalPrice={this.updateTotalPrice}
-                            updateQty={this.updateQty}
                             decreaseTotalPrice={this.decreaseTotalPrice}
+                            updateQty={this.updateQty}
+                            removeCartItem={this.removeCartItem}
                             />)  
                     }
                 }
@@ -198,11 +206,11 @@ class NewOrderWindow extends Component{
         )
 
         var totalPrice = this.state.totalPrice;
-        for (var i = 0; i < this.state.totalPriceArray.length; i++) {
+        /*for (var i = 0; i < this.state.totalPriceArray.length; i++) {
             var currentPrice = this.state.totalPriceArray[i];
             totalPrice = totalPrice + currentPrice;
             console.log(totalPrice)
-        }
+        }*/
 
         var purchaseRender = this.state.purchases.map(purchase =>
             <AddedItem
@@ -213,6 +221,7 @@ class NewOrderWindow extends Component{
                 updateTotalPrice={purchase.updateTotalPrice}
                 updateQty={purchase.updateQty}
                 decreaseTotalPrice={purchase.decreaseTotalPrice}
+                removeCartItem={purchase.removeCartItem}
             />
             )
 
@@ -247,7 +256,7 @@ class NewOrderWindow extends Component{
                                 <table id="totalItems" class="card-title table">
                                     <tr>
                                         <th>total</th>
-                                        <th id="totalPrice" className='text-right'>{totalPrice.toFixed(2)}</th>
+                                        <th id="totalPrice" className='text-right'>{this.state.totalPrice.toFixed(2)}</th>
                                     </tr>
                                 </table>
                                 <Button className="btn btn-secondary col-sm-8" id="checkoutBtn" type="button" value="check out">check out</Button>
