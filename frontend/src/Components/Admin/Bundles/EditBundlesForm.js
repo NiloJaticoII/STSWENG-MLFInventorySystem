@@ -8,17 +8,18 @@ class EditBundlesForm extends Component {
         this.state = {
             artists: [],
             bundles:[],
-            bundleItems: [],
-            currentArtist: '',
             currentBundleID: '',
+            currentArtistID: '',
             editBundleName: '',
             editBundleStockQuantity: '',
-            src:"photo/item-photo.png",
+            editBundlePicture:"photo/item-photo.png",
+            editBundleItems: [],
             reponseToPost: '',
         }
         this.handleChange = this.handleChange.bind(this)
         this.handlePhoto = this.handlePhoto.bind(this)
         this.getArtist = this.getArtist.bind(this)
+        this.handleChangeBundle = this.handleChangeBundle.bind(this)
     }
 
     handleChange(event) {
@@ -26,8 +27,12 @@ class EditBundlesForm extends Component {
         this.setState({ [name]: value })
     }
 
+    handleChangeBundle(event){
+        this.setState({currentBundleID: event.target.value});
+    }
+
     handlePhoto(url){
-        this.setState({src:url})
+        this.setState({editBundlePicture:url})
     }
 
     componentDidMount() {
@@ -66,10 +71,10 @@ class EditBundlesForm extends Component {
                         <div id="editSelectorsSection" className="row mb-2">
                             <div className="col">
                                 <div className="form-group">
-                                    <select id="artistsListDropdownBundleEdit" className="form-control col-11" name="artistsListDropdownBundleEdit" required>
+                                    <select id="artistsListDropdownBundleEdit" className="form-control col-11" name="artistsListDropdownBundleEdit" value={this.state.currentArtistID}  required>
                                         <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                         
-                                        <option value="{{artistID}}"></option>
+                                        {artistOptions}
                                         
                                     </select>
                                 </div>
@@ -77,7 +82,7 @@ class EditBundlesForm extends Component {
                             <div className="col ml-2">
                                 <div className="form-row">
                                     <div className="col">
-                                        <select id="artistsListDropdownBundle" className="form-control" name="artistsListDropdownBundle" required>
+                                        <select id="artistsListDropdownBundle" className="form-control" name="artistsListDropdownBundle" onChange={this.handleChangeBundle}required>
                                             <option className="defaultVal" value="" disabled defaultValue>select bundle</option>
                                         </select>
                                     </div>
@@ -137,6 +142,10 @@ class EditBundlesForm extends Component {
       }
 }
 
+
+function LoadBundlenames(props) {
+
+}
 function LoadNames(props) {
     return (
         <option value={props.artistID}>{props.artistName}</option>
