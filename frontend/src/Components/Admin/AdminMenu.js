@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
-import ManageArtistsWindow from "./Artists/ManageArtistsWindow";
-import ManageItemsWindow from "./Items/ManageItemsWindow";
-import ManageBundlesWindow from "./Bundles/ManageBundlesWindow";
-import manageEventsWindow from "./Events/ManageEventsWindow";
-import SalesReportWindow from "../Home/SalesReportWindow";
+import ManageArtistsWindow from "./Artists/manageArtistsWindow";
+import ManageItemsWindow from "./Items/manageItemsWindow";
+import ManageBundlesWindow from "./Bundles/manageBundlesWindow";
+import manageEventsWindow from "./Events/manageEventsWindow";
+import SalesReportWindow from "../Home/salesReportWindow";
 
 const AdminMenu = (props) => {
 
