@@ -11,10 +11,15 @@ class NewOrderWindow extends Component{
             purchases: [],
             currentQty: [],
             totalPrice: 0,
+            totalPriceArray: [],
             currentArtistID: "",
         }
 
-        this.handleChange = this.handleChange.bind(this)
+      this.handleChange = this.handleChange.bind(this)
+
+      this.updateTotalPrice = this.updateTotalPrice.bind(this)
+      this.decreaseTotalPrice = this.decreaseTotalPrice.bind(this)
+      this.updateQty = this.updateQty.bind(this)
   }
 
     handleChange(event) {
@@ -29,8 +34,37 @@ class NewOrderWindow extends Component{
     }
 
     handleCloseModified() {
-        this.setState({ purchases: [] })
+        this.setState({ purchases: [], totalPriceArray: [] })
         this.props.handleClose();
+    }
+
+    updateTotalPrice(curTotalPrice) {
+        var totalPrices = this.state.totalPriceArray;
+        totalPrices.push(curTotalPrice)
+        this.setState({ totalPriceArray: totalPrices })
+    }
+
+    decreaseTotalPrice(itemPrice) {
+        var totalPrices = this.state.totalPriceArray;
+
+        for (let i = 0; i < totalPrices.length; i++) {
+            if (itemPrice == totalPrices[i]) {
+                totalPrices.splice(i, 1);
+                break;
+            }
+        }
+
+        console.log(totalPrices)
+
+        this.setState({ totalPriceArray: totalPrices })
+    }
+
+    updateQty(itemId, curQty) {
+        for (let i = 0; i < this.state.purchases.length; i++) {
+            if (itemId == this.state.purchases[i]._id) {
+                this.state.purchases[i].currentQty += curQty;
+            }
+        }
     }
 
     render(){
@@ -42,7 +76,6 @@ class NewOrderWindow extends Component{
         const LoadItemCards = (props) => {
             const list = props.purchases
             const currentQty = props.currentQty;
-            const totalPrice = props.totalPrice;
 
             return (
                 <div class="col mb-3" id={props._id + "-buyItem"} style={{ padding: "5px" }}>
@@ -53,32 +86,22 @@ class NewOrderWindow extends Component{
                             <Card.Text>PHP {props.itemPrice.toFixed(2)}</Card.Text>
                             <Card.Text>{props.stocksQuantity} left</Card.Text>
                             <a href="#" className="stretched-link" onClick={() => {
-                                /*if (list.length != 0) {
-                                    var cartItemFound = false;
-                                    for (var i = 0; i < list.length; i++) {
-                                        if (list[i].props._id == newPurchase._id) {
-                                            currentQty[i] = currentQty[i] + 1;
-                                            Object.assign(list[i].props.currentQty, currentQty[i]);
-                                            cartItemFound = true;
-                                        }
-                                    }
-                                    if (!cartItemFound) {
-                                        currentQty.push(1);
-                                        var newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} currentQty={currentQty[0]} purchases={list} />
-                                        list.push(newPurchase)
-                                        Object.assign(list[0].props.currentQty, currentQty[0]);
+                                var itemIsInList = false;
+                                for (let i = 0; i < list.length; i++) {
+                                    if (list[i]._id == props._id) {
+                                        itemIsInList = true
+                                        list[i].updateQty(list[i]._id, 1)
+                                        list[i].updateTotalPrice(props.itemPrice)
                                     }
                                 }
-                                else {
-                                    currentQty.push(1);
-                                    var newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} currentQty={currentQty[0]} purchases={list} />
+
+                                if (itemIsInList != true) {
+                                    var newPurchase = { _id: props._id, itemName: props.itemName, itemPrice: props.itemPrice, currentQty: 1, updateTotalPrice: props.updateTotalPrice, decreaseTotalPrice: props.decreaseTotalPrice, updateQty: props.updateQty }
+
                                     list.push(newPurchase)
-                                    Object.assign(list[0].props.currentQty, currentQty[0]);
-                                }*/
-                                currentQty.push(1);
-                                var newPurchase = <AddedItem _id={props._id} itemName={props.itemName} itemPrice={props.itemPrice} currentQty={currentQty[0]} purchases={list} totalPrice={totalPrice} />
-                                list.push(newPurchase)
-                                //totalPrice = newPurchase.showCurrentPrice + totalPrice;
+                                    props.updateTotalPrice(props.itemPrice)
+                                }
+
 ;                            }}></a>
                         </Card.Body>
                     </Card>
@@ -86,20 +109,37 @@ class NewOrderWindow extends Component{
             )
         }
 
-        const AddedItem2 = (props) => {
-            var currentVar = props.currentQty;
+        const AddedItem = (props) => {
+            const currentPrice = props.itemPrice
+            var currentQty = props.currentQty;
 
             return (
-                <tr id={props._id + "Cart"}>
+                <tr id={props._id + "Cart"} >
                     <td>
                         <Button className='close' variant="light"><span>&times;</span></Button>
                     </td>
-                    <td id={props._id + "Quantity"}>({currentVar}) {props.itemName} </td>
-                    <td id={props._id + "Total"} className='text-right'> {props.itemPrice.toFixed(2)} </td>
-                    <td><Button className='minusQuantity' onClick={() => { }} variant="light"><span className="font-weight-bold">-</span></Button></td>
-                    <td><Button className='plusQuantity' onClick={() => {
-                        currentVar = currentVar + 1;
-                    }} variant="light"><span className="font-weight-bold">+</span></Button></td>
+                    <td id={props._id + "Quantity"}>({currentQty}) {props.itemName} </td>
+                    <td id={props._id + "Total"} className='text-right'> {currentPrice.toFixed(2) * currentQty} </td>
+                    <td>
+                        <Button className='minusQuantity'
+                            onClick={() => {
+                                if (currentQty > 1) {
+                                    console.log("Decrease");
+                                    props.decreaseTotalPrice(props.itemPrice);
+                                    props.updateQty(props._id, -1)
+                                }
+                            }} variant="light"><span className="font-weight-bold">-</span>
+                        </Button>
+                    </td>
+
+                    <td>
+                        <Button className='plusQuantity'
+                            onClick={() => {
+                                props.updateTotalPrice(currentPrice);
+                                props.updateQty(props._id, 1)
+                            }} variant="light"><span className="font-weight-bold">+</span>
+                        </Button>
+                    </td>
                 </tr>
             );
         }
@@ -123,7 +163,9 @@ class NewOrderWindow extends Component{
                             itemPicture={item.itemPicture}
                             purchases={this.state.purchases}
                             currentQty={this.state.currentQty}
-                            totalPrice={this.state.totalPrice}
+                            updateTotalPrice={this.updateTotalPrice}
+                            updateQty={this.updateQty}
+                            decreaseTotalPrice={this.decreaseTotalPrice}
                             />)  
                     }
                 
@@ -142,7 +184,9 @@ class NewOrderWindow extends Component{
                             itemPicture={bundle.bundlePicture}
                             purchases={this.state.purchases}
                             currentQty={this.state.currentQty}
-                            totalPrice={this.state.totalPrice}
+                            updateTotalPrice={this.updateTotalPrice}
+                            updateQty={this.updateQty}
+                            decreaseTotalPrice={this.decreaseTotalPrice}
                             />)  
                     }
                 }
@@ -153,20 +197,24 @@ class NewOrderWindow extends Component{
                 artistName={artist.artistName} />
         )
 
-        /*for (var i = 0; i < this.state.purchases.length; i++) {
-            totalPrice = totalPrice + (this.state.purchases[i].props.itemPrice * this.state.purchases[i].props.currentQty);
-            console.log(this.state.purchases[i].props.currentQty)
-        }*/
-
-        /*function close(props) {
-            props.setState({ purchases: [] })
-        }*/
         var totalPrice = this.state.totalPrice;
-        for (var i = 0; i < this.state.purchases.length; i++) {
-            var currentPrice = this.state.purchases[i].showCurrentPrice;
+        for (var i = 0; i < this.state.totalPriceArray.length; i++) {
+            var currentPrice = this.state.totalPriceArray[i];
             totalPrice = totalPrice + currentPrice;
             console.log(totalPrice)
         }
+
+        var purchaseRender = this.state.purchases.map(purchase =>
+            <AddedItem
+                _id={purchase._id}
+                itemName={purchase.itemName}
+                itemPrice={purchase.itemPrice}
+                currentQty={purchase.currentQty}
+                updateTotalPrice={purchase.updateTotalPrice}
+                updateQty={purchase.updateQty}
+                decreaseTotalPrice={purchase.decreaseTotalPrice}
+            />
+            )
 
         return (
             <Modal onHide={this.handleCloseModified.bind(this)} show={this.props.show} size="xl" id="newOrderWindow">
@@ -192,7 +240,7 @@ class NewOrderWindow extends Component{
                             <Card.Title>items</Card.Title>
                             <div style={{ 'overflow-y': "auto", 'overflow-x': "hidden" }}>
                                 <CheckoutTable>
-                                    {this.state.purchases}
+                                    {purchaseRender}
                                 </CheckoutTable>
                             </div>
                             <div className="mt-auto">
@@ -226,108 +274,6 @@ class CheckoutTable extends Component {
                 {this.props.children}
             </table>
         )
-    }
-}
-
-class AddedItem extends Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            currentQty: props.currentQty,
-            currentPrice: props.itemPrice,
-            totalPrice: props.totalPrice,
-            isOpen: false
-        };
-
-        this.increaseValue = this.increaseValue.bind(this)
-        this.decreaseValue = this.decreaseValue.bind(this)
-        //this.newItemInit = this.newItemInit.bind(this)
-    }
-
-    increaseValue() {
-        var currentQty = this.state.currentQty
-        var currentPrice = this.state.currentPrice
-        var totalPrice = this.state.totalPrice
-
-        currentQty = currentQty + 1;
-        currentPrice = this.props.itemPrice * currentQty
-        totalPrice = totalPrice + currentPrice
-
-        //console.log(totalPrice)
-        
-        this.setState({ currentQty: currentQty, currentPrice: currentPrice, totalPrice: totalPrice })
-        this.showCurrentPrice.bind(this)
-        
-    }
-
-    decreaseValue() {
-        var currentQty = this.state.currentQty
-        var currentPrice = this.state.currentPrice
-        var totalPrice = this.state.totalPrice
-
-        if (currentQty > 1) {
-            currentQty = currentQty - 1;
-        }
-
-        currentPrice = this.props.itemPrice * currentQty
-        totalPrice = totalPrice + currentPrice
-
-        //console.log(totalPrice)
-
-        this.setState({ currentQty: currentQty, currentPrice: currentPrice, totalPrice: totalPrice })
-        this.showCurrentPrice.bind(this)
-    }
-
-    showCurrentPrice() {
-        return this.state.currentPrice;
-    }
-
-    removeFromCart = () => {
-        console.log("Removed?");
-        console.log(this.props._id);
-
-        var list = this.props.purchases;
-
-        console.log(list);
-
-        for (var i = 0; i < list.length; i++) {
-            if (list[i].props._id == this.props._id) {
-                console.log("Found!");
-                list.splice(i, 1);
-            }
-        }
-
-        this.handleClose();
-    }
-
-    handleClose = () => {
-        this.setState({ isOpen: false })
-    }
-
-    
-    render() {
-        console.log("Changed value: " + this.state.currentQty)
-        //console.log("List: " + this.props.purchases)
-        //console.log("List: " + (this.props.purchases instanceof Array))
-        var currentPrice = this.state.currentPrice
-        var totalPrice = this.state.totalPrice;
-
-        console.log(this.state.currentPrice)
-
-        totalPrice = currentPrice + totalPrice;
-
-        return (
-            <tr id={this.props._id + "Cart"} >
-                <td>
-                    <Button className='close' onClick={this.removeFromCart.bind(this)} variant="light"><span>&times;</span></Button>
-                </td>
-                <td id={this.props._id + "Quantity"}>({this.state.currentQty}) {this.props.itemName} </td>
-                <td id={this.props._id + "Total"} className='text-right'> {currentPrice.toFixed(2)} </td>
-                <td><Button className='minusQuantity' onClick={this.decreaseValue.bind(this)} variant="light"><span className="font-weight-bold">-</span></Button></td>
-                <td><Button className='plusQuantity' onClick={this.increaseValue.bind(this)} variant="light"><span className="font-weight-bold">+</span></Button></td>
-            </tr>
-        );
     }
 }
 

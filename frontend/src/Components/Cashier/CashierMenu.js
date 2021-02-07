@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Modal, Form, Card, Button, Nav } from 'react-bootstrap'
 
-import NewOrderWindow from "./NewOrderWindow";
-import FinancialWindow from "./FinancialWindow";
-import SalesReportWindow from "../Home/SalesReportWindow";
+import NewOrderWindow from "./newOrderWindow";
+import FinancialWindow from "./financialWindow";
+import SalesReportWindow from "../Home/salesReportWindow";
 
 
 const CashierMenu = (props) => {
