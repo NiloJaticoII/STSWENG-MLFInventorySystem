@@ -8,18 +8,19 @@ ReactDOM.render(<Counter />, document.getElementById("root"));
 
 class Counter extends Component {
 
-    state = {
-        value: this.props.value
-    };
-
-    /*
-    naming convention for handling events (onClick, onKeyup, etc.) starts with handle...
-    handleFunction(){
+    constructor(){
+        super()
+        this.state = {
+            value: 0
+        };
+    
     }
-    */
-    getValue(){
-
-        return this.state.value; 
+   
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.value !== prevProps.value) {
+          this.setState({value: this.props.value})
+        }
     }
 
     handleDecrement(){
@@ -29,7 +30,7 @@ class Counter extends Component {
     render(){
         return(
         <div>
-            {this.getValue()}
+            {this.state.value}
         </div> 
         );
     }

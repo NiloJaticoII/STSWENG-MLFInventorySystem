@@ -17,7 +17,7 @@ class MainMenu extends Component {
         minutesLeft:0,
         secondsLeft: 0,
         totalSeconds: 0,
-        totalSold: 0,
+        totalSold: 10,
         event: [],
         isAdmin: false
       }
@@ -38,7 +38,7 @@ class MainMenu extends Component {
         minutesLeft:res.minutesLeft,
         secondsLeft: res.secondsLeft,
         totalSeconds: res.totalSeconds,
-        totalSold: res.totalSold,
+        //totalSold: res.totalSold,
         event: res.event
       }), 
         this.setState({isAdmin:this.props.isAdmin, history: this.props.history}))
@@ -86,7 +86,7 @@ class MainMenu extends Component {
     render(){
       return (
         <div id="mainPageBox">
-          <Banner history={this.state.history}/>
+          <Banner history={this.state.history} totalSold={this.state.totalSold}/>
               <div id="lowerSection" className="container d-flex flex-row mt-4">
 
                 <div id="artistsList" className="card p-2" style={{width: "60rem"}}>
