@@ -14,7 +14,66 @@ class SalesReportWindow extends Component {
     
         this.handleChange = this.handleChange.bind(this)
         this.updateTotalSales = this.updateTotalSales.bind(this)
-      }
+    }
+        /*  converts objects to csv */
+    convertToCSV = function (objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+}
+
+    /*  exports sales report to CSV file */
+    exportCSVFile = function () {
+
+    if(this.state.currentArtistID != "")
+    {
+        for(let i=0; i < this.state.artists.length; i++)
+    {
+         if(this.state.artists[i].artistID == this.state.currentArtistID)
+         {
+                var items = this.state.artists[i].items;
+                var fileTitle = this.state.artists[i].artistName;
+         }
+    }
+
+    // Convert Object to JSON
+    var jsonObject = JSON.stringify(items);
+
+    var csv = this.convertToCSV(jsonObject);
+
+    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, exportedFilenmae);
+    } else {
+        var link = document.createElement("a");
+        if (link.download !== undefined) { // feature detection
+            // Browsers that support HTML5 download attribute
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", exportedFilenmae);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+    }
+
+}
     
     handleChange = (event) => {
         this.setState({currentArtistID: event.target.value}, 
@@ -178,7 +237,7 @@ class SalesReportWindow extends Component {
                     </Modal.Body>
     
                     <Modal.Footer>
-                        <Button id="saveOrder" className="btn btn-secondary btn-sm col-2" value="export data">check out</Button>
+                        <Button id="saveOrder" className="btn btn-secondary btn-sm col-2" value="export data" onClick={()=>this.exportCSVFile()}>check out</Button>
                     </Modal.Footer>
                 </Form>
             </Modal>
@@ -201,5 +260,7 @@ function LoadItemCards(props) {
         </tr>
     )
 }
+
+
 
 export default SalesReportWindow

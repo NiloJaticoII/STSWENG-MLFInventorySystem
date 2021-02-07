@@ -13,11 +13,23 @@ class Banner extends Component {
                 {id: 3, value: 0}, /* hours left */
                 {id: 4, value: 0}, /* minutes left */
                 {id: 5, value: 0}  /* seconds left */
-            ]
+            ],
+            totalSold: 0
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
+    componentDidMount(){
+        this.setState({totalSold: this.props.totalSold})
+    }
+
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.totalSold !== prevProps.totalSold) {
+          this.setState({totalSold: this.props.totalSold})
+        }
+        console.log(this.state.totalSold)
+    }
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -38,7 +50,7 @@ class Banner extends Component {
                             <div id="salesCounter" className="d-flex flex-col text-center">
                                 <div id="soldCounter" className="col">
                                     <h1 id="counterNumberSold" className="font-weight-bold">
-                                        <Counter key={this.state.counters[0].id} value={this.state.counters[0].value} id={this.state.counters[0].id} />
+                                        <Counter key={0} value={this.state.totalSold} id="counter-sold" />
                                     </h1>
                                     <h5 id="textLabel">sold</h5>
                                 </div>
