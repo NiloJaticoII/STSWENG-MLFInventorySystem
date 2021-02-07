@@ -3,7 +3,7 @@ import { Modal, Form, Card, Button, Nav } from 'react-bootstrap';
 import EditEventsForm from './EditEventsForm';
 import AddEventsForm from './AddEventsForm';
 
-function manageEventsWindow(handleClose, show){
+function ManageEventsWindow(handleClose, show){
     return (
        <Modal onHide={handleClose} id="manageEventsWindow" show={show} size="lg">
                 <Modal.Header className="bg-white" closeButton>
@@ -27,4 +27,4 @@ function manageEventsWindow(handleClose, show){
     );
 }
 
-export default manageEventsWindow
+export default ManageEventsWindow
