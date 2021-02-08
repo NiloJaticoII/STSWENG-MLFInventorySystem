@@ -13,6 +13,7 @@ class NewOrderWindow extends Component{
             totalPrice: 0,
             totalPriceArray: [],
             currentArtistID: "",
+            responseToPost: "",
         }
 
       this.handleChange = this.handleChange.bind(this)
@@ -21,6 +22,7 @@ class NewOrderWindow extends Component{
       this.decreaseTotalPrice = this.decreaseTotalPrice.bind(this)
       this.updateQty = this.updateQty.bind(this)
       this.removeCartItem = this.removeCartItem.bind(this)
+      this.checkOut=this.checkOut.bind(this)
   }
 
     handleChange(event) {
@@ -75,6 +77,24 @@ class NewOrderWindow extends Component{
         }
 
         this.setState({ purchases: this.state.purchases, totalPrice: totalPrice })
+    }
+
+    checkOut = async e =>{
+        e.preventDefault();
+        const response = await fetch(config.API_URI + '/orderCheckout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({items: this.state.purchases}),
+        });
+        const body = await response.text();
+
+        this.setState({ responseToPost: body });
+
+        if (this.state.responseToPost) {
+            window.location = '/cashier';
+          }
     }
 
     render(){
@@ -229,7 +249,7 @@ class NewOrderWindow extends Component{
 
         return (
             <Modal onHide={this.handleCloseModified.bind(this)} show={this.props.show} size="xl" id="newOrderWindow">
-                <Form id="artistSelect" className="form" method='POST' action="/orderCheckOut">
+                <Form id="artistSelect" className="form">
                     <Modal.Header closeButton>
                     </Modal.Header>
                     <Modal.Body className="modal-body d-flex flex-col">
@@ -261,7 +281,7 @@ class NewOrderWindow extends Component{
                                         <th id="totalPrice" className='text-right'>{this.state.totalPrice.toFixed(2)}</th>
                                     </tr>
                                 </table>
-                                <Button className="btn btn-secondary col-sm-8" id="checkoutBtn" type="button" value="check out">check out</Button>
+                                <Button className="btn btn-secondary col-sm-8" id="checkoutBtn" type="button" value="check out" onClick={this.checkOut}>check out</Button>
                             </div>
                         </Card>
                     </Modal.Body>
