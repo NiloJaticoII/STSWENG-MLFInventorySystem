@@ -8,7 +8,6 @@ import {
 
 import Login from './Components/Login/Login'
 import Main from './Components/Home/MainMenu';
-import {ProtectedRoute} from './ProtectedRoute'
 
 class App extends Component {
   
@@ -32,9 +31,9 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" render={(props) => <Login {...props}/>}/>
-          <ProtectedRoute exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
-          <ProtectedRoute exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
-          <ProtectedRoute exact path="*" component={()=> "404 NOT FOUND"}/>
+          <Route exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
+          <Route exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
+          <Route exact path="*" component={()=> "404 NOT FOUND"}/>
         </Switch>
       </Router>
     );
