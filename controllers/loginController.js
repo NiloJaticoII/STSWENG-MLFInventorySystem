@@ -22,8 +22,7 @@ const loginController = {
                     if (equal) {
                         req.session.user = username
                         req.session.isAdmin = true
-                        res.send({page: '/admin',
-                                  session: req.session})
+                        res.send('/admin')
                     } else res.send('/')
                 })
             } else {
@@ -33,8 +32,7 @@ const loginController = {
                             if (equal) {
                                 req.session.user = username
                                 req.session.isAdmin = false
-                                res.send({page: '/main',
-                                          session: req.session})
+                                res.send('/cashier')
                             } else res.send('/')
                         })
                     } else res.send('/')

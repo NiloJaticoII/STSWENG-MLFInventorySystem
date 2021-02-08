@@ -28,13 +28,13 @@ class Login extends Component {
           },
           body: JSON.stringify({ username: this.state.userName, pw: this.state.password }),
         });
-        const body = await response.json();
+        const body = await response.text();
         
         this.setState({ responseToPost: body });
-        if(this.state.responseToPost.page === "/admin"){
+        if(this.state.responseToPost === "/admin"){
             this.props.history.push("/admin");
         } 
-        else if(this.state.responseToPost.page === "/main"){
+        else if(this.state.responseToPost === "/cashier"){
             this.props.history.push("/cashier");
         }    
         else{
