@@ -2,7 +2,7 @@
 const configGlob = {};
 // production specific config goes here
 const configProd = {
-  API_URI: "https://mlf-inventory.herokuapp.com"
+  API_URI: "https://mlf-inventory.herokuapp.com/"
 };
 // development specific config goes here
 const configDev = {
