@@ -210,11 +210,10 @@ function LoadItemCards(props) {
             <div className="card">
                 <img src={props.itemPicture} className="card-img-top" alt="..."/>
                 <div className="card-body">
-                    <a href="#" class="stretched-link" onClick={()=>props.handleFinancialItem(props._id, props.itemType)} style={{size: "0px"}}>
-                        <h5 className="card-title"> {props.itemName} </h5>
-                    </a>
+                    <h5 className="card-title"> {props.itemName} </h5>
                     <p className="card-text">PHP {props.itemPrice.toFixed(2)}</p>
                     <p className="card-text">{props.stocksQuantity} left</p>
+                    <a href="#" class="stretched-link" onClick={()=>props.handleFinancialItem(props._id, props.itemType)} style={{size: "0px"}}></a>
                 </div>
             </div>
         </div>

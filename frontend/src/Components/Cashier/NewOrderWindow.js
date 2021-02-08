@@ -93,7 +93,7 @@ class NewOrderWindow extends Component{
         this.setState({ responseToPost: body });
 
         if (this.state.responseToPost) {
-            window.location = '/cashier';
+            window.location = '/admin';
           }
     }
 
@@ -109,6 +109,9 @@ class NewOrderWindow extends Component{
                     <Card>
                         <img src={props.itemPicture} className="card-img-top" alt="..." />
                         <Card.Body>
+                            <Card.Title> {props.itemName} </Card.Title>
+                            <Card.Text>PHP {props.itemPrice.toFixed(2)}</Card.Text>
+                            <Card.Text>{props.stocksQuantity} left</Card.Text>
                             <a href="#" className="stretched-link" onClick={() => {
                                 var itemIsInList = false;
                                 for (let i = 0; i < list.length; i++) {
@@ -126,12 +129,7 @@ class NewOrderWindow extends Component{
                                     props.updateTotalPrice(props.itemPrice)
                                 }
 
-;                            }}>
-
-                                <Card.Title> {props.itemName} </Card.Title>
-                            </a>
-                            <Card.Text>PHP {props.itemPrice.toFixed(2)}</Card.Text>
-                            <Card.Text>{props.stocksQuantity} left</Card.Text>
+;                            }}></a>
                         </Card.Body>
                     </Card>
                 </div>
