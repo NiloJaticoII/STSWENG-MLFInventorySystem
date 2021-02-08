@@ -7,6 +7,7 @@ Library           OperatingSystem
 Library           Selenium2Library
 Library                SSHLibrary
 Library  Process
+Library    DateTime
 
 *** Variables ***
 ${MY-VARIABLE}    a variable 
@@ -99,6 +100,15 @@ Valid_Cashier_Login
     Open Browser  http://localhost:3000/  chrome
     Login Cashier
 
+    Close Browser
+
+Valid_Admin_Add_Event
+    Open Browser  http://localhost:3000/  chrome
+
+    Login Admin
+    Add Event E1
+    Edit Event E1
+    Delete Event E1ED
     Close Browser
 *** Keywords ***
 Login Admin
@@ -217,4 +227,65 @@ Login Cashier
     Input Text  id=password  pw123
     Click Button  id=loginButton
 
-*** Variables ***
+Add Event E1
+    Sleep  1
+    Click Element  id=manageEvents
+    Click Element  id=addEventsOption
+
+    Input Text  id=newEventName  e1
+    Select Checkbox  id=addSetCurrentEvent
+    Click Element  id=addStartEventDate
+
+    ${CurrentDate}    Get Current Date    result_format=%d/%m/%Y
+    Input Text  id=addStartEventDate  ${CurrentDate}
+    
+    ${CurrentDate}    Get Current Date
+    ${NextDate}  Add Time To Date  ${CurrentDate}   3 days   
+    ${NextDate}  Convert Date  ${NextDate}  result_format=%d/%m/%Y
+    
+    Input Text  id=addEndEventDate  ${NextDate}
+    Click Button  id=addEventButton
+    Handle Alert  action=DISMISS
+    Handle Alert  action=DISMISS
+Edit Event E1
+    Sleep  1
+    Click Element  id=manageEvents
+    Click Element  id=editEventsOption
+
+    Click Element  id=selectedEvent
+    Sleep  1
+    Click Element  id=selectedEvent
+    Sleep  1
+
+    Select From List By Label  id=selectedEvent  e1
+
+    Input Text  id=editEventName  e1ed
+    Select Checkbox  id=editSetCurrentEvent
+    Click Element  id=editStartEventDate
+
+    ${CurrentDate}    Get Current Date    result_format=%d/%m/%Y
+    Input Text  id=editStartEventDate  ${CurrentDate}
+    
+    ${CurrentDate}    Get Current Date
+    ${NextDate}  Add Time To Date  ${CurrentDate}   5 days   
+    ${NextDate}  Convert Date  ${NextDate}  result_format=%d/%m/%Y
+    
+    Input Text  id=editEndEventDate  ${NextDate}
+    Sleep  5
+    Click Button  id=editEventButton
+Delete Event E1ED
+    Sleep  2
+    Click Element  id=manageEvents
+    Click Element  id=editEventsOption
+
+    Click Element  id=selectedEvent
+    Sleep  1
+    Click Element  id=selectedEvent
+    Sleep  1
+
+    Select From List By Label  id=selectedEvent  e1ed
+    Click Button  id=deleteEventButton
+    Handle Alert  action=DISMISS
+
+
+
