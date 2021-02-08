@@ -138,47 +138,46 @@ const mainController = {
     /*  new order decrements stockQuantity and increments itemSold */
     postOrderCheckOut: function(req, res, next){
         var items = req.body.items
-        var bundles = req.body.bundles
         var success = true;
         
         for (let i = 0; items && i < items.length; i++) {
             
-            db.findOne(Items, {_id: items[i].itemID}, 'stockQuantity itemsSold', function(result) {
+            db.findOne(Items, {_id: items[i]._id}, 'stockQuantity itemsSold', function(result) {
                 
                 if (result) {
                     var update = {
-                        stockQuantity: result.stockQuantity - parseInt(items[i].quantity),
-                        itemsSold: result.itemsSold + parseInt(items[i].quantity)
+                        stockQuantity: result.stockQuantity - parseInt(items[i].currentQty),
+                        itemsSold: result.itemsSold + parseInt(items[i].currentQty)
                     }
 
-                    db.updateOne(Items, {_id: items[i].itemID}, update, function(result1) {
+                    db.updateOne(Items, {_id: items[i]._id}, update, function(result1) {
                         success = result
                     })
                     
                 }
                 else {
-                    console.log('Item ' + items[i].itemID + ' not found in the collection.')
+                    console.log('Item ' + items[i]._id + ' not found in the collection.')
                 }
             })
         }
         
-        for (let i = 0; bundles && i < bundles.length; i++) {
+        for (let i = 0; items && i < items.length; i++) {
             
-            db.findOne(Bundles, {_id: bundles[i].itemID}, 'bundleStock bundleSold', function(result) {
+            db.findOne(Bundles, {_id: items[i]._id}, 'bundleStock bundleSold', function(result) {
                 
                 if (result) {
                     var update = {
-                        bundleStock: result.bundleStock - parseInt(bundles[i].quantity),
-                        bundleSold: result.bundleSold + parseInt(bundles[i].quantity)
+                        bundleStock: result.bundleStock - parseInt(items[i].currentQty),
+                        bundleSold: result.bundleSold + parseInt(items[i].currentQty)
                     }
 
-                    db.updateOne(Bundles, {_id: bundles[i].itemID}, update, function(result1) {
+                    db.updateOne(Bundles, {_id: items[i]._id}, update, function(result1) {
                         success = success && result1
                     })
                     
                 }
                 else {
-                    console.log('Bundle ' + bundles[i].itemID + ' not found in the collection.')
+                    console.log('Bundle ' + items[i].itemID + ' not found in the collection.')
                 }
             })
         }
@@ -186,7 +185,7 @@ const mainController = {
         if (!success) {
             console.log('Error processing checkout.')
         }
-        res.redirect('/');  
+        res.send('done');  
     },
 
     /*  add stocks increments stockQuantity */
@@ -271,6 +270,11 @@ const mainController = {
             }
         })
     },
+
+    getSession: function(req, res, next){
+        res.send(req.session);
+    },
+
 }
 
 module.exports = mainController;

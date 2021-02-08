@@ -161,7 +161,7 @@ class AddBundlesForm extends Component {
     )
 
     var itemList = [];
-    var bundleList = [];
+    
         
     for(let i=0; i < this.state.artists.length; i++)
         {
@@ -192,6 +192,8 @@ class AddBundlesForm extends Component {
                     }
                 }
         }
+    
+
     
         console.log(this.state.includedItems)
     return (
@@ -278,7 +280,7 @@ function LoadItemCards(props) {
                     <h5 className="card-title"> {props.itemName} </h5>
                     <p className="card-text">PHP {props.itemPrice.toFixed(2)}</p>
                     <p className="card-text">{props.stocksQuantity} left</p>
-                    <a href="#" class="stretched-link" onClick={()=> props.addToBundle(props)}style={{size: "0px"}}></a>
+                    <a href="#" className="stretched-link" onClick={()=> props.addToBundle(props)}style={{size: "0px"}}></a>
                 </div>
             </div>
         </div>

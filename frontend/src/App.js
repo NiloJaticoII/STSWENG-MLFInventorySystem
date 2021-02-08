@@ -3,10 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 
 import Login from './Components/Login/Login'
 import Main from './Components/Home/MainMenu';
+import {ProtectedRoute} from './ProtectedRoute'
 
 class App extends Component {
   
@@ -14,24 +16,25 @@ class App extends Component {
     super();
     this.state = {
         history: "/",
-        session: {}
+        session: false
     }
     this.connecToServer = this.connecToServer.bind(this); 
   }
 
   connecToServer() {    fetch('/');  }
 
-  componentDidMount() {    this.connecToServer();  }
+  componentDidMount() {    
+    this.connecToServer();
+  }
 
   render(){
     return (
       <Router>
         <Switch>
-
-          <Route exact path="/" component={Login}/>
-          <Route exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
-          <Route exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
-
+          <Route exact path="/" render={(props) => <Login {...props}/>}/>
+          <ProtectedRoute exact path="/cashier" render={(props) => <Main {...props} isAdmin={false} />} />
+          <ProtectedRoute exact path="/admin" render={(props) => <Main {...props} isAdmin={true} />} />
+          <ProtectedRoute exact path="*" component={()=> "404 NOT FOUND"}/>
         </Switch>
       </Router>
     );
