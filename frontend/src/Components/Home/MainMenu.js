@@ -17,7 +17,7 @@ class MainMenu extends Component {
         minutesLeft:0,
         secondsLeft: 0,
         totalSeconds: 0,
-        totalSold: 10,
+        totalSold: 0,
         event: [],
         isAdmin: false
       }
@@ -38,7 +38,7 @@ class MainMenu extends Component {
         minutesLeft:res.minutesLeft,
         secondsLeft: res.secondsLeft,
         totalSeconds: res.totalSeconds,
-        //totalSold: res.totalSold,
+        totalSold: res.totalSold,
         event: res.event
       }), 
         this.setState({isAdmin:this.props.isAdmin, history: this.props.history}))
