@@ -12,5 +12,6 @@ router.get('/getItems', mainController.getItems);
 router.get('/getBundles', mainController.getBundles);
 router.get('/getSorted', salesController.sortItemBundles);
 router.get('/export', salesController.exportReport);
+router.get('/getSession', mainController.getSession)
 
 module.exports = router;

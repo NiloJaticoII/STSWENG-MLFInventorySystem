@@ -37,7 +37,9 @@ app.use(session({
 //Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  credentials: true,
+}));
 
 //Main menu
 const LogInController = require('./controllers/loginController.js');
