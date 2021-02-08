@@ -93,7 +93,7 @@ class NewOrderWindow extends Component{
         this.setState({ responseToPost: body });
 
         if (this.state.responseToPost) {
-            window.location = '/cashier';
+            window.location = '/admin';
           }
     }
 
