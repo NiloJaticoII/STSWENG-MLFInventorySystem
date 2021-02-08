@@ -19,6 +19,8 @@ class EditBundlesForm extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handlePhoto = this.handlePhoto.bind(this)
         this.getArtist = this.getArtist.bind(this)
+        this.getBundle = this.getBundle.bind(this)
+        this.handleChangeArtist = this.handleChangeArtist.bind(this)
         this.handleChangeBundle = this.handleChangeBundle.bind(this)
     }
 
@@ -27,6 +29,9 @@ class EditBundlesForm extends Component {
         this.setState({ [name]: value })
     }
 
+    handleChangeArtist(event) {
+        this.setState({currentArtistID: event.target.value});
+    }
     handleChangeBundle(event){
         this.setState({currentBundleID: event.target.value});
     }
@@ -41,6 +46,12 @@ class EditBundlesForm extends Component {
         this.setState({
         artists: res.artist,
       })); 
+      
+      this.getBundle()
+      .then(res =>
+        this.setState({
+        bundles: res.bundle
+        })); 
     }
 
     getArtist = async () => {
@@ -52,14 +63,34 @@ class EditBundlesForm extends Component {
         });
         const body = await response.json();
         return body;
-      };
+    };
+
+    getBundle = async () => {
+        const response = await fetch(config.API_URI + '/admin/getBundles', {
+            /*?artistID='+this.state.currentArtistID +"&projection=_id artistID*/
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          const body = await response.json();
+          console.log("bundle body:")
+          console.log(body)
+          return body;
+    };
+
 
       render(){
         const artistOptions = this.state.artists.map(artist =>
             <LoadNames key={artist.artistID} artistID={artist.artistID}
                 artistName={artist.artistName} />
         )
-
+        /*
+        const bundleOptions = this.state.bundles.map(bundle =>
+            <LoadBundleNames key={bundle._id} bundleID={bundle._id}
+                bundleName={bundle.bundleName} />
+        )
+        */
 
         return(
             <div id="editBundlesSection" className="tab-pane fade show active pb-4" role="tabpanel" aria-labelledby="editBundleOption">
@@ -71,7 +102,7 @@ class EditBundlesForm extends Component {
                         <div id="editSelectorsSection" className="row mb-2">
                             <div className="col">
                                 <div className="form-group">
-                                    <select id="artistsListDropdownBundleEdit" className="form-control col-11" name="artistsListDropdownBundleEdit" value={this.state.currentArtistID}  required>
+                                    <select id="artistsListDropdownBundleEdit" className="form-control col-11" name="artistsListDropdownBundleEdit" value={this.state.currentArtistID} onChange={this.handleChangeArtist}required>
                                         <option className="defaultVal" value="" disabled defaultValue>select artist</option>
                                         
                                         {artistOptions}
@@ -82,8 +113,9 @@ class EditBundlesForm extends Component {
                             <div className="col ml-2">
                                 <div className="form-row">
                                     <div className="col">
-                                        <select id="artistsListDropdownBundle" className="form-control" name="artistsListDropdownBundle" onChange={this.handleChangeBundle}required>
+                                        <select id="artistsListDropdownBundle" className="form-control" name="artistsListDropdownBundle" value={this.state.currentBundleID} onChange={this.handleChangeBundle}required>
                                             <option className="defaultVal" value="" disabled defaultValue>select bundle</option>
+                                            
                                         </select>
                                     </div>
                                     <div className="col">
@@ -143,8 +175,10 @@ class EditBundlesForm extends Component {
 }
 
 
-function LoadBundlenames(props) {
-
+function LoadBundleNames(props) {
+    return (
+        <option value={props._id}>{props.bundleName}</option>
+    );
 }
 function LoadNames(props) {
     return (

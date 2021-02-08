@@ -286,13 +286,14 @@ const adminEditController = {
     getBundles: function(req, res, next){
         db.findOne(Events, {isCurrentEvent: true}, '', function(resultEvent) {
             if (resultEvent) {
-                db.findMany(Bundles, {artistID: req.query.artistID, eventID:resultEvent._id}, req.query.projection, function(result) {
+                db.findMany(Bundles, {}, req.query.projection, function(result) {
                     if (result.length > 0) {
                         res.send(result)
                     }
                     else {
                         console.log('Bundle ' + req.query.artistID + ' not found in the collection.')
                         res.send(false)
+                        //res.send(result)
                     }
                 })
             }
